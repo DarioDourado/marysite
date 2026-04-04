@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Montserrat", sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Outfit", sans-serif;
   
-  --color-background: #F8FAFC;
-  --color-foreground: #334155;
-  --color-primary: #93C5FD;
-  --color-primary-dark: #60A5FA;
-  --color-secondary: #E2E8F0;
+  --color-background: #FFFFFF;
+  --color-foreground: #1D1D1F; /* Apple's primary text color */
+  --color-primary: #E8F1FF; /* Soft pastel blue */
+  --color-primary-dark: #0066CC; /* Apple-like blue for accents */
+  --color-secondary: #F5F5F7; /* Apple's secondary background */
   --color-surface: #FFFFFF;
-  --color-text-light: #64748B;
+  --color-text-light: #86868B; /* Apple's secondary text color */
 }
 
 body {
-  @apply bg-background text-foreground font-sans antialiased;
+  @apply bg-background text-foreground font-sans antialiased selection:bg-primary-dark/10 selection:text-primary-dark;
 }
 
 h1, h2, h3, h4, h5, h6 {
