@@ -45,44 +45,44 @@ export const Home = () => {
   return (
     <div className="pt-12 md:pt-14">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[85vh] flex items-center overflow-hidden bg-white py-12 md:py-20">
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden bg-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="w-full"
             >
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-foreground mb-6 leading-[1.1]">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-foreground mb-8 leading-[1.05]">
                 {t('hero.title')}
               </h1>
-              <p className="text-lg md:text-2xl text-text-light leading-relaxed max-w-2xl mx-auto mb-10 md:mb-12 font-medium">
+              <p className="text-xl md:text-2xl lg:text-3xl text-text-light leading-relaxed max-w-2xl mx-auto mb-12 md:mb-16 font-medium opacity-90">
                 {t('hero.subtitle')}
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 md:mb-24">
+              <div className="flex flex-col sm:flex-row gap-5 justify-center mb-20 md:mb-32">
                 <button
                   onClick={handleBooking}
-                  className="px-10 py-4 bg-primary-dark text-white rounded-full font-semibold hover:bg-primary-dark/90 transition-all shadow-xl shadow-primary-dark/20 flex items-center justify-center gap-2 group"
+                  className="px-12 py-5 bg-primary-dark text-white rounded-full font-semibold hover:bg-primary-dark/90 transition-all shadow-2xl shadow-primary-dark/20 flex items-center justify-center gap-3 group text-lg"
                 >
                   {t('hero.cta')}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-left border-t border-secondary/40 pt-12 md:pt-16">
-                <div className="space-y-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary-dark">{t('hero.welcomeTitle')}</span>
-                  <p className="text-sm md:text-base text-text-light leading-relaxed">{t('hero.welcomeText')}</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 text-left border-t border-secondary/40 pt-16 md:pt-20">
+                <div className="space-y-5">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-dark opacity-80">{t('hero.welcomeTitle')}</span>
+                  <p className="text-base md:text-lg text-text-light leading-relaxed font-medium">{t('hero.welcomeText')}</p>
                 </div>
-                <div className="space-y-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary-dark">Abordagem</span>
-                  <p className="text-sm md:text-base text-text-light leading-relaxed">{t('hero.introText')}</p>
+                <div className="space-y-5">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-dark opacity-80">Abordagem</span>
+                  <p className="text-base md:text-lg text-text-light leading-relaxed font-medium">{t('hero.introText')}</p>
                 </div>
-                <div className="space-y-4">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary-dark">Compromisso</span>
-                  <p className="text-sm md:text-base text-text-light leading-relaxed">{t('hero.spaceText')}</p>
+                <div className="space-y-5">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-dark opacity-80">Compromisso</span>
+                  <p className="text-base md:text-lg text-text-light leading-relaxed font-medium">{t('hero.spaceText')}</p>
                 </div>
               </div>
             </motion.div>
@@ -103,12 +103,15 @@ export const Home = () => {
                 transition={{ duration: 1 }}
                 className="relative max-w-md mx-auto lg:max-w-none"
               >
-                <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl">
+                <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl bg-secondary/20">
                   <img 
-                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800&h=1000" 
+                    src="/mariline-boto.jpg" 
                     alt="Mariline Bôto" 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://www.asuapsicologaonline.pt/assets/images/sobre-mim.jpg";
+                    }}
                   />
                 </div>
               </motion.div>

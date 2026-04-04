@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/src/lib/utils.ts';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -57,15 +57,15 @@ export const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={toggleLanguage}
-            className="text-text-light hover:text-foreground transition-colors"
+            className="w-10 h-10 flex items-center justify-center bg-secondary/20 rounded-full text-text-light hover:text-foreground transition-colors"
           >
             <Globe className="w-5 h-5" />
           </button>
           <button 
-            className="p-1 text-foreground" 
+            className="w-10 h-10 flex items-center justify-center bg-foreground text-white rounded-full shadow-lg shadow-foreground/20" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -78,30 +78,43 @@ export const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden pt-12 bg-white flex flex-col"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed inset-0 z-40 md:hidden pt-14 bg-white flex flex-col shadow-2xl"
           >
-            <nav className="flex flex-col px-10 pt-10 gap-8">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-3xl font-serif font-semibold text-foreground hover:text-primary-dark transition-colors"
+            <div className="flex-1 overflow-y-auto">
+              <nav className="flex flex-col px-8 pt-12 pb-20 gap-8">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.name}
+                    href={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    onClick={() => setIsOpen(false)}
+                    className="text-4xl font-serif font-bold text-foreground hover:text-primary-dark transition-colors tracking-tight"
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="pt-8 border-t border-secondary/40"
                 >
-                  {item.name}
-                </a>
-              ))}
-              <a
-                href="#booking"
-                onClick={() => setIsOpen(false)}
-                className="mt-4 w-full py-5 bg-primary-dark text-white text-center rounded-2xl font-semibold text-lg shadow-lg shadow-primary-dark/20"
-              >
-                {t('nav.booking')}
-              </a>
-            </nav>
+                  <a
+                    href="#booking"
+                    onClick={() => setIsOpen(false)}
+                    className="w-full py-5 bg-primary-dark text-white text-center rounded-full font-bold text-xl shadow-xl shadow-primary-dark/20 flex items-center justify-center gap-3"
+                  >
+                    {t('nav.booking')}
+                    <ArrowRight className="w-6 h-6" />
+                  </a>
+                </motion.div>
+              </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
