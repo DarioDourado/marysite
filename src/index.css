@@ -1,24 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Marcellus&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Outfit", sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Marcellus", serif;
   
   --color-background: #FFFFFF;
-  --color-foreground: #1D1D1F; /* Apple's primary text color */
-  --color-primary: #E8F1FF; /* Soft pastel blue */
-  --color-primary-dark: #0066CC; /* Apple-like blue for accents */
-  --color-secondary: #F5F5F7; /* Apple's secondary background */
+  --color-foreground: #1D1D1F;
+  --color-primary: #D7E4EF; /* Soft light blue for backgrounds */
+  --color-primary-medium: #89ADCF; /* Intermediate blue */
+  --color-primary-dark: #3E7BB3; /* Highlight blue for buttons, text */
+  --color-secondary: #F5F5F7;
   --color-surface: #FFFFFF;
-  --color-text-light: #86868B; /* Apple's secondary text color */
+  --color-text-light: #555555;
 }
 
 body {
   @apply bg-background text-foreground font-sans antialiased selection:bg-primary-dark/10 selection:text-primary-dark;
+  line-height: 1.7;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-serif;
+  @apply font-serif font-normal tracking-tight;
+  line-height: 1.25;
+}
+
+.section-spacing {
+  @apply py-24 md:py-40;
 }
 

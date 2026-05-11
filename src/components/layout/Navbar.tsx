@@ -25,8 +25,18 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-secondary/40 h-12 md:h-14 flex items-center">
       <div className="max-w-7xl mx-auto px-4 md:px-6 w-full flex items-center justify-between">
         <div className="flex items-center">
-          <a href="#" className="text-lg md:text-xl font-serif font-semibold tracking-tight text-foreground hover:opacity-80 transition-opacity">
-            Mariline Bôto
+          <a href="#" className="hover:opacity-80 transition-opacity flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="Mariline Bôto" 
+              className="h-8 md:h-10 w-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.style.display = 'none';
+                target.insertAdjacentHTML('afterend', '<span class="text-lg md:text-xl font-serif font-normal tracking-tight text-foreground">Mariline Bôto</span>');
+              }}
+            />
           </a>
         </div>
 
@@ -36,21 +46,21 @@ export const Navbar = () => {
             <a
               key={item.name}
               href={item.href}
-              className="text-[12px] font-medium text-text-light hover:text-foreground transition-colors tracking-wide"
+              className="text-[13px] font-serif font-normal text-text-light hover:text-primary-dark transition-colors tracking-wide"
             >
               {item.name}
             </a>
           ))}
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-1.5 text-[12px] font-medium text-text-light hover:text-foreground transition-colors"
+            className="flex items-center gap-1.5 text-[13px] font-serif font-normal text-text-light hover:text-primary-dark transition-colors"
           >
             <Globe className="w-3.5 h-3.5" />
             {i18n.language.toUpperCase()}
           </button>
           <a
-            href="#booking"
-            className="px-4 py-1.5 bg-primary-dark text-white text-[12px] font-medium rounded-full hover:bg-primary-dark/90 transition-all"
+            href="#booking-section"
+            className="px-5 py-2 bg-primary-dark text-white text-[13px] font-serif font-normal rounded-full hover:bg-primary-dark/90 transition-all"
           >
             {t('nav.booking')}
           </a>
@@ -93,7 +103,7 @@ export const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
                     onClick={() => setIsOpen(false)}
-                    className="text-4xl font-serif font-bold text-foreground hover:text-primary-dark transition-colors tracking-tight"
+                    className="text-4xl font-serif font-normal text-foreground hover:text-primary-dark transition-colors tracking-tight"
                   >
                     {item.name}
                   </motion.a>
@@ -105,12 +115,12 @@ export const Navbar = () => {
                   className="pt-8 border-t border-secondary/40"
                 >
                   <a
-                    href="#booking"
+                    href="#booking-section"
                     onClick={() => setIsOpen(false)}
-                    className="w-full py-5 bg-primary-dark text-white text-center rounded-full font-bold text-xl shadow-xl shadow-primary-dark/20 flex items-center justify-center gap-3"
+                    className="w-full py-5 bg-primary-dark text-white text-center rounded-full font-serif font-normal text-xl shadow-xl shadow-primary-dark/20 flex items-center justify-center gap-3"
                   >
                     {t('nav.booking')}
-                    <ArrowRight className="w-6 h-6" />
+                    <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
                   </a>
                 </motion.div>
               </nav>

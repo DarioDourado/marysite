@@ -49,15 +49,28 @@ export const Footer = () => {
             Links
           </h3>
           <ul className="space-y-4 text-foreground/70">
-            <li><a href="#" className="hover:text-primary transition-colors">{t('nav.home')}</a></li>
-            <li><a href="#about" className="hover:text-primary transition-colors">{t('nav.about')}</a></li>
-            <li><a href="#areas" className="hover:text-primary transition-colors">{t('nav.areas')}</a></li>
-            <li><a href="#booking" className="hover:text-primary transition-colors">{t('nav.booking')}</a></li>
+            <li><a href="#" className="hover:text-primary-dark transition-colors">{t('nav.home')}</a></li>
+            <li><a href="#about" className="hover:text-primary-dark transition-colors">{t('nav.about')}</a></li>
+            <li><a href="#areas" className="hover:text-primary-dark transition-colors">{t('nav.areas')}</a></li>
+            <li><a href="#booking-section" className="hover:text-primary-dark transition-colors">{t('nav.booking')}</a></li>
           </ul>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-secondary/20 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground/50">
+      <div className="max-w-7xl mx-auto px-6 mt-16 flex flex-wrap items-center justify-center gap-12 opacity-40 grayscale pointer-events-none">
+        <img 
+          src="https://www.ordemdospsicologos.pt/static/img/logo_opp.png" 
+          alt="Ordem dos Psicólogos Portugueses" 
+          className="h-12 w-auto"
+        />
+        <img 
+          src="https://www.ers.pt/media/1133/logoers.png" 
+          alt="Entidade Reguladora da Saúde" 
+          className="h-10 w-auto" 
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-secondary/20 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground/50">
         <p>© 2026 A Sua Psicóloga Online. Todos os direitos reservados.</p>
         <div className="flex items-center gap-6">
           <a href="#" className="hover:text-primary transition-colors">Política de Privacidade</a>
