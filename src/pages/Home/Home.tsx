@@ -55,9 +55,9 @@ export const Home = () => {
         <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <motion.div
-              initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-full"
             >
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-normal tracking-tight text-foreground mb-8 leading-[1.05]">
@@ -103,17 +103,18 @@ export const Home = () => {
             {/* Image Column */}
             <div className="lg:col-span-5">
               <motion.div
-                initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                style={{ y: aboutBgY }}
+                initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative max-w-md mx-auto lg:max-w-none"
               >
                 <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl bg-secondary/20">
                   <img 
                     src="/mariline-boto.jpg" 
                     alt="Mariline Bôto" 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover scale-110"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = "https://www.asuapsicologaonline.pt/assets/images/sobre-mim.jpg";
@@ -126,10 +127,10 @@ export const Home = () => {
             {/* Content Column */}
             <div className="lg:col-span-7">
               <motion.div
-                initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
                 <span className="text-primary-dark font-bold uppercase tracking-[0.3em] text-[10px] mb-4 block">
                   {t('about.title')}
@@ -194,10 +195,10 @@ export const Home = () => {
             {areas.map((area, index) => (
               <motion.div
                 key={index}
-                initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: isMobile ? 0 : index * 0.05 }}
+                transition={{ duration: 0.6, delay: isMobile ? 0 : index * 0.1, ease: "easeOut" }}
                 className="group bg-secondary/20 rounded-[32px] p-8 md:p-10 hover:bg-primary/20 transition-all duration-500"
               >
                 <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary-dark mb-8 shadow-sm group-hover:scale-105 transition-transform">
@@ -217,14 +218,14 @@ export const Home = () => {
       <section className="relative h-[70vh] overflow-hidden">
         <motion.div
           style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1502977249166-824b3a8a4d6d?auto=format&fit=crop&q=80&w=1920")',
+            backgroundImage: 'url("https://images.unsplash.com/photo-OiAJWSTeiDQ?auto=format&fit=crop&q=80&w=1920")',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             y: useTransform(useScroll({
               offset: ["start end", "end start"]
-            }).scrollYProgress, [0, 1], ["-20%", "20%"])
+            }).scrollYProgress, [0, 1], ["-30%", "30%"])
           }}
-          className="absolute inset-0 w-full h-[140%] -top-[20%]"
+          className="absolute inset-0 w-full h-[160%] -top-[30%] scale-110"
         />
         <div className="absolute inset-0 bg-foreground/20" />
         <div className="relative h-full flex items-center justify-center text-center px-6">
@@ -250,14 +251,18 @@ export const Home = () => {
                 <p className="font-medium text-foreground">{t('approach.wish')}</p>
               </div>
             </div>
-            <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl">
+            <motion.div 
+              style={{ y: useTransform(useScroll({ offset: ["start end", "end start"] }).scrollYProgress, [0, 1], ["-15%", "15%"]) }}
+              className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl"
+            >
               <img 
-                src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80&w=1200" 
-                alt="Ramo Florido" 
-                className="w-full h-full object-cover"
+                src="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                alt="Mãos dadas" 
+                className="w-full h-full object-cover scale-110"
+                style={{ objectPosition: 'center 20%' }}
                 referrerPolicy="no-referrer"
               />
-            </div>
+            </motion.div>
           </div>
 
           <div className="bg-white rounded-[48px] p-10 md:p-20 shadow-sm border border-secondary/40">
@@ -294,16 +299,29 @@ export const Home = () => {
       {/* Booking Section */}
       <section id="booking-section" className="section-spacing bg-primary/10">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-20 md:mb-32">
+          <motion.div 
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center max-w-2xl mx-auto mb-20 md:mb-32"
+          >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-normal text-foreground mb-8">
               Marcação de Consulta
             </h2>
             <p className="text-base md:text-lg text-text-light leading-relaxed">
               {t('hero.ctaInvitation')}
             </p>
-          </div>
+          </motion.div>
           
-          <BookingForm />
+          <motion.div
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
+            <BookingForm />
+          </motion.div>
         </div>
       </section>
 
@@ -311,7 +329,12 @@ export const Home = () => {
       <section id="contacts" className="section-spacing bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-40 items-start">
-            <div>
+            <motion.div
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
               <h2 className="text-4xl md:text-6xl font-serif font-normal text-foreground mb-10 tracking-tight">
                 {t('contacts.title')}
               </h2>
@@ -328,9 +351,15 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-primary/20 p-8 md:p-12 rounded-[40px]">
+            <motion.div 
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="bg-primary/20 p-8 md:p-12 rounded-[40px]"
+            >
               <h3 className="text-2xl font-serif font-normal text-foreground mb-8">{t('contacts.form.title')}</h3>
               <form className="space-y-6">
                 <div className="space-y-4">
@@ -342,7 +371,7 @@ export const Home = () => {
                   {t('contacts.form.send')}
                 </button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
