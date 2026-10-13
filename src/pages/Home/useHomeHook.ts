@@ -19,8 +19,8 @@ export const useHomeHook = () => {
       try {
         const content = await HomeTransporter.getCMSContent();
         setAreas(content.areas);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err));
       } finally {
         setLoading(false);
       }
@@ -35,7 +35,7 @@ export const useHomeHook = () => {
 
   const handleBooking = () => {
     // In a real app, this would scroll to the booking section or open a modal.
-    document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('booking-section')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return {

@@ -29,3 +29,11 @@ h1, h2, h3, h4, h5, h6 {
   @apply py-24 md:py-40;
 }
 
+
+/* Light blue background; drop the image in public/img/bg-azul.webp (falls back to flat blue). */
+.bg-blue-texture {
+  background-color: #E4EDF5;
+  background-image: url('/img/bg-azul.webp');
+  background-size: cover;
+  background-position: center;
+}

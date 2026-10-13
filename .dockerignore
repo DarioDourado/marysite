@@ -6,3 +6,4 @@ dist
 !.env.example
 uploads
 *.log
+public/img/jpg

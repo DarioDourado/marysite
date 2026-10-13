@@ -10,58 +10,82 @@ const resources = {
         about: 'Sobre Mim',
         approach: 'Abordagem',
         areas: 'Áreas de Intervenção',
+        blog: 'Blog',
         contacts: 'Contactos',
         booking: 'Marcações Online'
       },
       hero: {
-        title: 'A sua singularidade merece ser vista, compreendida e cuidada.',
-        subtitle: 'Aqui, cada parte de si encontra espaço para ser escutada com sensibilidade e verdade.',
-        welcomeTitle: 'Bem-vindo(a)',
-        welcomeText: 'Por vezes, o sofrimento emocional instala-se de forma silenciosa, tornando dias e experiências mais pesados. Traumas, perdas, ansiedade, tristeza profunda ou fases de transição particularmente exigentes podem repetir-se, criando bloqueios e limitando o bem-estar. A psicoterapia surge como um espaço seguro e acolhedor, onde é possível respirar, olhar para si com atenção e cuidado, reconhecer o que o aflige e transformar aquilo que pesa, sempre respeitando o seu ritmo, os seus limites e a sua história única.',
-        introText: 'Sou a Mariline Bôto, Psicóloga Clínica, e realizo consultas online para jovens adultos e adultos. Acompanho pessoas que sentem que padrões emocionais e relacionais se repetem ou dificultam a sua vida. Juntos(as), exploramos essas experiências com atenção e segurança, ajudando a integrá-las, compreendê-las e transformá-las em oportunidades de crescimento, autoconhecimento e equilíbrio.',
-        spaceText: 'Aqui encontrará um espaço de escuta genuína, presença atenta e acolhimento profundo: um lugar humano e seguro, onde a sua voz é ouvida, validada e valorizada. Cada sessão é guiada pelo cuidado, autenticidade e pelo compromisso com o seu processo de bem-estar e desenvolvimento pessoal.',
-        ctaInvitation: 'Convido-o(a) a dar o primeiro passo neste caminho, a sentir-se acolhido(a) neste espaço e, se fizer sentido, a agendar a sua consulta online, num ritmo que respeite as suas necessidades.',
-        cta: 'Marque uma consulta'
+        "title": "A sua singularidade merece ser vista, compreendida e cuidada.",
+        "subtitle": "Aqui, cada parte de si encontra espaço para ser escutada com sensibilidade e verdade.",
+        "imageAlt": "Mariline Bôto, Psicóloga Clínica",
+        "welcomeTitle": "Bem-vindo(a)",
+        "welcomeText": "Por vezes, o sofrimento emocional instala-se de forma silenciosa, tornando dias e experiências mais pesados. Traumas, perdas, ansiedade, tristeza profunda ou fases de transição particularmente exigentes podem repetir-se, criando bloqueios e limitando o bem-estar. A psicoterapia surge como um espaço seguro e acolhedor, onde é possível respirar, olhar para si com atenção e cuidado, reconhecer o que o aflige e transformar aquilo que pesa, sempre respeitando o seu ritmo, os seus limites e a sua história única.",
+        "ctaInvitation": "Convido-o(a) a dar o primeiro passo neste caminho, a sentir-se acolhido(a) neste espaço e, se fizer sentido, a agendar a sua consulta online, num ritmo que respeite as suas necessidades.",
+        "cta": "Marque uma consulta"
       },
       about: {
-        title: 'Sobre Mim',
-        educationTitle: 'Formação e Experiência Profissional',
-        educationContent: 'Sou licenciada em Psicologia pelo ISMAT - Instituto Superior Manuel Teixeira Gomes (2016) e mestre em Psicologia Clínica e da Saúde pela Universidade do Algarve (2020). Com o intuito de aprofundar a minha prática em vivências de grande impacto emocional, concluí uma Especialização Avançada em Trauma Psicológico e outra em Luto. Estas competências permitem-me oferecer um suporte qualificado perante as marcas do passado e os desafios do presente.',
-        approachContent: 'A minha prática fundamenta-se na Terapia Cognitivo-Comportamental (TCC), que utilizo como base sólida para a resolução de dificuldades atuais. No sentido de potenciar esta abordagem, realizei recentemente um Curso Avançado em Terapia do Esquema, uma vertente de "terceira geração" que permite um trabalho mais profundo sobre padrões emocionais e relacionais.',
-        experienceIntro: 'A minha experiência profissional inclui diferentes contextos e faixas etárias, o que me garante uma visão sistémica e abrangente dos desafios ao longo da vida. Atualmente dedicada à prática clínica online, o meu percurso foi construído através da experiência prévia em áreas como:',
-        experienceChildhood: 'Infância e desenvolvimento: intervenção em contexto de desenvolvimento social e educação com crianças em idade pré-escolar e escolar, focando-me nas bases emocionais, cognitivas e sociais.',
-        experienceAdolescence: 'Adolescência em contexto de apoio: experiência com adolescentes em estrutura de acolhimento e suporte, abordando as complexidades desta fase em situações de maior vulnerabilidade.',
-        experienceAdults: 'Saúde mental adulta: atuação em serviço de saúde pública, com foco no acompanhamento de adultos que lidam com problemáticas de dependências e outras perturbações do foro psicológico.',
-        conclusion: 'Esta vivência prática em diferentes etapas do desenvolvimento oferece-me hoje um olhar claro sobre a sua história, permitindo-me identificar as origens das suas dificuldades e traçar trajetórias de mudança que respeitam a sua singularidade.'
+        "title": "Sobre Mim",
+        "intro": [
+          "O meu nome é Mariline Bôto, sou Psicóloga Clínica (OPP n.º 28131, ERS E180669) e dedico o meu percurso a potenciar processos de mudança que respeitam a individualidade de cada história.",
+          "No meu trabalho, alio o rigor clínico à criação de um espaço seguro, onde o julgamento não tem lugar, mas a transformação é o caminho.",
+          "A minha intervenção foca-se no acompanhamento de perturbações emocionais e de padrões de funcionamento mais persistentes e enraizados, integrando também a resolução de crises ou fases de transição difíceis.",
+          "Paralelamente, apoio quem procura melhorar a sua autoestima, as suas dinâmicas interpessoais e o seu desenvolvimento pessoal.",
+          "Acredito que os sentimentos pedem, antes de tudo, espaço: um lugar para serem sentidos sem julgamento e, a seu tempo, transformados. É por isso que, na psicoterapia, convido-o(a) a abrandar para resgatarmos o equilíbrio perdido no ruído quotidiano.",
+          "Nesse processo, a sua singularidade é a bússola e a sua sensibilidade a ferramenta de mudança. Cada sessão torna-se então um exercício de coragem: a de olhar para dentro para construir uma vida mais leve e com propósito. É um processo clínico, mas é, acima de tudo, o gesto mais profundo de respeito e amor que pode dedicar a si próprio(a).",
+          "Fora do contexto clínico, recarrego o meu equilíbrio no sol e mar, na companhia das minhas pessoas e dos meus gatos, ou a vibrar com a energia da música rock. É na diversidade destes momentos que cultivo a autenticidade e a serenidade necessárias para cuidar com o mesmo respeito da história de quem me procura."
+        ],
+        "educationTitle": "Formação e Experiência Profissional",
+        "educationSubtitle": "Formação",
+        "education": [
+          "Com o intuito de aprofundar a minha prática em vivências de grande impacto emocional, concluí uma Especialização Avançada em Trauma Psicológico e outra em Luto. Estas competências permitem-me oferecer um suporte qualificado perante as marcas do passado e os desafios do presente.",
+          "A minha abordagem assenta nas Terapias Cognitivo-Comportamentais de 2.ª e 3.ª geração, o que me permite adaptar cada consulta exatamente ao que precisa. Trabalho desde a regulação emocional e modificação de comportamentos até à desconstrução de crenças, esquemas e padrões antigos, contando também com um Curso Avançado em Terapia do Esquema.",
+          "Para além disso, invisto continuamente em formação focada nas perturbações emocionais, pois acredito que a atualização constante é essencial para lhe oferecer um espaço seguro, rigoroso e feito à medida da sua história."
+        ],
+        "experienceSubtitle": "Experiência Profissional"
       },
       approach: {
-        title: 'A Minha Abordagem',
-        intro: 'A psicoterapia é, antes de tudo, um encontro: um espaço onde duas histórias se cruzam com o propósito de compreender, cuidar e transformar.',
-        commitment: 'O meu compromisso é criar um lugar seguro e acolhedor para si, onde possa ser quem é, sem pressas nem julgamentos. Um espaço onde as suas palavras encontrem escuta e significado. Acompanho-o(a) com respeito e presença, ajudando-o(a) a reconectar-se consigo mesmo(a) e a descobrir formas mais livres e conscientes de estar na vida.',
-        wish: 'O que mais desejo é que, ao longo deste caminho, se reconheça como o(a) autor(a) da sua própria história e que esse reconhecimento traga leveza, sentido e plenitude.',
-        valuesTitle: 'Valores que orientam o meu trabalho',
-        values: {
-          empathy: { title: 'Empatia', desc: 'A capacidade de ver o mundo através dos seus olhos, sem pressupostos.' },
-          welcome: { title: 'Acolhimento', desc: 'Criar um ambiente onde se sinta ouvido(a), compreendido(a) e livre de julgamentos.' },
-          respect: { title: 'Respeito', desc: 'Pelo seu tempo, pelos seus limites e pelo seu ritmo de mudança.' },
-          integrity: { title: 'Integridade', desc: 'A base ética e profissional de todas as nossas interações.' },
-          sensitivity: { title: 'Sensibilidade', desc: 'Estar atenta às suas emoções e necessidades mais subtis.' },
-          commitment: { title: 'Compromisso', desc: 'Consigo, com a excelência clínica e com o seu processo de bem-estar.' }
-        },
-        frameworkTitle: 'Enquadramento Terapêutico',
-        frameworkIntro: 'O meu olhar clínico assenta na Terapia Cognitivo-Comportamental (TCC), uma das abordagens mais validadas e eficazes para lidar com perturbações emocionais e promover a mudança de padrões.',
-        frameworkModel: 'Este modelo psicoterapêutico atua na relação entre o que pensamos, o que sentimos e a forma como agimos. Através desta base, trabalhamos para:',
-        frameworkPoints: {
-          patterns: 'Identificar e modificar padrões mentais: reconhecer pensamentos e crenças desadaptativas que geram sofrimento, transformando-os em perspetivas mais saudáveis e funcionais.',
-          strategies: 'Desenvolver estratégias concretas: criar ferramentas práticas para lidar com os desafios do dia a dia e fortalecer a regulação emocional.',
-          change: 'Promover mudanças duradouras: compreender como a nossa história molda a forma como interpretamos o mundo, permitindo que a mudança seja sólida e sustentada a longo prazo.'
-        },
-        integrativeText: 'Embora a minha base estrutural seja a Terapia Cognitivo-Comportamental (TCC), acredito que cada percurso terapêutico é único. Por isso, a minha atuação assume um caráter integrativo e personalizado, permitindo-me incorporar elementos de abordagens de "terceira geração" cientificamente validadas.',
-        schemaText: 'Para casos que exigem uma intervenção mais profunda em padrões emocionais antigos ou persistentes, integro de forma central a Terapia do Esquema, focando-me na transformação de padrões emocionais e relacionais enraizados.',
-        actText: 'Complemento ainda a minha intervenção com ferramentas pontuais da Terapia de Aceitação e Compromisso, sempre que o processo beneficia de uma maior flexibilidade psicológica.',
-        conclusion: 'O fundamental é que o espaço terapêutico seja sempre moldado às suas necessidades e ao seu ritmo. Mais do que aplicar técnicas, o meu objetivo é construir consigo uma estratégia que faça sentido na sua vida, visando não apenas o alívio de sintomas imediatos, mas a consolidação de um equilíbrio emocional e de uma autonomia duradouros.'
+        "title": "A Minha Abordagem",
+        "imageAlt": "Hortênsias azuis",
+        "intro": [
+          "O meu olhar clínico assenta nas Terapias Cognitivo-Comportamentais de 2.ª e de 3.ª geração - nomeadamente a Terapia Cognitivo-Comportamental tradicional (TCC), a Terapia de Aceitação e Compromisso (ACT) e a Terapia Focada no Esquema (TFE).",
+          "São abordagens cientificamente validadas e profundamente eficazes para ajudar a navegar por turbulências emocionais e a transformar padrões antigos."
+        ],
+        "pointsIntro": "Consoante aquilo que trouxer no seu percurso e aquilo de que precisar em cada momento, o nosso trabalho poderá passar por:",
+        "points": [
+          {
+            "title": "Identificar e transformar padrões mentais",
+            "text": "aprender a reconhecer crenças, feridas emocionais e pensamentos que lhe pesam e geram sofrimento, transformando-os em perspetivas mais compassivas, saudáveis e funcionais para o seu dia a dia."
+          },
+          {
+            "title": "Desenvolver ferramentas práticas e regulação emocional",
+            "text": "criar estratégias concretas para o dia a dia, promovendo a gestão do desconforto, o equilíbrio e uma ação mais alinhada com aquilo que é verdadeiramente importante para si."
+          },
+          {
+            "title": "Promover mudanças duradouras",
+            "text": "unir a compreensão da sua história a estratégias práticas de ação, garantindo um equilíbrio emocional real, autónomo e sustentável a longo prazo."
+          }
+        ],
+        "closing": [
+          "Porque não existem duas pessoas iguais, acredito que cada percurso terapêutico é único. A minha atuação é inteiramente pensada à sua medida, num espaço seguro onde se possa sentir inteiramente compreendido(a).",
+          "Mais do que aplicar abordagens rígidas, o meu objetivo é construir consigo um caminho que faça sentido na sua vida. Para que possa ir muito além do alívio imediato dos sintomas e conquistar um equilíbrio emocional real, sólido e autónomo."
+        ]
+      },
+      booking: {
+        "title": "Marcação de Consulta",
+        "text": "Dar início a um processo terapêutico é um gesto de coragem e de cuidado profundo por si. Se sente que é o momento certo para começar, pode marcar a sua consulta de forma simples e segura através do botão abaixo."
+      },
+      blog: {
+        "title": "Blog",
+        "intro": "Reflexões e conteúdos sobre saúde mental, bem-estar emocional e psicoterapia.",
+        "empty": "Em breve, partilharei aqui os primeiros artigos.",
+          "loading": "A carregar artigos…",
+          "error": "Não foi possível carregar os artigos. Tente novamente mais tarde."
+      },
+      quote: {
+        "text": "Um caminho para o florescimento do ser."
       },
       areas: {
+        imageAlt: 'Mãos unidas sobre fundo claro',
         title: 'Áreas de Intervenção',
         intro: 'A psicoterapia não se limita a momentos de crise. É, acima de tudo, um convite ao crescimento interior, um espaço de investimento na sua saúde mental para que possa viver a sua vida de forma mais plena e consciente.',
         subtitle: 'A minha intervenção é dirigida a jovens adultos e adultos que procuram não só apoio, mas também as ferramentas e o autoconhecimento necessários para navegar os seus desafios com mais força e autenticidade.',
@@ -76,11 +100,13 @@ const resources = {
         }
       },
       contacts: {
-        title: 'Contacto',
-        intro: 'Dar início a um processo terapêutico é um gesto de coragem e de cuidado profundo por si. Se sente que é o momento certo para começar, pode marcar a sua consulta de forma simples e segura através do botão abaixo.',
-        spaceInfo: 'Cada sessão é um espaço pensado para si, para que possa ser ouvido(a), compreender o que sente e reencontrar o seu equilíbrio interior.',
-        questions: 'Se ainda tem dúvidas ou quer saber mais sobre o meu acompanhamento, pode entrar em contacto por e-mail ou através do formulário abaixo. Responderei com a atenção, empatia e respeito que as suas questões merecem.',
-        email: 'marilineboto.psi@gmail.com',
+        title: "Contacto",
+        questions: "Se ainda tem dúvidas ou quer saber mais sobre o meu acompanhamento, pode entrar em contacto por e-mail, whatsapp ou através do formulário abaixo.",
+        reply: "Responderei com a atenção, empatia e respeito que as suas questões merecem.",
+        emailLabel: "E-mail",
+        email: "marilineboto.psi@gmail.com",
+        whatsappLabel: "Whatsapp",
+        whatsapp: "(+351) 910 979 513",
         form: {
           title: 'Formulário de contacto',
           name: 'Nome',
@@ -103,58 +129,82 @@ const resources = {
         about: 'About Me',
         approach: 'My Approach',
         areas: 'Intervention Areas',
+        blog: 'Blog',
         contacts: 'Contacts',
         booking: 'Online Booking'
       },
       hero: {
-        title: 'Your uniqueness deserves to be seen, understood, and cared for.',
-        subtitle: 'Here, every part of you finds space to be heard with sensitivity and truth.',
-        welcomeTitle: 'Welcome',
-        welcomeText: 'Sometimes emotional suffering settles in silently, making days and experiences heavier. Traumas, losses, anxiety, deep sadness, or particularly demanding transition phases can repeat, creating blocks and limiting well-being. Psychotherapy emerges as a safe and welcoming space where it is possible to breathe, look at yourself with attention and care, recognize what afflicts you, and transform what weighs you down, always respecting your pace, your limits, and your unique story.',
-        introText: 'I am Mariline Bôto, Clinical Psychologist, and I conduct online consultations for young adults and adults. I accompany people who feel that emotional and relational patterns repeat or make their lives difficult. Together, we explore these experiences with attention and safety, helping to integrate, understand, and transform them into opportunities for growth, self-knowledge, and balance.',
-        spaceText: 'Here you will find a space of genuine listening, attentive presence, and deep welcoming: a human and safe place where your voice is heard, validated, and valued. Each session is guided by care, authenticity, and commitment to your well-being and personal development process.',
-        ctaInvitation: 'I invite you to take the first step on this path, to feel welcomed in this space and, if it makes sense, to schedule your online consultation at a pace that respects your needs.',
-        cta: 'Book a consultation'
+        "title": "Your uniqueness deserves to be seen, understood, and cared for.",
+        "subtitle": "Here, every part of you finds space to be heard with sensitivity and truth.",
+        "imageAlt": "Mariline Bôto, Clinical Psychologist",
+        "welcomeTitle": "Welcome",
+        "welcomeText": "Sometimes emotional suffering settles in silently, making days and experiences heavier. Traumas, losses, anxiety, deep sadness, or particularly demanding transition phases can repeat, creating blocks and limiting well-being. Psychotherapy emerges as a safe and welcoming space where it is possible to breathe, look at yourself with attention and care, recognize what afflicts you, and transform what weighs you down, always respecting your pace, your limits, and your unique story.",
+        "ctaInvitation": "I invite you to take the first step on this path, to feel welcomed in this space and, if it makes sense, to schedule your online consultation at a pace that respects your needs.",
+        "cta": "Book a consultation"
       },
       about: {
-        title: 'About Me',
-        educationTitle: 'Education and Professional Experience',
-        educationContent: 'I hold a degree in Psychology from ISMAT - Manuel Teixeira Gomes Higher Institute (2016) and a Master\'s in Clinical and Health Psychology from the University of Algarve (2020). To deepen my practice in experiences of great emotional impact, I completed an Advanced Specialization in Psychological Trauma and another in Grief. These skills allow me to offer qualified support in the face of marks from the past and challenges of the present.',
-        approachContent: 'My practice is based on Cognitive-Behavioral Therapy (CBT), which I use as a solid foundation for resolving current difficulties. To enhance this approach, I recently completed an Advanced Course in Schema Therapy, a "third generation" branch that allows for deeper work on emotional and relational patterns.',
-        experienceIntro: 'My professional experience includes different contexts and age groups, which guarantees me a systemic and comprehensive view of challenges throughout life. Currently dedicated to online clinical practice, my path was built through previous experience in areas such as:',
-        experienceChildhood: 'Childhood and development: intervention in the context of social development and education with preschool and school-age children, focusing on emotional, cognitive, and social bases.',
-        experienceAdolescence: 'Adolescence in a support context: experience with adolescents in a shelter and support structure, addressing the complexities of this phase in situations of greater vulnerability.',
-        experienceAdults: 'Adult mental health: acting in a public health service, focusing on supporting adults dealing with addiction issues and other psychological disorders.',
-        conclusion: 'This practical experience in different stages of development offers me today a clear look at your story, allowing me to identify the origins of your difficulties and trace trajectories of change that respect your uniqueness.'
+        "title": "About Me",
+        "intro": [
+          "My name is Mariline Bôto, I am a Clinical Psychologist (OPP no. 28131, ERS E180669) and I dedicate my career to fostering processes of change that respect the individuality of each story.",
+          "In my work, I combine clinical rigor with the creation of a safe space where judgment has no place, but transformation is the path.",
+          "My intervention focuses on supporting emotional disorders and more persistent, deep-rooted patterns of functioning, and also on resolving crises or difficult transition phases.",
+          "In parallel, I support those who seek to improve their self-esteem, their interpersonal dynamics and their personal development.",
+          "I believe that feelings ask, above all, for space: a place to be felt without judgment and, in their own time, transformed. That is why, in psychotherapy, I invite you to slow down so that we can recover the balance lost in everyday noise.",
+          "In this process, your uniqueness is the compass and your sensitivity the tool of change. Each session becomes an exercise in courage: looking inward to build a lighter life with purpose. It is a clinical process, but it is, above all, the deepest gesture of respect and love you can offer yourself.",
+          "Outside the clinical setting, I recharge in the sun and sea, in the company of my people and my cats, or vibrating with the energy of rock music. It is in the diversity of these moments that I cultivate the authenticity and serenity needed to care, with the same respect, for the story of those who seek me."
+        ],
+        "educationTitle": "Education and Professional Experience",
+        "educationSubtitle": "Education",
+        "education": [
+          "To deepen my practice in experiences of great emotional impact, I completed an Advanced Specialization in Psychological Trauma and another in Grief. These skills allow me to offer qualified support in the face of marks from the past and challenges of the present.",
+          "My approach is based on 2nd and 3rd generation Cognitive-Behavioral Therapies, which allows me to adapt each session exactly to what you need. I work from emotional regulation and behavior modification to the deconstruction of old beliefs, schemas and patterns, and I also hold an Advanced Course in Schema Therapy.",
+          "In addition, I continuously invest in training focused on emotional disorders, because I believe constant updating is essential to offer you a safe, rigorous space tailored to your story."
+        ],
+        "experienceSubtitle": "Professional Experience"
       },
       approach: {
-        title: 'My Approach',
-        intro: 'Psychotherapy is, above all, an encounter: a space where two stories cross with the purpose of understanding, caring, and transforming.',
-        commitment: 'My commitment is to create a safe and welcoming place for you, where you can be who you are, without haste or judgment. A space where your words find listening and meaning. I accompany you with respect and presence, helping you to reconnect with yourself and discover freer and more conscious ways of being in life.',
-        wish: 'What I desire most is that, along this path, you recognize yourself as the author of your own story and that this recognition brings lightness, meaning, and fulfillment.',
-        valuesTitle: 'Values that guide my work',
-        values: {
-          empathy: { title: 'Empathy', desc: 'The ability to see the world through your eyes, without assumptions.' },
-          welcome: { title: 'Welcoming', desc: 'Creating an environment where you feel heard, understood, and free of judgment.' },
-          respect: { title: 'Respect', desc: 'For your time, your limits, and your pace of change.' },
-          integrity: { title: 'Integrity', desc: 'The ethical and professional basis of all our interactions.' },
-          sensitivity: { title: 'Sensitivity', desc: 'Being attentive to your emotions and most subtle needs.' },
-          commitment: { title: 'Commitment', desc: 'To you, to clinical excellence, and to your well-being process.' }
-        },
-        frameworkTitle: 'Therapeutic Framework',
-        frameworkIntro: 'My clinical view is based on Cognitive-Behavioral Therapy (CBT), one of the most validated and effective approaches for dealing with emotional disorders and promoting pattern change.',
-        frameworkModel: 'This psychotherapeutic model acts on the relationship between what we think, what we feel, and how we act. Through this base, we work to:',
-        frameworkPoints: {
-          patterns: 'Identify and modify mental patterns: recognize maladaptive thoughts and beliefs that generate suffering, transforming them into healthier and more functional perspectives.',
-          strategies: 'Develop concrete strategies: create practical tools to deal with daily challenges and strengthen emotional regulation.',
-          change: 'Promote lasting changes: understand how our history shapes how we interpret the world, allowing change to be solid and sustained in the long term.'
-        },
-        integrativeText: 'Although my structural base is Cognitive-Behavioral Therapy (CBT), I believe that each therapeutic path is unique. Therefore, my action takes on an integrative and personalized character, allowing me to incorporate elements of scientifically validated "third generation" approaches.',
-        schemaText: 'For cases that require deeper intervention in old or persistent emotional patterns, I centrally integrate Schema Therapy, focusing on transforming rooted emotional and relational patterns.',
-        actText: 'I also complement my intervention with specific tools from Acceptance and Commitment Therapy, whenever the process benefits from greater psychological flexibility.',
-        conclusion: 'The fundamental thing is that the therapeutic space is always shaped to your needs and your pace. More than applying techniques, my goal is to build with you a strategy that makes sense in your life, aiming not only for immediate symptom relief but for the consolidation of lasting emotional balance and autonomy.'
+        "title": "My Approach",
+        "imageAlt": "Blue hydrangeas",
+        "intro": [
+          "My clinical view is based on 2nd and 3rd generation Cognitive-Behavioral Therapies - namely traditional Cognitive-Behavioral Therapy (CBT), Acceptance and Commitment Therapy (ACT) and Schema-Focused Therapy (SFT).",
+          "These are scientifically validated and deeply effective approaches to help navigate emotional turbulence and transform old patterns."
+        ],
+        "pointsIntro": "Depending on what you bring to your journey and what you need at each moment, our work may include:",
+        "points": [
+          {
+            "title": "Identifying and transforming mental patterns",
+            "text": "learning to recognize beliefs, emotional wounds and thoughts that weigh on you and cause suffering, turning them into more compassionate, healthy and functional perspectives for your daily life."
+          },
+          {
+            "title": "Developing practical tools and emotional regulation",
+            "text": "creating concrete strategies for daily life, promoting the management of discomfort, balance and action more aligned with what is truly important to you."
+          },
+          {
+            "title": "Promoting lasting change",
+            "text": "combining an understanding of your story with practical strategies for action, ensuring a real, autonomous and sustainable emotional balance in the long term."
+          }
+        ],
+        "closing": [
+          "Because no two people are alike, I believe each therapeutic journey is unique. My work is entirely tailored to you, in a safe space where you can feel fully understood.",
+          "More than applying rigid approaches, my goal is to build with you a path that makes sense in your life, so that you can go far beyond immediate symptom relief and achieve a real, solid and autonomous emotional balance."
+        ]
+      },
+      booking: {
+        "title": "Book a Consultation",
+        "text": "Starting a therapeutic process is a gesture of courage and deep care for yourself. If you feel it is the right time to begin, you can book your consultation simply and safely through the button below."
+      },
+      blog: {
+        "title": "Blog",
+        "intro": "Reflections and content on mental health, emotional well-being and psychotherapy.",
+        "empty": "The first articles will be shared here soon.",
+          "loading": "Loading articles…",
+          "error": "Could not load the articles. Please try again later."
+      },
+      quote: {
+        "text": "A path to the flourishing of being."
       },
       areas: {
+        imageAlt: 'Hands against a clear background',
         title: 'Intervention Areas',
         intro: 'Psychotherapy is not limited to moments of crisis. It is, above all, an invitation to inner growth, a space for investment in your mental health so you can live your life more fully and consciously.',
         subtitle: 'My intervention is aimed at young adults and adults who seek not only support but also the tools and self-knowledge necessary to navigate their challenges with more strength and authenticity.',
@@ -169,11 +219,13 @@ const resources = {
         }
       },
       contacts: {
-        title: 'Contact',
-        intro: 'Starting a therapeutic process is a gesture of courage and deep care for yourself. If you feel it is the right time to start, you can book your consultation simply and safely through the button below.',
-        spaceInfo: 'Each session is a space designed for you, so you can be heard, understand what you feel, and find your inner balance again.',
-        questions: 'If you still have questions or want to know more about my support, you can get in touch by email or through the form below. I will respond with the attention, empathy, and respect your questions deserve.',
-        email: 'marilineboto.psi@gmail.com',
+        title: "Contact",
+        questions: "If you still have questions or want to know more about my support, you can get in touch by e-mail, WhatsApp or through the form below.",
+        reply: "I will respond with the attention, empathy and respect your questions deserve.",
+        emailLabel: "E-mail",
+        email: "marilineboto.psi@gmail.com",
+        whatsappLabel: "WhatsApp",
+        whatsapp: "(+351) 910 979 513",
         form: {
           title: 'Contact Form',
           name: 'Name',

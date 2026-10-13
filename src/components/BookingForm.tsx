@@ -12,7 +12,6 @@ export const BookingForm = () => {
     preferences: {
       morning: false,
       afternoon: false,
-      sunday: false,
       noPreference: false,
     }
   });
@@ -31,7 +30,6 @@ export const BookingForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission here
-    console.log(formData);
     alert('Pedido de marcação enviado com sucesso!');
   };
 
@@ -97,7 +95,7 @@ export const BookingForm = () => {
                 onChange={handleCheckboxChange}
                 className="w-5 h-5 text-primary-dark rounded border-secondary/40 focus:ring-primary-dark" 
               />
-              <span className="text-sm text-foreground">Dias úteis (9h-12h)</span>
+              <span className="text-sm text-foreground">Dias úteis: 10h-13h</span>
             </label>
             <label className="flex items-center gap-3 p-4 border border-secondary/40 rounded-2xl cursor-pointer hover:bg-secondary/10 transition-colors">
               <input 
@@ -107,17 +105,7 @@ export const BookingForm = () => {
                 onChange={handleCheckboxChange}
                 className="w-5 h-5 text-primary-dark rounded border-secondary/40 focus:ring-primary-dark" 
               />
-              <span className="text-sm text-foreground">Dias úteis (14h-19h)</span>
-            </label>
-            <label className="flex items-center gap-3 p-4 border border-secondary/40 rounded-2xl cursor-pointer hover:bg-secondary/10 transition-colors">
-              <input 
-                type="checkbox" 
-                name="sunday"
-                checked={formData.preferences.sunday}
-                onChange={handleCheckboxChange}
-                className="w-5 h-5 text-primary-dark rounded border-secondary/40 focus:ring-primary-dark" 
-              />
-              <span className="text-sm text-foreground">Domingo (15h-17h)</span>
+              <span className="text-sm text-foreground">Dias úteis: 15h-20h</span>
             </label>
             <label className="flex items-center gap-3 p-4 border border-secondary/40 rounded-2xl cursor-pointer hover:bg-secondary/10 transition-colors">
               <input 
