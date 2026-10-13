@@ -9,6 +9,14 @@ async function startServer() {
   const PORT = 3000;
   const upload = multer({ dest: 'uploads/' });
 
+  if (process.env.MAINTENANCE_MODE === 'true') {
+    const maintenancePage = fs.readFileSync(path.join(process.cwd(), 'maintenance.html'), 'utf-8');
+    app.use((req, res, next) => {
+      if (req.path.startsWith('/img/')) return next();
+      res.status(503).set({ 'Retry-After': '3600', 'Cache-Control': 'no-store' }).type('html').send(maintenancePage);
+    });
+  }
+
   app.post('/api/upload', upload.single('image'), (req: Request, res: Response) => {
     if (!req.file) {
       return res.status(400).send('No file uploaded.');

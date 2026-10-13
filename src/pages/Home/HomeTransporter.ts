@@ -1,40 +1,7 @@
 /**
- * Transporter for Home Page data and Google Calendar integration.
+ * Transporter for Home Page data.
  */
 export const HomeTransporter = {
-  /**
-   * Fetch busy slots for a given time range.
-   */
-  async getBusySlots(timeMin: string, timeMax: string) {
-    const response = await fetch(`/api/calendar/slots?timeMin=${timeMin}&timeMax=${timeMax}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch busy slots');
-    }
-    return response.json();
-  },
-
-  /**
-   * Book a new consultation event.
-   */
-  async bookConsultation(data: {
-    summary: string;
-    description: string;
-    start: string;
-    end: string;
-    attendeeEmail: string;
-    attendeeName: string;
-  }) {
-    const response = await fetch('/api/calendar/book', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error('Failed to book consultation');
-    }
-    return response.json();
-  },
-
   /**
    * Fetch CMS content (mocked for now, but following the pattern).
    */
