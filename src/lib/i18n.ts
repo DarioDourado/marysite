@@ -28,12 +28,12 @@ const resources = {
         "intro": [
           "O meu nome é Mariline Bôto, sou Psicóloga Clínica (OPP n.º 28131, ERS E180669) e dedico o meu percurso a potenciar processos de mudança que respeitam a individualidade de cada história.",
           "No meu trabalho, alio o rigor clínico à criação de um espaço seguro, onde o julgamento não tem lugar, mas a transformação é o caminho.",
-          "A minha intervenção foca-se no acompanhamento de perturbações emocionais e de padrões de funcionamento mais persistentes e enraizados, integrando também a resolução de crises ou fases de transição difíceis.",
-          "Paralelamente, apoio quem procura melhorar a sua autoestima, as suas dinâmicas interpessoais e o seu desenvolvimento pessoal.",
           "Acredito que os sentimentos pedem, antes de tudo, espaço: um lugar para serem sentidos sem julgamento e, a seu tempo, transformados. É por isso que, na psicoterapia, convido-o(a) a abrandar para resgatarmos o equilíbrio perdido no ruído quotidiano.",
           "Nesse processo, a sua singularidade é a bússola e a sua sensibilidade a ferramenta de mudança. Cada sessão torna-se então um exercício de coragem: a de olhar para dentro para construir uma vida mais leve e com propósito. É um processo clínico, mas é, acima de tudo, o gesto mais profundo de respeito e amor que pode dedicar a si próprio(a).",
           "Fora do contexto clínico, recarrego o meu equilíbrio no sol e mar, na companhia das minhas pessoas e dos meus gatos, ou a vibrar com a energia da música rock. É na diversidade destes momentos que cultivo a autenticidade e a serenidade necessárias para cuidar com o mesmo respeito da história de quem me procura."
         ],
+        "valuesTitle": "Os valores que orientam o meu trabalho:",
+        "values": ["Empatia", "Acolhimento", "Respeito", "Integridade", "Sensibilidade", "Compromisso"],
         "educationTitle": "Formação e Experiência Profissional",
         "educationSubtitle": "Formação",
         "education": [
@@ -85,6 +85,7 @@ const resources = {
         "text": "Um caminho para o florescimento do ser."
       },
       areas: {
+        learnMore: 'Saber mais',
         imageAlt: 'Mãos unidas sobre fundo claro',
         title: 'Áreas de Intervenção',
         intro: 'A psicoterapia não se limita a momentos de crise. É, acima de tudo, um convite ao crescimento interior, um espaço de investimento na sua saúde mental para que possa viver a sua vida de forma mais plena e consciente.',
@@ -98,6 +99,18 @@ const resources = {
           dynamics: { title: '5. Dinâmicas relacionais', desc: 'Transformação de padrões familiares, amorosos e interpessoais, promovendo interações mais autênticas, seguras e equilibradas.' },
           self: { title: '6. Autoestima e desenvolvimento pessoal', desc: 'Fortalecimento da valorização pessoal, processos de autodescoberta e expansão do potencial de vida.' }
         }
+      },
+      whatsapp: {
+        cta: 'Falar no WhatsApp',
+        message: 'Olá, Mariline! Vim do seu site e gostava de saber mais informações sobre as consultas de psicologia clínica.'
+      },
+      areasPage: {
+        title: 'Áreas de Intervenção',
+        intro: 'O meu trabalho baseia-se em abordagens terapêuticas validadas cientificamente para o(a) acompanhar na compreensão e na ultrapassagem das suas dificuldades emocionais, relacionais ou de desenvolvimento pessoal.',
+        navIntro: 'Abaixo encontra as principais áreas em que intervenho. Pode navegar diretamente para o tópico que mais procura ou explorar cada uma delas para entender como o(a) posso ajudar em consulta:',
+        whatIs: 'O que é',
+        signs: 'Sinais de alerta',
+        help: 'Como posso ajudar'
       },
       contacts: {
         title: "Contacto",
@@ -147,12 +160,12 @@ const resources = {
         "intro": [
           "My name is Mariline Bôto, I am a Clinical Psychologist (OPP no. 28131, ERS E180669) and I dedicate my career to fostering processes of change that respect the individuality of each story.",
           "In my work, I combine clinical rigor with the creation of a safe space where judgment has no place, but transformation is the path.",
-          "My intervention focuses on supporting emotional disorders and more persistent, deep-rooted patterns of functioning, and also on resolving crises or difficult transition phases.",
-          "In parallel, I support those who seek to improve their self-esteem, their interpersonal dynamics and their personal development.",
           "I believe that feelings ask, above all, for space: a place to be felt without judgment and, in their own time, transformed. That is why, in psychotherapy, I invite you to slow down so that we can recover the balance lost in everyday noise.",
           "In this process, your uniqueness is the compass and your sensitivity the tool of change. Each session becomes an exercise in courage: looking inward to build a lighter life with purpose. It is a clinical process, but it is, above all, the deepest gesture of respect and love you can offer yourself.",
           "Outside the clinical setting, I recharge in the sun and sea, in the company of my people and my cats, or vibrating with the energy of rock music. It is in the diversity of these moments that I cultivate the authenticity and serenity needed to care, with the same respect, for the story of those who seek me."
         ],
+        "valuesTitle": "The values that guide my work:",
+        "values": ["Empathy", "Warmth", "Respect", "Integrity", "Sensitivity", "Commitment"],
         "educationTitle": "Education and Professional Experience",
         "educationSubtitle": "Education",
         "education": [
@@ -204,6 +217,7 @@ const resources = {
         "text": "A path to the flourishing of being."
       },
       areas: {
+        learnMore: 'Learn more',
         imageAlt: 'Hands against a clear background',
         title: 'Intervention Areas',
         intro: 'Psychotherapy is not limited to moments of crisis. It is, above all, an invitation to inner growth, a space for investment in your mental health so you can live your life more fully and consciously.',
@@ -217,6 +231,10 @@ const resources = {
           dynamics: { title: '5. Relational dynamics', desc: 'Transformation of family, romantic, and interpersonal patterns, promoting more authentic, safe, and balanced interactions.' },
           self: { title: '6. Self-esteem and personal development', desc: 'Strengthening personal valuation, processes of self-discovery, and expansion of life potential.' }
         }
+      },
+      whatsapp: {
+        cta: 'Chat on WhatsApp',
+        message: 'Olá, Mariline! Vim do seu site e gostava de saber mais informações sobre as consultas de psicologia clínica.'
       },
       contacts: {
         title: "Contact",
@@ -248,6 +266,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
+    lng: 'pt', // single-language site for now; the language detector is bypassed
     fallbackLng: 'pt',
     interpolation: {
       escapeValue: false

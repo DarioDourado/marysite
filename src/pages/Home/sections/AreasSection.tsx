@@ -1,15 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { Flower2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
 import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
 import { FAQAccordion } from '@/src/components/FAQAccordion.tsx';
-import type { CMSArea } from '../useHomeHook.ts';
+import { areasContent } from '@/src/pages/Areas/areasContent.ts';
 
-interface AreasSectionProps {
-  areas: CMSArea[];
-}
-
-export const AreasSection = ({ areas }: AreasSectionProps) => {
+export const AreasSection = () => {
   const { t } = useTranslation();
 
   return (
@@ -31,18 +28,22 @@ export const AreasSection = ({ areas }: AreasSectionProps) => {
           />
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-          {areas.map((area, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {areasContent.map((area, index) => (
             <FadeIn
               key={area.id}
               delay={index * 0.05}
-              className="group bg-secondary/20 rounded-[32px] p-8 md:p-10 hover:bg-primary/20 transition-colors duration-300"
+              className="group flex flex-col bg-secondary/20 rounded-[32px] p-8 hover:bg-primary/20 transition-colors duration-300"
             >
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary-dark mb-8 shadow-sm">
-                <Flower2 className="w-6 h-6" strokeWidth={1.2} />
-              </div>
-              <h3 className="text-xl md:text-2xl font-serif font-normal text-foreground mb-4">{area.title}</h3>
-              <p className="text-text-light text-base leading-relaxed">{area.description}</p>
+              <h3 className="text-xl font-serif font-normal text-foreground mb-4">{area.title}</h3>
+              <p className="text-text-light text-base leading-relaxed mb-6">{area.summary}</p>
+              <Link
+                to={`/areas#${area.id}`}
+                className="mt-auto inline-flex items-center gap-2 text-primary-dark font-medium text-sm hover:underline"
+              >
+                {t('areas.learnMore')}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
+              </Link>
             </FadeIn>
           ))}
         </div>

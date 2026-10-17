@@ -4,6 +4,8 @@ import { Layout } from '@/src/components/layout/Layout.tsx';
 const Home = lazy(() => import('@/src/pages/Home/Home.tsx').then((m) => ({ default: m.Home })));
 const Blog = lazy(() => import('@/src/pages/Blog/Blog.tsx').then((m) => ({ default: m.Blog })));
 
+const Areas = lazy(() => import('@/src/pages/Areas/Areas.tsx').then((m) => ({ default: m.Areas })));
+
 const withSuspense = (Component: LazyExoticComponent<ComponentType>) => (
   <Suspense fallback={<div className="min-h-screen" />}>
     <Component />
@@ -16,6 +18,7 @@ export const routes = [
     element: <Layout />,
     children: [
       { index: true, element: withSuspense(Home) },
+      { path: 'areas', element: withSuspense(Areas) },
       { path: 'blog', element: withSuspense(Blog) },
     ],
   },

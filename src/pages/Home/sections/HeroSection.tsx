@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
+import { WhatsAppButton } from '@/src/components/ui/WhatsAppButton.tsx';
 import { useIsDesktop } from '@/src/lib/useIsDesktop.ts';
 
 interface HeroSectionProps {
@@ -52,13 +53,16 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
           <p>{t('hero.welcomeText')}</p>
           <p className="text-foreground font-medium">{t('hero.ctaInvitation')}</p>
         </div>
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
         <button
           onClick={onBooking}
-          className="mt-10 px-10 py-4 bg-primary-dark text-white rounded-full font-semibold hover:bg-primary-dark/90 transition-all shadow-xl shadow-primary-dark/20 flex items-center gap-3 group text-lg"
+          className="px-10 py-4 bg-primary-dark text-white rounded-full font-semibold hover:bg-primary-dark/90 transition-all shadow-xl shadow-primary-dark/20 flex items-center gap-3 group text-lg"
         >
           {t('hero.cta')}
           <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
         </button>
+          <WhatsAppButton />
+        </div>
       </div>
     </section>
   );

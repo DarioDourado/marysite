@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/src/lib/utils.ts';
-import { Menu, X, Globe, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -8,19 +8,14 @@ import { motion, AnimatePresence } from 'motion/react';
 const MotionLink = motion.create(Link);
 
 export const Navbar = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleLanguage = () => {
-    const nextLang = i18n.language === 'pt' ? 'en' : 'pt';
-    i18n.changeLanguage(nextLang);
-  };
 
   const navItems = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/#about' },
     { name: t('nav.approach'), href: '/#approach' },
-    { name: t('nav.areas'), href: '/#areas' },
+    { name: t('nav.areas'), href: '/areas' },
     { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.contacts'), href: '/#contacts' },
   ];
@@ -55,13 +50,6 @@ export const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center gap-1.5 text-[13px] font-serif font-normal text-text-light hover:text-primary-dark transition-colors"
-          >
-            <Globe className="w-3.5 h-3.5" />
-            {i18n.language.toUpperCase()}
-          </button>
           <Link
             to="/#booking-section"
             className="px-5 py-2 bg-primary-dark text-white text-[13px] font-serif font-normal rounded-full hover:bg-primary-dark/90 transition-all"
@@ -72,12 +60,6 @@ export const Navbar = () => {
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={toggleLanguage}
-            className="w-10 h-10 flex items-center justify-center bg-secondary/20 rounded-full text-text-light hover:text-foreground transition-colors"
-          >
-            <Globe className="w-5 h-5" />
-          </button>
           <button 
             className="w-10 h-10 flex items-center justify-center bg-foreground text-white rounded-full shadow-lg shadow-foreground/20" 
             onClick={() => setIsOpen(!isOpen)}

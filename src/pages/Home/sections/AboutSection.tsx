@@ -6,6 +6,7 @@ export const AboutSection = () => {
   const { t } = useTranslation();
   const intro = t('about.intro', { returnObjects: true }) as string[];
   const education = t('about.education', { returnObjects: true }) as string[];
+  const values = t('about.values', { returnObjects: true }) as string[];
   const experience = [
     t('about.experienceChildhood'),
     t('about.experienceAdolescence'),
@@ -40,6 +41,20 @@ export const AboutSection = () => {
               <p key={i}>{paragraph}</p>
             ))}
           </div>
+        </FadeIn>
+
+        <FadeIn className="mb-20 md:mb-28">
+          <p className="text-lg text-text-light leading-relaxed mb-8">{t('about.valuesTitle')}</p>
+          <ul className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {values.map((value) => (
+              <li
+                key={value}
+                className="bg-white rounded-3xl py-6 px-4 text-center font-serif text-xl text-primary-dark shadow-sm border border-secondary/40"
+              >
+                {value}
+              </li>
+            ))}
+          </ul>
         </FadeIn>
 
         <FadeIn className="max-w-4xl">

@@ -1,33 +1,7 @@
-import { useState, useEffect } from 'react';
-import { HomeTransporter } from './HomeTransporter.ts';
 import { useTranslation } from 'react-i18next';
-
-export interface CMSArea {
-  id: string;
-  title: string;
-  description: string;
-}
 
 export const useHomeHook = () => {
   const { t, i18n } = useTranslation();
-  const [areas, setAreas] = useState<CMSArea[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchContent = async () => {
-      try {
-        const content = await HomeTransporter.getCMSContent();
-        setAreas(content.areas);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : String(err));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContent();
-  }, []);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -41,9 +15,6 @@ export const useHomeHook = () => {
   return {
     t,
     i18n,
-    areas,
-    loading,
-    error,
     changeLanguage,
     handleBooking
   };

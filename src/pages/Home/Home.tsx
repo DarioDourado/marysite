@@ -8,13 +8,13 @@ import { BookingSection } from './sections/BookingSection.tsx';
 import { ContactSection } from './sections/ContactSection.tsx';
 
 export const Home = () => {
-  const { areas, handleBooking } = useHomeHook();
+  const { handleBooking } = useHomeHook();
 
   return (
     <div className="pt-12 md:pt-14 overflow-x-hidden">
       <HeroSection onBooking={handleBooking} />
       <AboutSection />
-      <AreasSection areas={areas} />
+      <AreasSection />
       <QuoteSection />
       <ApproachSection />
       <BookingSection />
