@@ -21,7 +21,7 @@ export const AreasSection = () => {
 
         <FadeIn className="mb-16 md:mb-20">
           <SafeImage
-            src="/img/areas-hands.webp"
+            src="/img/areas-de-intervencao.webp"
             fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt={t('areas.imageAlt')}
             className="w-full h-64 md:h-96 object-cover rounded-[40px]"

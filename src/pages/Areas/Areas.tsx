@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
+import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
 import { areasContent } from './areasContent.ts';
 
 export const Areas = () => {
@@ -8,27 +9,36 @@ export const Areas = () => {
 
   return (
     <div className="pt-12 md:pt-14">
-      <section className="section-spacing bg-blue-texture">
-        <div className="max-w-4xl mx-auto px-6">
-          <FadeIn>
-            <h1 className="text-4xl md:text-6xl font-serif font-normal text-foreground mb-8 tracking-tight">
+      <section className="relative isolate overflow-hidden">
+        <SafeImage
+          src="/img/areas-de-intervencao.webp"
+          fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
+          alt={t('areas.imageAlt')}
+          className="absolute inset-0 -z-20 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-black/55" />
+        <div className="max-w-7xl mx-auto px-6 py-24 md:py-36 lg:py-44">
+          <FadeIn className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-normal text-white mb-8 tracking-tight leading-[1.08]">
               {t('areasPage.title')}
             </h1>
-            <div className="space-y-6 text-lg text-text-light leading-relaxed mb-12">
+            <div className="space-y-6 text-lg md:text-xl text-white/90 leading-relaxed mb-12">
               <p>{t('areasPage.intro')}</p>
               <p>{t('areasPage.navIntro')}</p>
             </div>
-            <nav aria-label={t('areasPage.title')} className="flex flex-wrap gap-3">
-              {areasContent.map((area) => (
-                <a
-                  key={area.id}
-                  href={`#${area.id}`}
-                  className="px-5 py-2 rounded-full bg-white text-primary-dark text-sm font-medium border border-primary-medium/40 hover:bg-primary-dark hover:text-white transition-colors"
-                >
-                  {area.title}
-                </a>
-              ))}
-            </nav>
+            <div className="max-w-4xl mx-auto">
+              <nav aria-label={t('areasPage.title')} className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {areasContent.map((area) => (
+                  <a
+                    key={area.id}
+                    href={`#${area.id}`}
+                    className="flex items-center justify-center min-h-14 px-4 py-3 rounded-2xl bg-white text-primary-dark text-sm font-medium text-center leading-snug border border-primary-medium/40 hover:bg-primary-dark hover:text-white transition-colors"
+                  >
+                    {area.title}
+                  </a>
+                ))}
+              </nav>
+            </div>
           </FadeIn>
         </div>
       </section>
