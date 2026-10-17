@@ -36,7 +36,7 @@ export const Footer = () => {
             </li>
             <li className="flex items-center gap-3">
               <Phone className="w-4 h-4 text-primary" />
-              <span>(+351) 910 979 513</span>
+              <span>(+351) 965 608 731</span>
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="w-4 h-4 text-primary" />

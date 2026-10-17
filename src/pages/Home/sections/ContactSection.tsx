@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Mail, MessageCircle } from 'lucide-react';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
 
-const WHATSAPP_NUMBER = '351910979513';
+const WHATSAPP_NUMBER = '351965608731';
 
 export const ContactSection = () => {
   const { t } = useTranslation();

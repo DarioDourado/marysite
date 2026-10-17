@@ -119,7 +119,7 @@ const resources = {
         emailLabel: "E-mail",
         email: "marilineboto.psi@gmail.com",
         whatsappLabel: "Whatsapp",
-        whatsapp: "(+351) 910 979 513",
+        whatsapp: "(+351) 965 608 731",
         form: {
           title: 'Formulário de contacto',
           name: 'Nome',
@@ -243,7 +243,7 @@ const resources = {
         emailLabel: "E-mail",
         email: "marilineboto.psi@gmail.com",
         whatsappLabel: "WhatsApp",
-        whatsapp: "(+351) 910 979 513",
+        whatsapp: "(+351) 965 608 731",
         form: {
           title: 'Contact Form',
           name: 'Name',
