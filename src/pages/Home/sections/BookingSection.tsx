@@ -13,7 +13,7 @@ export const BookingSection = () => {
           <div className="lg:col-span-4">
             <div className="aspect-[4/5] max-w-[14rem] mx-auto rounded-[32px] overflow-hidden shadow-xl bg-white/60">
               <SafeImage
-                src="/img/mariline-boto-2.webp"
+                src="/img/mariline-boto-1.webp"
                 alt="Mariline Bôto"
                 className="w-full h-full object-cover"
               />
