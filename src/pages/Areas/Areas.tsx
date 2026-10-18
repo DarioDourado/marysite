@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
 import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
+import { AreaIcon } from '@/src/components/ui/AreaIcon.tsx';
 import { areasContent } from './areasContent.ts';
 
 export const Areas = () => {
@@ -32,7 +33,7 @@ export const Areas = () => {
                   <a
                     key={area.id}
                     href={`#${area.id}`}
-                    className="flex items-center justify-center min-h-14 px-4 py-3 rounded-2xl bg-white text-primary-dark text-sm font-medium text-center leading-snug border border-primary-medium/40 hover:bg-primary-dark hover:text-white transition-colors"
+                    className="flex items-center justify-center min-h-20 px-4 py-3 rounded-2xl bg-white text-primary-dark text-sm font-medium text-center leading-snug border border-primary-medium/40 hover:bg-primary-dark hover:text-white transition-colors"
                   >
                     {area.title}
                   </a>
@@ -43,17 +44,17 @@ export const Areas = () => {
         </div>
       </section>
 
-      {areasContent.map((area, index) => (
-        <section
-          key={area.id}
-          id={area.id}
-          className={`scroll-mt-16 py-16 md:py-24 ${index % 2 === 0 ? 'bg-white' : 'bg-secondary/20'}`}
-        >
-          <div className="max-w-4xl mx-auto px-6">
+      <div className="bg-gray-100 py-10 md:py-16 space-y-8 md:space-y-12">
+      {areasContent.map((area) => (
+        <section key={area.id} id={area.id} className="scroll-mt-16 px-4 md:px-6">
+          <div className="max-w-4xl mx-auto bg-white rounded-3xl border border-gray-200 shadow-sm px-6 py-10 md:px-12 md:py-14">
             <FadeIn>
-              <h2 className="text-3xl md:text-5xl font-serif font-normal text-foreground mb-10">
-                {index + 1}. {area.title}
-              </h2>
+              <div className="flex items-center gap-5 mb-10">
+                <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-full bg-primary text-primary-dark flex items-center justify-center">
+                  <AreaIcon id={area.id} className="w-10 h-10 md:w-12 md:h-12" />
+                </div>
+                <h2 className="text-3xl md:text-5xl font-serif font-normal text-foreground">{area.title}</h2>
+              </div>
 
               <h3 className="text-xl font-serif text-primary-dark mb-3">{t('areasPage.whatIs')}</h3>
               <p className="text-lg text-text-light leading-relaxed mb-10">{area.whatIs}</p>
@@ -74,6 +75,7 @@ export const Areas = () => {
           </div>
         </section>
       ))}
+      </div>
 
       <section className="py-16 text-center bg-white">
         <Link

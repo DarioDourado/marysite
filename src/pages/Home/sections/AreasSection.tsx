@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
 import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
 import { FAQAccordion } from '@/src/components/FAQAccordion.tsx';
+import { AreaIcon } from '@/src/components/ui/AreaIcon.tsx';
 import { areasContent } from '@/src/pages/Areas/areasContent.ts';
 
 export const AreasSection = () => {
@@ -33,8 +34,11 @@ export const AreasSection = () => {
             <FadeIn
               key={area.id}
               delay={index * 0.05}
-              className="group flex flex-col bg-secondary/20 rounded-[32px] p-8 hover:bg-primary/20 transition-colors duration-300"
+              className="group flex flex-col bg-primary rounded-[32px] p-8 hover:bg-primary-medium/40 transition-colors duration-300"
             >
+              <div className="w-16 h-16 mb-6 rounded-full bg-white/70 text-primary-dark flex items-center justify-center">
+                <AreaIcon id={area.id} className="w-10 h-10" />
+              </div>
               <h3 className="text-xl font-serif font-normal text-foreground mb-4">{area.title}</h3>
               <p className="text-text-light text-base leading-relaxed mb-6">{area.summary}</p>
               <Link

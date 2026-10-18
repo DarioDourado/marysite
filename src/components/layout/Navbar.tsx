@@ -26,7 +26,7 @@ export const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" className="hover:opacity-80 transition-opacity flex items-center">
             <img 
-              src="/img/logo/logo.webp" 
+              src="/img/logo/Logo%20-%20lettring%20laterel.webp" 
               alt="Mariline Bôto" 
               className="h-8 md:h-10 w-auto"
               onError={(e) => {
