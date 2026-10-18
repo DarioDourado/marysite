@@ -11,7 +11,7 @@ export const AreasSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="areas" className="section-spacing bg-white">
+    <section id="areas" className="section-spacing bg-surface">
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <h2 className="text-4xl md:text-6xl font-serif font-normal text-foreground mb-8 tracking-tight">
@@ -25,7 +25,7 @@ export const AreasSection = () => {
             src="/img/areas-de-intervencao.webp"
             fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt={t('areas.imageAlt')}
-            className="w-full h-64 md:h-96 object-cover rounded-[40px]"
+            className="w-full h-64 md:h-96 object-cover rounded-panel"
           />
         </FadeIn>
 
@@ -34,9 +34,9 @@ export const AreasSection = () => {
             <FadeIn
               key={area.id}
               delay={index * 0.05}
-              className="group flex flex-col bg-primary rounded-[32px] p-8 hover:bg-primary-medium/40 transition-colors duration-300"
+              className="group flex flex-col bg-primary rounded-card p-8 hover-tint"
             >
-              <div className="w-16 h-16 mb-6 rounded-full bg-white/70 text-primary-dark flex items-center justify-center">
+              <div className="w-16 h-16 mb-6 rounded-round bg-surface/70 text-primary-dark flex items-center justify-center">
                 <AreaIcon id={area.id} className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-serif font-normal text-foreground mb-4">{area.title}</h3>
@@ -46,7 +46,7 @@ export const AreasSection = () => {
                 className="mt-auto inline-flex items-center gap-2 text-primary-dark font-medium text-sm hover:underline"
               >
                 {t('areas.learnMore')}
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={1.5} />
+                <ArrowRight className="w-4 h-4 arrow-shift" strokeWidth={1.5} />
               </Link>
             </FadeIn>
           ))}

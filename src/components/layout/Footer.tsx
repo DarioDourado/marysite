@@ -16,10 +16,10 @@ export const Footer = () => {
             Apoio psicológico clínico especializado, focado na humanização e no bem-estar emocional de cada indivíduo.
           </p>
           <div className="flex items-center gap-4 mt-8">
-            <a href="#" className="p-2 bg-primary/10 text-primary-dark rounded-full hover:bg-primary/20 transition-colors">
+            <a href="#" className="p-2 bg-primary/10 text-primary-dark rounded-round hover:bg-primary/20 transition-colors">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="p-2 bg-primary/10 text-primary-dark rounded-full hover:bg-primary/20 transition-colors">
+            <a href="#" className="p-2 bg-primary/10 text-primary-dark rounded-round hover:bg-primary/20 transition-colors">
               <Linkedin className="w-5 h-5" />
             </a>
           </div>

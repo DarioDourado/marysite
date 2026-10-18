@@ -1,19 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Marcellus&display=swap');
 @import "tailwindcss";
+@import "./theme.css";
 
-@theme {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Marcellus", serif;
-  
-  --color-background: #FFFFFF;
-  --color-foreground: #1D1D1F;
-  --color-primary: #D7E4EF; /* Soft light blue for backgrounds */
-  --color-primary-medium: #89ADCF; /* Intermediate blue */
-  --color-primary-dark: #3E7BB3; /* Highlight blue for buttons, text */
-  --color-secondary: #F5F5F7;
-  --color-surface: #FFFFFF;
-  --color-text-light: #555555;
-}
 
 body {
   @apply bg-background text-foreground font-sans antialiased selection:bg-primary-dark/10 selection:text-primary-dark;
@@ -32,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Light blue background; drop the image in public/img/bg-azul.webp (falls back to flat blue). */
 .bg-blue-texture {
-  background-color: #E4EDF5;
+  background-color: var(--color-texture);
   background-image: url('/img/bg-azul.webp');
   background-size: cover;
   background-position: center;

@@ -28,7 +28,7 @@ export const AboutSection = () => {
         {/* Photo accompanies the introduction, before the training section */}
         <FadeIn className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-20 md:mb-28">
           <div className="lg:col-span-4">
-            <div className="aspect-[4/5] max-w-[16rem] md:max-w-xs mx-auto lg:mx-0 rounded-[32px] overflow-hidden shadow-xl bg-white/60">
+            <div className="aspect-[4/5] max-w-[16rem] md:max-w-xs mx-auto lg:mx-0 rounded-card overflow-hidden shadow-panel bg-surface/60">
               <SafeImage
                 src="/img/mariline-boto-1.webp"
                 alt="Mariline Bôto"
@@ -49,7 +49,7 @@ export const AboutSection = () => {
             {values.map((value) => (
               <li
                 key={value}
-                className="bg-white rounded-3xl py-6 px-4 text-center font-serif text-xl text-primary-dark shadow-sm border border-secondary/40"
+                className="card text-center font-serif text-xl text-primary-dark py-6 px-4"
               >
                 {value}
               </li>
@@ -79,7 +79,7 @@ export const AboutSection = () => {
             <ul className="space-y-4">
               {experience.map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <span className="mt-3 w-1.5 h-1.5 shrink-0 rounded-full bg-primary-dark" />
+                  <span className="mt-3 w-1.5 h-1.5 shrink-0 rounded-round bg-primary-dark" />
                   {item}
                 </li>
               ))}

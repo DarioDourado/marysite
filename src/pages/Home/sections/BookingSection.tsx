@@ -11,7 +11,7 @@ export const BookingSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center max-w-5xl mx-auto mb-16 md:mb-20">
           <div className="lg:col-span-4">
-            <div className="aspect-[4/5] max-w-[14rem] mx-auto rounded-[32px] overflow-hidden shadow-xl bg-white/60">
+            <div className="aspect-[4/5] max-w-[14rem] mx-auto rounded-card overflow-hidden shadow-panel bg-surface/60">
               <SafeImage
                 src="/img/mariline-boto-1.webp"
                 alt="Mariline Bôto"

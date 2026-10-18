@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex" />
     <title>Em manutenção | Mariline Bôto</title>
     <style>
-      :root { --blue: #3E7BB3; --soft: #D7E4EF; --text: #1D1D1F; --muted: #555555; }
+      /*THEME_VARS*/
       * { box-sizing: border-box; }
       body {
         margin: 0;
@@ -15,8 +15,8 @@
         align-items: center;
         justify-content: center;
         padding: 24px;
-        background: linear-gradient(180deg, #ffffff 0%, #E4EDF5 100%);
-        color: var(--text);
+        background: linear-gradient(180deg, var(--color-background) 0%, var(--color-texture) 100%);
+        color: var(--color-foreground);
         font-family: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
         line-height: 1.7;
         text-align: center;
@@ -24,9 +24,9 @@
       main { max-width: 36rem; }
       img { width: min(18rem, 70vw); height: auto; margin-bottom: 2rem; }
       h1 { font-family: "Marcellus", Georgia, serif; font-weight: 400; font-size: clamp(1.75rem, 5vw, 2.5rem); margin: 0 0 1rem; line-height: 1.25; }
-      p { margin: 0 0 1rem; color: var(--muted); font-size: 1.05rem; }
+      p { margin: 0 0 1rem; color: var(--color-text-light); font-size: 1.05rem; }
       .en { font-size: 0.95rem; opacity: 0.8; }
-      a { color: var(--blue); }
+      a { color: var(--color-primary-dark); }
     </style>
   </head>
   <body>

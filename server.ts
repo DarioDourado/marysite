@@ -10,7 +10,12 @@ async function startServer() {
   const upload = multer({ dest: 'uploads/' });
 
   if (process.env.MAINTENANCE_MODE === 'true') {
-    const maintenancePage = fs.readFileSync(path.join(process.cwd(), 'maintenance.html'), 'utf-8');
+    // Cores vêm de src/theme.css (única fonte de verdade): o bloco @theme é injetado como :root.
+    const themeCss = fs.readFileSync(path.join(process.cwd(), 'src', 'theme.css'), 'utf-8');
+    const themeVars = /@theme\s*\{([\s\S]*?)\}/.exec(themeCss)?.[1] ?? '';
+    const maintenancePage = fs
+      .readFileSync(path.join(process.cwd(), 'maintenance.html'), 'utf-8')
+      .replace('/*THEME_VARS*/', `:root {${themeVars}}`);
     app.use((req, res, next) => {
       if (req.path.startsWith('/img/')) return next();
       res.status(503).set({ 'Retry-After': '3600', 'Cache-Control': 'no-store' }).type('html').send(maintenancePage);

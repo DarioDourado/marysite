@@ -14,7 +14,7 @@ export const QuoteSection = () => {
       />
       <div className="absolute inset-0 bg-foreground/25" />
       <FadeIn className="relative h-full flex items-center justify-center text-center px-6">
-        <h2 className="max-w-3xl text-3xl md:text-5xl font-serif font-normal text-white drop-shadow-lg">
+        <h2 className="max-w-3xl text-3xl md:text-5xl font-serif font-normal text-on-image drop-shadow-lg">
           {t('quote.text')}
         </h2>
       </FadeIn>

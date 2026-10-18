@@ -1,0 +1,148 @@
+/*
+ * THEME — única fonte de verdade para cores, fontes, raios, sombras, hovers e movimento.
+ * Para mudar qualquer aspeto visual do site, altera-o APENAS aqui.
+ * Cada token vira uma classe Tailwind (ex.: --color-primary-dark -> bg-primary-dark,
+ * --radius-card -> rounded-card, --shadow-card -> shadow-card) e uma variável CSS.
+ * O maintenance.html recebe estes valores do servidor (só o bloco @theme, sem chavetas aninhadas).
+ * Não uses hex, white/black/gray/red, rounded-2xl/3xl, shadow-sm/xl nem valores arbitrários
+ * (bg-[#...], rounded-[32px]) fora deste ficheiro. Usa os tokens e as classes de componente abaixo.
+ */
+@theme {
+  /* Tipografia */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Marcellus", serif;
+
+  /* Base */
+  --color-background: #FFFFFF;
+  --color-foreground: #1D1D1F;
+  --color-surface: #FFFFFF;
+  --color-secondary: #F5F5F7;
+  --color-text-light: #555555;
+
+  /* Marca (azuis) */
+  --color-primary: #D7E4EF; /* Soft light blue for backgrounds */
+  --color-primary-medium: #89ADCF; /* Intermediate blue */
+  --color-primary-dark: #3E7BB3; /* Highlight blue for buttons, text */
+  --color-texture: #E4EDF5; /* Fundo da secção com textura (fallback da imagem) */
+
+  /* Texto sobre fundos coloridos / imagens */
+  --color-on-primary: #FFFFFF; /* Texto em botões e círculos primary-dark */
+  --color-on-image: #FFFFFF; /* Texto sobre fotografias (hero, citação, áreas) */
+  --color-overlay: #000000; /* Película escura sobre imagens e sombras */
+
+  /* Neutros de interface */
+  --color-muted: #F3F4F6; /* Fundo de página cinzento claro */
+  --color-line: #E5E7EB; /* Bordas neutras */
+  --color-border: color-mix(in srgb, var(--color-secondary) 40%, transparent); /* Borda padrão de cards, inputs e separadores */
+  --color-field: color-mix(in srgb, var(--color-secondary) 20%, transparent); /* Fundo dos campos de formulário */
+
+  /* Estados */
+  --color-danger: #DC2626;
+
+  /* Marcas externas */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1EBE5B;
+
+  /* Raios — muda aqui e TODOS os elementos do tipo mudam */
+  --radius-panel: 2.5rem; /* Painéis grandes: formulários, imagem do hero/áreas, abordagem */
+  --radius-card: 2rem; /* Cards: áreas, blog, fotografias */
+  --radius-tile: 1.5rem; /* Cards pequenos: FAQ, estatísticas, chips de áreas */
+  --radius-control: 1rem; /* Inputs, caixas de escolha, botões de submit */
+  --radius-button: 9999px; /* Botões de ação (pílula) */
+  --radius-round: 9999px; /* Círculos de ícones, bolinhas, FAB */
+  --radius-checkbox: 0.25rem; /* Checkboxes */
+
+  /* Sombras */
+  --shadow-card: 0 1px 2px 0 color-mix(in srgb, var(--color-overlay) 5%, transparent);
+  --shadow-card-hover: 0 4px 6px -1px color-mix(in srgb, var(--color-overlay) 10%, transparent), 0 2px 4px -2px color-mix(in srgb, var(--color-overlay) 10%, transparent);
+  --shadow-panel: 0 20px 25px -5px color-mix(in srgb, var(--color-overlay) 10%, transparent), 0 8px 10px -6px color-mix(in srgb, var(--color-overlay) 10%, transparent);
+  --shadow-float: 0 25px 50px -12px color-mix(in srgb, var(--color-overlay) 25%, transparent);
+  --shadow-button: 0 20px 25px -5px color-mix(in srgb, var(--color-primary-dark) 20%, transparent);
+  --shadow-button-whatsapp: 0 20px 25px -5px color-mix(in srgb, var(--color-whatsapp) 20%, transparent);
+  --shadow-fab: 0 10px 15px -3px color-mix(in srgb, var(--color-overlay) 20%, transparent);
+
+  /* Movimento e hover */
+  --motion-duration: 200ms; /* Duração das transições de hover */
+  --motion-duration-slow: 300ms; /* Cards grandes e setas */
+  --motion-ease: ease-in-out;
+  --hover-button-strength: 90%; /* Opacidade do botão primário em hover */
+  --hover-tint-strength: 40%; /* Intensidade do fundo ao pairar num card */
+  --hover-choice-strength: 10%; /* Fundo das caixas de escolha em hover */
+  --hover-shift: 0.25rem; /* Deslocamento das setas em hover */
+}
+
+/*
+ * Classes de componente — o "padrão" de cada elemento. Os tokens acima controlam o aspeto.
+ * Tamanhos e espaçamentos ficam no JSX; raios, sombras, bordas e hovers vêm daqui.
+ */
+@layer components {
+  /* Cards */
+  .card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-tile);
+    box-shadow: var(--shadow-card);
+    background-color: var(--color-surface);
+  }
+  .card-hover {
+    transition: box-shadow var(--motion-duration-slow) var(--motion-ease);
+  }
+  .card-hover:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  .hover-tint {
+    transition: background-color var(--motion-duration-slow) var(--motion-ease);
+  }
+  .hover-tint:hover {
+    background-color: color-mix(in srgb, var(--color-primary-medium) var(--hover-tint-strength), transparent);
+  }
+
+  /* Botões */
+  .btn-primary,
+  .btn-whatsapp {
+    border-radius: var(--radius-button);
+    transition: all var(--motion-duration) var(--motion-ease);
+    color: var(--color-on-primary);
+  }
+  .btn-primary {
+    background-color: var(--color-primary-dark);
+  }
+  .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--color-primary-dark) var(--hover-button-strength), transparent);
+  }
+  .btn-whatsapp {
+    background-color: var(--color-whatsapp);
+  }
+  .btn-whatsapp:hover {
+    background-color: var(--color-whatsapp-hover);
+  }
+
+  /* Formulários */
+  .input {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    transition: border-color var(--motion-duration) var(--motion-ease);
+  }
+  .input:focus {
+    outline: none;
+    border-color: var(--color-primary-dark);
+  }
+  .choice {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    transition: background-color var(--motion-duration) var(--motion-ease);
+  }
+  .choice:hover {
+    background-color: color-mix(in srgb, var(--color-secondary) var(--hover-choice-strength), transparent);
+  }
+
+  /* Setas e ícones com movimento em hover (dentro de .group) */
+  .arrow-shift {
+    transition: transform var(--motion-duration) var(--motion-ease);
+  }
+  .group:hover .arrow-shift {
+    transform: translateX(var(--hover-shift));
+  }
+}

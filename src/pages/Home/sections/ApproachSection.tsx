@@ -26,12 +26,12 @@ export const ApproachSection = () => {
           </div>
         </FadeIn>
 
-        <FadeIn className="bg-white rounded-[48px] p-8 md:p-16 shadow-sm border border-secondary/40">
+        <FadeIn className="bg-surface rounded-panel p-8 md:p-16 shadow-card border border-border">
           <p className="text-lg text-text-light leading-relaxed mb-10">{t('approach.pointsIntro')}</p>
           <ul className="space-y-6 mb-12">
             {points.map((point, index) => (
               <li key={point.title} className="flex gap-5 items-start">
-                <span className="shrink-0 w-10 h-10 bg-primary-dark text-white rounded-full flex items-center justify-center font-bold text-sm">
+                <span className="shrink-0 w-10 h-10 bg-primary-dark text-on-primary rounded-round flex items-center justify-center font-bold text-sm">
                   {index + 1}
                 </span>
                 <p className="text-lg text-text-light leading-relaxed pt-1">
@@ -41,7 +41,7 @@ export const ApproachSection = () => {
             ))}
           </ul>
 
-          <div className="p-8 md:p-10 bg-primary/50 rounded-3xl space-y-6 text-lg text-foreground/80 leading-relaxed">
+          <div className="p-8 md:p-10 bg-primary/50 rounded-tile space-y-6 text-lg text-foreground/80 leading-relaxed">
             {closing.map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}

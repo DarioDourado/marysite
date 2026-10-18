@@ -17,7 +17,7 @@ export const WhatsAppButton = ({ className }: WhatsAppButtonProps) => {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'px-10 py-4 bg-[#25D366] text-white rounded-full font-semibold hover:bg-[#1ebe5b] transition-all shadow-xl shadow-[#25D366]/20 flex items-center justify-center gap-3 text-lg',
+        'px-10 py-4 btn-whatsapp font-semibold shadow-button-whatsapp flex items-center justify-center gap-3 text-lg',
         className,
       )}
     >

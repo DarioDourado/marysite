@@ -5,7 +5,7 @@ export const Blog = () => {
   const { t, posts, loading, error } = useBlogHook();
 
   return (
-    <section className="pt-12 md:pt-14 min-h-screen bg-white">
+    <section className="pt-12 md:pt-14 min-h-screen bg-surface">
       <div className="max-w-7xl mx-auto px-6 py-20 md:py-28">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl md:text-6xl font-serif font-normal text-foreground mb-8 tracking-tight">
@@ -19,11 +19,11 @@ export const Blog = () => {
         )}
 
         {error && (
-          <p className="text-center text-red-600" role="alert">{t('blog.error')}</p>
+          <p className="text-center text-danger" role="alert">{t('blog.error')}</p>
         )}
 
         {!loading && !error && posts.length === 0 && (
-          <div className="max-w-2xl mx-auto text-center bg-primary/20 rounded-[32px] p-10 text-text-light text-lg">
+          <div className="max-w-2xl mx-auto text-center bg-primary/20 rounded-card p-10 text-text-light text-lg">
             {t('blog.empty')}
           </div>
         )}
@@ -34,7 +34,7 @@ export const Blog = () => {
               <FadeIn
                 key={post.id}
                 delay={index * 0.05}
-                className="bg-secondary/20 rounded-[32px] p-8 md:p-10"
+                className="bg-secondary/20 rounded-card p-8 md:p-10"
               >
                 <time className="text-xs uppercase tracking-widest text-primary-dark">{post.date}</time>
                 <h2 className="text-xl md:text-2xl font-serif font-normal text-foreground mt-3 mb-4">{post.title}</h2>

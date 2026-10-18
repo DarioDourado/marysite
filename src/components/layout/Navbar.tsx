@@ -21,7 +21,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-secondary/40 h-12 md:h-14 flex items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border h-12 md:h-14 flex items-center">
       <div className="max-w-7xl mx-auto px-4 md:px-6 w-full flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="hover:opacity-80 transition-opacity flex items-center">
@@ -52,7 +52,7 @@ export const Navbar = () => {
           ))}
           <Link
             to="/#booking-section"
-            className="px-5 py-2 bg-primary-dark text-white text-[13px] font-serif font-normal rounded-full hover:bg-primary-dark/90 transition-all"
+            className="px-5 py-2 btn-primary text-[13px] font-serif font-normal"
           >
             {t('nav.booking')}
           </Link>
@@ -61,7 +61,7 @@ export const Navbar = () => {
         {/* Mobile Toggle */}
         <div className="flex items-center gap-2 md:hidden">
           <button 
-            className="w-10 h-10 flex items-center justify-center bg-foreground text-white rounded-full shadow-lg shadow-foreground/20" 
+            className="w-10 h-10 flex items-center justify-center bg-foreground text-on-primary rounded-round shadow-fab" 
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
           >
@@ -77,7 +77,7 @@ export const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-0 z-40 md:hidden pt-14 bg-white flex flex-col shadow-2xl"
+            className="fixed inset-0 z-40 md:hidden pt-14 bg-surface flex flex-col shadow-float"
           >
             <div className="flex-1 overflow-y-auto">
               <nav className="flex flex-col px-8 pt-12 pb-20 gap-8">
@@ -98,12 +98,12 @@ export const Navbar = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="pt-8 border-t border-secondary/40"
+                  className="pt-8 border-t border-border"
                 >
                   <Link
                     to="/#booking-section"
                     onClick={() => setIsOpen(false)}
-                    className="w-full py-5 bg-primary-dark text-white text-center rounded-full font-serif font-normal text-xl shadow-xl shadow-primary-dark/20 flex items-center justify-center gap-3"
+                    className="w-full py-5 btn-primary text-center font-serif font-normal text-xl shadow-button flex items-center justify-center gap-3"
                   >
                     {t('nav.booking')}
                     <ArrowRight className="w-6 h-6" strokeWidth={1.5} />

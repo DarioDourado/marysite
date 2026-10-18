@@ -44,7 +44,7 @@ export const FAQAccordion = () => {
       {faqs.map((faq, index) => (
         <div 
           key={index} 
-          className="bg-white border border-secondary/40 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+          className="card card-hover overflow-hidden"
         >
           <button
             onClick={() => toggleFAQ(index)}
