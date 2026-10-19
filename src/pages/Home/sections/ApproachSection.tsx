@@ -31,10 +31,10 @@ export const ApproachSection = () => {
           <ul className="space-y-6 mb-12">
             {points.map((point, index) => (
               <li key={point.title} className="flex gap-5 items-start">
-                <span className="shrink-0 w-8 h-8 bg-primary-dark text-on-primary rounded-round flex items-center justify-center font-bold text-xs">
+                <span className="shrink-0 w-6 h-6 mt-0.5 bg-primary-dark text-on-primary rounded-round flex items-center justify-center font-bold text-xs">
                   {index + 1}
                 </span>
-                <p className="text-lg text-text-light leading-relaxed pt-1">
+                <p className="text-lg text-text-light leading-relaxed">
                   <strong className="font-semibold text-foreground">{point.title}:</strong> {point.text}
                 </p>
               </li>

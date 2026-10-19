@@ -6,7 +6,7 @@ export const QuoteSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative h-[80vh] min-h-[480px] overflow-hidden bg-primary-medium">
+    <section className="relative h-[50vh] md:h-[80vh] md:min-h-120 overflow-hidden bg-primary-medium">
       <SafeImage
         src="/img/florescimento.webp"
         alt=""

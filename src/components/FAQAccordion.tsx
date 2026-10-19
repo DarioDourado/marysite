@@ -5,7 +5,28 @@ import { ChevronDown } from 'lucide-react';
 const faqs = [
   {
     question: 'Qual é o valor de cada consulta e como posso efetuar o pagamento?',
-    answer: 'O valor de cada consulta é de 50€. O pagamento pode ser realizado de forma simples e segura através de MB WAY ou transferência bancária.'
+    answer: (
+      <div className="space-y-4">
+        <div>
+          <p className="font-semibold text-foreground mb-2">Valores e Modalidades de Acompanhamento</p>
+          <p className="mb-2">Para responder a diferentes necessidades e ritmos de acompanhamento, disponho das seguintes opções:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong className="font-semibold text-foreground">Consulta Avulso:</strong> 50€ / sessão.</li>
+            <li><strong className="font-semibold text-foreground">Pacote Mensal (4 sessões):</strong> 180€ (equivalente a 45€ / sessão). Pensado para quem procura um acompanhamento semanal contínuo. É pago integralmente no início do ciclo de 4 consultas e tem uma validade de 5 semanas.</li>
+            <li><strong className="font-semibold text-foreground">Regime de Responsabilidade Social:</strong> disponho de vagas com valor reduzido (25€ / sessão), destinadas exclusivamente a pessoas em situação de desemprego (mediante a apresentação do comprovativo atualizado de inscrição no IEFP).</li>
+            <li><strong className="font-semibold text-foreground">Cheque-Psicólogo:</strong> aceito vales do programa Cheque-Psicólogo, permitindo consultas gratuitas para jovens adultos (dos 18 aos 35 anos).</li>
+          </ul>
+        </div>
+        <div>
+          <p className="font-semibold text-foreground mb-2">Métodos de Pagamento Aceites</p>
+          <p className="mb-2">O pagamento é realizado de forma simples e segura, adaptado à sua localização:</p>
+          <ul className="list-disc pl-5 space-y-2">
+            <li><strong className="font-semibold text-foreground">Nacional (Portugal):</strong> MB WAY, transferência bancária ou utilização do Cheque-Psicólogo (consultas gratuitas para jovens adultos dos 18 aos 35 anos, no âmbito do programa nacional).</li>
+            <li><strong className="font-semibold text-foreground">Internacional:</strong> Wise (a opção ideal, simples e com taxas reduzidas para quem se encontra no estrangeiro).</li>
+          </ul>
+        </div>
+      </div>
+    )
   },
   {
     question: 'Quanto tempo dura uma sessão e com que frequência deve ser realizada?',
