@@ -59,7 +59,7 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
         <div className="mt-10 flex flex-col sm:flex-row gap-4">
         <button
           onClick={onBooking}
-          className="px-10 py-4 btn-primary font-semibold shadow-button flex items-center gap-3 group text-lg"
+          className="px-10 py-4 btn-primary font-semibold shadow-button flex items-center justify-center gap-3 group text-lg"
         >
           {t('hero.cta')}
           <ArrowRight className="w-6 h-6 arrow-shift" strokeWidth={1.5} />

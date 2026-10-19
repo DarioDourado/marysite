@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
-import { motion } from 'motion/react';
-import { useIsDesktop } from '@/src/lib/useIsDesktop.ts';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface FadeInProps {
   children: ReactNode;
@@ -9,22 +8,23 @@ interface FadeInProps {
 }
 
 /**
- * Subtle opacity-only reveal on scroll (max 0.4s). Disabled on mobile.
+ * Reveal on scroll: fades in while rising 30px (0.65s), once per element.
+ * Skipped when the visitor prefers reduced motion.
  */
 export const FadeIn = ({ children, className, delay = 0 }: FadeInProps) => {
-  const isDesktop = useIsDesktop();
+  const reduceMotion = useReducedMotion();
 
-  if (!isDesktop) {
+  if (reduceMotion) {
     return <div className={className}>{children}</div>;
   }
 
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.4, delay, ease: 'easeOut' }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1, margin: '0px 0px -40px 0px' }}
+      transition={{ duration: 0.65, delay, ease: 'easeOut' }}
     >
       {children}
     </motion.div>

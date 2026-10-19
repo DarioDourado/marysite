@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/src/lib/utils.ts';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 
 const MotionLink = motion.create(Link);
@@ -10,12 +10,18 @@ const MotionLink = motion.create(Link);
 export const Navbar = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const { pathname, hash } = useLocation();
+
+  // Already on the bare home URL: the route doesn't change, so scroll up manually.
+  const handleLogoClick = () => {
+    if (pathname === '/' && !hash) window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const navItems = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/#about' },
-    { name: t('nav.approach'), href: '/#approach' },
     { name: t('nav.areas'), href: '/areas' },
+    { name: t('nav.approach'), href: '/#approach' },
     { name: t('nav.blog'), href: '/blog' },
     { name: t('nav.contacts'), href: '/#contacts' },
   ];
@@ -24,9 +30,9 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border h-12 md:h-14 flex items-center">
       <div className="max-w-7xl mx-auto px-4 md:px-6 w-full flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="hover:opacity-80 transition-opacity flex items-center">
+          <Link to="/" onClick={handleLogoClick} className="hover:opacity-80 transition-opacity flex items-center">
             <img 
-              src="/img/logo/Logo%20-%20lettring%20laterel.webp" 
+              src="/img/logo/Logotipo%20Lateral.webp" 
               alt="Mariline Bôto" 
               className="h-8 md:h-10 w-auto"
               onError={(e) => {

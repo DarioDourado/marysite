@@ -57,7 +57,7 @@ export const AboutSection = () => {
           </ul>
         </FadeIn>
 
-        <FadeIn className="max-w-4xl">
+        <FadeIn>
           <h2 className="text-3xl md:text-5xl font-serif font-normal text-foreground mb-12">
             {t('about.educationTitle')}
           </h2>

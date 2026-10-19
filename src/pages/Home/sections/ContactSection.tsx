@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Mail, MessageCircle } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { WhatsAppIcon } from '@/src/components/ui/WhatsAppIcon.tsx';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
 
 const WHATSAPP_NUMBER = '351965608731';
@@ -22,7 +23,7 @@ export const ContactSection = () => {
 
               <ul className="space-y-5 pt-8 border-t border-border">
                 <li className="flex items-center gap-4">
-                  <span className="w-10 h-10 bg-secondary/30 rounded-round flex items-center justify-center text-primary-dark">
+                  <span className="w-10 h-10 bg-primary-dark rounded-round flex items-center justify-center text-on-primary">
                     <Mail className="w-5 h-5" strokeWidth={1.2} />
                   </span>
                   <span>
@@ -31,8 +32,8 @@ export const ContactSection = () => {
                   </span>
                 </li>
                 <li className="flex items-center gap-4">
-                  <span className="w-10 h-10 bg-secondary/30 rounded-round flex items-center justify-center text-primary-dark">
-                    <MessageCircle className="w-5 h-5" strokeWidth={1.2} />
+                  <span className="w-10 h-10 bg-primary-dark rounded-round flex items-center justify-center text-on-primary">
+                    <WhatsAppIcon className="w-5 h-5" />
                   </span>
                   <span>
                     <span className="font-medium text-foreground">{t('contacts.whatsappLabel')}: </span>

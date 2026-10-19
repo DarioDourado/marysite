@@ -44,7 +44,7 @@ export const BookingForm = () => {
               required
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full px-5 py-4 bg-field input" 
+              className="w-full px-5 py-4 bg-surface input" 
               placeholder="O seu nome completo"
             />
           </div>
@@ -55,7 +55,7 @@ export const BookingForm = () => {
               required
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
-              className="w-full px-5 py-4 bg-field input" 
+              className="w-full px-5 py-4 bg-surface input" 
               placeholder="O seu endereço de e-mail"
             />
           </div>
@@ -68,7 +68,7 @@ export const BookingForm = () => {
             required
             value={formData.phone}
             onChange={(e) => setFormData({...formData, phone: e.target.value})}
-            className="w-full px-5 py-4 bg-field input" 
+            className="w-full px-5 py-4 bg-surface input" 
             placeholder="O seu número de telemóvel"
           />
         </div>
@@ -79,7 +79,7 @@ export const BookingForm = () => {
             required
             value={formData.reason}
             onChange={(e) => setFormData({...formData, reason: e.target.value})}
-            className="w-full px-5 py-4 bg-field input min-h-[120px]" 
+            className="w-full px-5 py-4 bg-surface input min-h-[120px]" 
             placeholder="Descreva brevemente o motivo da sua consulta"
           />
         </div>
@@ -125,7 +125,7 @@ export const BookingForm = () => {
           <textarea 
             value={formData.scheduleDetails}
             onChange={(e) => setFormData({...formData, scheduleDetails: e.target.value})}
-            className="w-full px-5 py-4 bg-field input min-h-[100px]" 
+            className="w-full px-5 py-4 bg-surface input min-h-[100px]" 
             placeholder="Se precisar, detalhe aqui a sua disponibilidade (ex: apenas à terça-feira)"
           />
         </div>

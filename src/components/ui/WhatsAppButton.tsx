@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { MessageCircle } from 'lucide-react';
+import { WhatsAppIcon } from '@/src/components/ui/WhatsAppIcon.tsx';
 import { cn } from '@/src/lib/utils.ts';
 import { getWhatsAppUrl } from '@/src/lib/whatsapp.ts';
 
@@ -21,7 +21,7 @@ export const WhatsAppButton = ({ className }: WhatsAppButtonProps) => {
         className,
       )}
     >
-      <MessageCircle className="w-6 h-6" strokeWidth={1.5} />
+      <WhatsAppIcon className="w-6 h-6" />
       {t('whatsapp.cta')}
     </a>
   );
