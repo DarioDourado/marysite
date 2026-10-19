@@ -31,15 +31,21 @@ export const Footer = () => {
           </h3>
           <ul className="space-y-4 text-foreground/70">
             <li className="flex items-center gap-3">
-              <Mail className="w-4 h-4 text-primary-dark" />
+              <span className="w-8 h-8 shrink-0 bg-primary-dark text-on-primary rounded-round flex items-center justify-center">
+                <Mail className="w-4 h-4" />
+              </span>
               <span>marilineboto.psi@gmail.com</span>
             </li>
             <li className="flex items-center gap-3">
-              <Phone className="w-4 h-4 text-primary-dark" />
+              <span className="w-8 h-8 shrink-0 bg-primary-dark text-on-primary rounded-round flex items-center justify-center">
+                <Phone className="w-4 h-4" />
+              </span>
               <span>(+351) 965 608 731</span>
             </li>
             <li className="flex items-center gap-3">
-              <MapPin className="w-4 h-4 text-primary-dark" />
+              <span className="w-8 h-8 shrink-0 bg-primary-dark text-on-primary rounded-round flex items-center justify-center">
+                <MapPin className="w-4 h-4" />
+              </span>
               <span>Atendimento Online / Lisboa</span>
             </li>
           </ul>

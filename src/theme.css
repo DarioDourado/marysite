@@ -118,7 +118,7 @@
 
   /* Formulários */
   .input {
-    border: 1px solid var(--color-primary-dark);
+    border: 1px solid color-mix(in srgb, var(--color-primary-dark) 50%, transparent);
     border-radius: var(--radius-control);
     transition: border-color var(--motion-duration) var(--motion-ease);
   }
@@ -131,7 +131,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    border: 1px solid var(--color-primary-dark);
+    border: 1px solid color-mix(in srgb, var(--color-primary-dark) 50%, transparent);
     border-radius: var(--radius-control);
     transition: background-color var(--motion-duration) var(--motion-ease);
   }
