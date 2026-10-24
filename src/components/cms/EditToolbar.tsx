@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth, useLogout } from '@/src/hooks/auth/index.ts';
+import { useNewSubmissionsCount } from '@/src/hooks/submissions/index.ts';
 import { cn } from '@/src/lib/utils.ts';
 import { useEditMode } from './EditModeContext.ts';
 import { SeoPanel } from './SeoPanel.tsx';
@@ -18,6 +19,8 @@ export const EditToolbar = () => {
   const logout = useLogout();
   const { pathname } = useLocation();
   const [seoOpen, setSeoOpen] = useState(false);
+  const isStaff = user?.role === 'admin' || user?.role === 'superuser';
+  const newSubmissions = useNewSubmissionsCount(isStaff).data ?? 0;
   if (!user) return null;
   const slug = PATH_SLUGS[pathname];
 
@@ -44,6 +47,12 @@ export const EditToolbar = () => {
         <button type="button" onClick={() => edit.setAttrOpen(true)} className={buttonClass}>{t('admin.toolbar.hiddenTexts')}</button>
       )}
       {user.capabilities.includes('images') && <Link to="/admin/media" className={buttonClass}>{t('admin.toolbar.media')}</Link>}
+      {isStaff && (
+        <Link to="/admin/submissions" className={buttonClass}>
+          {t('admin.toolbar.submissions')}
+          {newSubmissions > 0 && <span className="ml-2 px-1.5 rounded-round bg-primary-dark text-xs">{newSubmissions}</span>}
+        </Link>
+      )}
       {user.role === 'superuser' && <Link to="/admin/settings" className={buttonClass}>{t('admin.toolbar.settings')}</Link>}
       <span className="text-sm opacity-80">{user.displayName}</span>
       <button

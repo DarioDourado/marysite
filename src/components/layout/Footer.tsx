@@ -62,7 +62,7 @@ export const Footer = () => {
           <ul className="space-y-4 text-foreground/70">
             <li><Link to="/" className="hover:text-primary-dark transition-colors"><Cms k="nav.home" /></Link></li>
             <li><Link to="/#about" className="hover:text-primary-dark transition-colors"><Cms k="nav.about" /></Link></li>
-            <li><Link to="/#areas" className="hover:text-primary-dark transition-colors"><Cms k="nav.areas" /></Link></li>
+            <li><Link to="/areas" className="hover:text-primary-dark transition-colors"><Cms k="nav.areas" /></Link></li>
             <li><Link to="/#booking-section" className="hover:text-primary-dark transition-colors"><Cms k="nav.booking" /></Link></li>
             <li><Link to="/blog" className="hover:text-primary-dark transition-colors"><Cms k="nav.blog" /></Link></li>
           </ul>

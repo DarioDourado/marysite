@@ -22,6 +22,7 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
         >
           <CmsImage
             path="hero.background"
+            fetchPriority="high"
             fallback="/img/hortensias.webp"
             alt=""
             className="w-full h-full object-cover"
@@ -41,6 +42,7 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
             <div className="aspect-[4/5] max-w-[16rem] lg:max-w-xs mx-auto lg:ml-auto rounded-panel overflow-hidden shadow-float bg-primary/40">
               <CmsImage
                 path="hero.photo"
+                fetchPriority="high"
                 fallback="/img/mariline-boto-2.webp"
                 alt={attr('hero.imageAlt')}
                 className="w-full h-full object-cover"

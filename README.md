@@ -36,6 +36,7 @@ Todo o texto, imagem, lista e SEO do site é editado **no próprio site**, sem a
   - títulos, subtítulos, botões e contactos: o campo fica editável no sítio;
   - parágrafos e FAQ: abre-se um editor com negrito, itálico, sublinhado, listas, títulos e ligações;
   - imagens: o lápis abre a biblioteca (pesquisar, reutilizar ou enviar; tudo é convertido para WebP);
+  - pedidos: o botão «Pedidos» (só admin e superuser) mostra as marcações e mensagens recebidas, com filtros, estado (novo, lido, arquivado) e eliminar;
   - listas: adicionar, remover (com confirmação), subir/descer e ativar/desativar. Itens inativos só se veem a editar;
   - «SEO» (título e descrição da página) e «Textos escondidos» (placeholders, descrições de imagens, ligações).
 - **Utilizadores e permissões:** em `/admin/settings` (só `superuser`) criam-se utilizadores e define-se, para cada um, o que pode editar (texto, imagens, listas) e em que páginas (site e rodapé, início, áreas, blog).
@@ -75,12 +76,16 @@ Comandos: `npm run lint` (TypeScript estrito) · `npm test` (Vitest) · `npm run
 2. O site e a API têm de estar no **mesmo domínio**. Duas opções:
    - o servidor do site faz o proxy: definir `API_PROXY_TARGET=http://api:8000` (reencaminha `/api/v1` e `/media`);
    - ou um proxy à frente (nginx, Caddy, Traefik) que envia `/api/v1` e `/media` para a API e o resto para o site.
-3. `npm run build` e `NODE_ENV=production npx tsx server.ts` (o `Dockerfile` já o faz).
+3. `npm run build` e `NODE_ENV=production npx tsx server.ts` (o `Dockerfile` já o faz). Definir também `SITE_URL` (endereço público, ex. `https://exemplo.pt`) e, atrás de proxy, `TRUST_PROXY`.
 4. Se a API ficar noutro domínio: `VITE_API_BASE_URL` e `VITE_MEDIA_BASE_URL` no build, `COOKIE_SAMESITE=none` e `CORS_ORIGINS` com o domínio do site.
+
+## SEO
+
+O servidor (`server/seo/`) devolve em cada página o título, a descrição, o canonical, o Open Graph, os dados estruturados (JSON-LD) e um resumo do conteúdo em `<noscript>`, tudo a partir do CMS, além de `/robots.txt`, `/sitemap.xml`, redirecionamentos 301 e uma página 404 com o estado HTTP correto. Rotas `/admin/*` e a 404 ficam `noindex`. O blog fica `noindex` até `SEO_INDEX_BLOG=true`. Detalhes, medições e pendentes: `docs/seo/final-seo-report.md`.
 
 ## Estado atual
 
-- Os formulários de marcação e de contacto ainda **não enviam mensagens**. Está por ligar o envio para o e-mail da Mariline.
+- Os formulários de marcação e de contacto **guardam os pedidos na API**; aparecem em `/admin/submissions` (só admin e superuser). Ainda **não há aviso por e-mail** à Mariline quando chega um pedido novo: só o contador «Pedidos» na barra de edição.
 - O **blog** ainda não tem artigos.
 - Na secção **Sobre Mim**, o bloco de experiência profissional (introdução, três pontos e frase final) não tem texto: mostra-se o nome interno de cada campo até a Mariline o preencher no CMS.
 - Faltam algumas imagens, que o site mostra como blocos azuis claros até serem adicionadas: hortênsias (início, abordagem e faixa "Um caminho para o florescimento do ser"), fundo azul claro e mãos (Áreas de Intervenção).

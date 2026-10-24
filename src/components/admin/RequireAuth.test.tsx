@@ -58,4 +58,26 @@ describe('RequireAuth', () => {
     renderAt(false, 'images');
     expect(screen.getByText('segredo')).toBeInTheDocument();
   });
+
+  it('keeps editors out of staff-only pages but lets admin and superuser in', () => {
+    const renderStaff = () =>
+      render(
+        <MemoryRouter initialEntries={['/pedidos']}>
+          <Routes>
+            <Route path="/pedidos" element={<RequireAuth staffOnly>pedidos</RequireAuth>} />
+            <Route path="/" element={<p>site</p>} />
+          </Routes>
+        </MemoryRouter>,
+      );
+    auth.value = { user: user({ role: 'editor', capabilities: ['text', 'images', 'structure'] }), isLoading: false };
+    const editor = renderStaff();
+    expect(screen.getByText('site')).toBeInTheDocument();
+    editor.unmount();
+    for (const role of ['admin', 'superuser'] as const) {
+      auth.value = { user: user({ role }), isLoading: false };
+      const view = renderStaff();
+      expect(screen.getByText('pedidos')).toBeInTheDocument();
+      view.unmount();
+    }
+  });
 });

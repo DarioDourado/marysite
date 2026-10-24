@@ -41,7 +41,7 @@ export const adminMessages = {
     },
     toolbar: {
       label: 'Barra de edição', editingOn: 'A editar', editingOff: 'Editar', seo: 'SEO',
-      hiddenTexts: 'Textos escondidos', media: 'Imagens', settings: 'Configurações', logout: 'Sair',
+      hiddenTexts: 'Textos escondidos', media: 'Imagens', submissions: 'Pedidos', settings: 'Configurações', logout: 'Sair',
     },
     seo: { title: 'SEO da página', pageTitle: 'Título', pageDescription: 'Descrição', ogImage: 'Imagem de partilha' },
     attrs: {
@@ -54,6 +54,21 @@ export const adminMessages = {
       empty: 'Ainda não há imagens.', more: 'Carregar mais', uploaded: 'Imagem enviada.', replaced: 'Imagem substituída.',
       deleted: 'Imagem eliminada.', replace: 'Substituir', altText: 'Texto alternativo', deleteTitle: 'Eliminar imagem',
       deleteMessage: 'Tem a certeza de que quer eliminar esta imagem?', usedIn: 'Em uso em:',
+    },
+    submissions: {
+      title: 'Pedidos e mensagens',
+      intro: 'Marcações de consulta e mensagens enviadas pelos formulários do site. Só administradores e superusers veem esta página.',
+      search: 'Pesquisar por nome, e-mail ou texto',
+      kind: 'Tipo', status: 'Estado', all: 'Todos', empty: 'Ainda não há pedidos.', emptyFiltered: 'Nenhum pedido corresponde aos filtros.',
+      more: 'Carregar mais', newCount: 'novos',
+      kinds: { booking: 'Marcação', contact: 'Contacto' },
+      statuses: { new: 'Novo', read: 'Lido', archived: 'Arquivado' },
+      schedule: { morning: 'Dias úteis: 10h-13h', afternoon: 'Dias úteis: 15h-20h', noPreference: 'Sem preferência de horário' },
+      reason: 'Motivo da consulta', message: 'Mensagem', subject: 'Assunto', phone: 'Telemóvel', scheduleLabel: 'Preferência de horário',
+      details: 'Detalhes de horário', receivedAt: 'Recebido em', handledBy: 'Tratado por',
+      markRead: 'Marcar como lido', markNew: 'Marcar como novo', archive: 'Arquivar', reopen: 'Reabrir',
+      deleted: 'Pedido eliminado.', deleteTitle: 'Eliminar pedido',
+      deleteMessage: 'Tem a certeza de que quer eliminar este pedido? Os dados da pessoa serão apagados e não podem ser recuperados.',
     },
     settings: {
       title: 'Configurações', users: 'Utilizadores', newUser: 'Novo utilizador', email: 'E-mail', displayName: 'Nome',

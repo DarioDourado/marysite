@@ -38,7 +38,7 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border h-12 md:h-14 flex items-center">
+    <nav aria-label={t('system.mainNav')} className="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border h-12 md:h-14 flex items-center">
       <div className="max-w-7xl mx-auto px-4 md:px-6 w-full flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" onClick={handleLogoClick} className="hover:opacity-80 transition-opacity flex items-center">
@@ -104,7 +104,7 @@ export const Navbar = () => {
             className="fixed inset-0 z-40 md:hidden pt-14 bg-surface flex flex-col shadow-float"
           >
             <div className="flex-1 overflow-y-auto">
-              <nav className="flex flex-col px-8 pt-12 pb-20 gap-8">
+              <div className="flex flex-col px-8 pt-12 pb-20 gap-8">
                 {navItems.map((item, index) => (
                   <MotionLink
                     key={item.key}
@@ -133,7 +133,7 @@ export const Navbar = () => {
                     <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
                   </Link>
                 </motion.div>
-              </nav>
+              </div>
             </div>
           </motion.div>
         )}

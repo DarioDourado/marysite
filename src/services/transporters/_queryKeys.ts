@@ -8,6 +8,11 @@ export const queryKeys = {
     all: ['media'] as const,
     list: (q: string) => ['media', 'list', q] as const,
   },
+  submissions: {
+    all: ['submissions'] as const,
+    list: (kind: string, status: string, q: string) => ['submissions', 'list', kind, status, q] as const,
+    count: ['submissions', 'count'] as const,
+  },
   users: {
     all: ['users'] as const,
   },

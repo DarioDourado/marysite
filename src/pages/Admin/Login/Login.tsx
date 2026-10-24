@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useNoindex } from '@/src/hooks/cms/index.ts';
 import { useLoginForm } from './useLoginForm.ts';
 
 export const Login = () => {
   const { t } = useTranslation();
   const { form, onSubmit, isPending, errorKey } = useLoginForm();
   const { register, formState } = form;
+  useNoindex(t('admin.login.title'));
 
   return (
     <main className="min-h-screen bg-muted flex items-center justify-center px-4">

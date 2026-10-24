@@ -19,6 +19,7 @@ export const Areas = () => {
       <section className="relative isolate overflow-hidden">
         <CmsImage
           path="areasPage.banner"
+          fetchPriority="high"
           fallback="/img/areas-de-intervencao.webp"
           fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt={attr('areas.imageAlt')}

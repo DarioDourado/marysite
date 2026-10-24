@@ -8,14 +8,17 @@ interface RequireAuthProps {
   /** Exige o tipo de edição indicado, ou o role superuser. */
   capability?: Capability;
   superuserOnly?: boolean;
+  /** Só admin e superuser (pedidos e mensagens dos formulários). */
+  staffOnly?: boolean;
 }
 
 // Só UX: a API recusa sempre o que o utilizador não pode fazer
-export const RequireAuth = ({ children, capability, superuserOnly = false }: RequireAuthProps) => {
+export const RequireAuth = ({ children, capability, superuserOnly = false, staffOnly = false }: RequireAuthProps) => {
   const { user, isLoading } = useAuth();
   if (isLoading) return <div className="min-h-screen" />;
   if (!user) return <Navigate to="/admin/login" replace />;
   if (superuserOnly && user.role !== 'superuser') return <Navigate to="/" replace />;
+  if (staffOnly && user.role === 'editor') return <Navigate to="/" replace />;
   if (capability && !user.capabilities.includes(capability)) return <Navigate to="/" replace />;
   return <>{children}</>;
 };

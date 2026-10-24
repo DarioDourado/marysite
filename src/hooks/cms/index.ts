@@ -7,3 +7,4 @@ export * from './useDeleteItem.ts';
 export * from './useReorderItems.ts';
 export * from './useUpdateItem.ts';
 export * from './useUpdateSeo.ts';
+export * from './useNoindex.ts';

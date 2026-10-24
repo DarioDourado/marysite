@@ -9,13 +9,16 @@ interface SafeImageProps {
   style?: React.CSSProperties;
   /** Marca a imagem para o modo de edição do CMS (só presente com sessão de edição). */
   dataCmsPath?: string | undefined;
+  /** Abaixo da dobra: `lazy`. A imagem principal (LCP) fica em `eager` com `fetchPriority="high"`. */
+  loading?: 'lazy' | 'eager' | undefined;
+  fetchPriority?: 'high' | 'low' | 'auto' | undefined;
 }
 
 /**
  * Image from /public/img. Falls back to `fallbackSrc`, then to an empty
  * soft-blue block when the file has not been added yet.
  */
-export const SafeImage = ({ src, alt, className, fallbackSrc, style, dataCmsPath }: SafeImageProps) => {
+export const SafeImage = ({ src, alt, className, fallbackSrc, style, dataCmsPath, loading, fetchPriority }: SafeImageProps) => {
   const [current, setCurrent] = useState(src);
   const [failed, setFailed] = useState(false);
 
@@ -30,6 +33,9 @@ export const SafeImage = ({ src, alt, className, fallbackSrc, style, dataCmsPath
       className={className}
       style={style}
       data-cms-path={dataCmsPath}
+      loading={loading}
+      decoding="async"
+      fetchPriority={fetchPriority}
       referrerPolicy="no-referrer"
       onError={() => {
         if (fallbackSrc && current !== fallbackSrc) setCurrent(fallbackSrc);

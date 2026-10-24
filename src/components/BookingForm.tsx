@@ -2,22 +2,27 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Cms } from '@/src/components/cms/Cms.tsx';
 import { useAttrText } from '@/src/components/cms/useAttrText.ts';
+import { useSubmitForm } from '@/src/hooks/submissions/index.ts';
+import { SCHEDULE_OPTIONS } from '@/src/types/submissions/index.ts';
 
 export const BookingForm = () => {
   const { t } = useTranslation();
   const attr = useAttrText();
-  const [formData, setFormData] = useState({
+  const submit = useSubmitForm();
+  const emptyForm = {
     name: '',
     email: '',
     phone: '',
     reason: '',
     scheduleDetails: '',
+    website: '',
     preferences: {
       morning: false,
       afternoon: false,
       noPreference: false,
     }
-  });
+  };
+  const [formData, setFormData] = useState(emptyForm);
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
@@ -32,8 +37,26 @@ export const BookingForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    alert(t('bookingForm.success'));
+    if (submit.isPending) return;
+    submit.mutate(
+      {
+        kind: 'booking',
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.reason,
+        schedule: SCHEDULE_OPTIONS.filter((option) => formData.preferences[option]),
+        scheduleDetails: formData.scheduleDetails,
+        website: formData.website,
+      },
+      {
+        onSuccess: () => {
+          setFormData(emptyForm);
+          alert(t('bookingForm.success'));
+        },
+        onError: () => alert(t('system.submitError')),
+      },
+    );
   };
 
   return (
@@ -41,8 +64,8 @@ export const BookingForm = () => {
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground"><Cms k="bookingForm.name.label" /></label>
-            <input 
+            <label htmlFor="booking-name" className="text-sm font-medium text-foreground"><Cms k="bookingForm.name.label" /></label>
+            <input id="booking-name" 
               type="text" 
               required
               value={formData.name}
@@ -52,8 +75,8 @@ export const BookingForm = () => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground"><Cms k="bookingForm.email.label" /></label>
-            <input 
+            <label htmlFor="booking-email" className="text-sm font-medium text-foreground"><Cms k="bookingForm.email.label" /></label>
+            <input id="booking-email" 
               type="email" 
               required
               value={formData.email}
@@ -65,8 +88,8 @@ export const BookingForm = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground"><Cms k="bookingForm.phone.label" /></label>
-          <input 
+          <label htmlFor="booking-phone" className="text-sm font-medium text-foreground"><Cms k="bookingForm.phone.label" /></label>
+          <input id="booking-phone" 
             type="tel" 
             required
             value={formData.phone}
@@ -77,8 +100,8 @@ export const BookingForm = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground"><Cms k="bookingForm.reason.label" /></label>
-          <textarea 
+          <label htmlFor="booking-reason" className="text-sm font-medium text-foreground"><Cms k="bookingForm.reason.label" /></label>
+          <textarea id="booking-reason" 
             required
             value={formData.reason}
             onChange={(e) => setFormData({...formData, reason: e.target.value})}
@@ -124,8 +147,8 @@ export const BookingForm = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-foreground"><Cms k="bookingForm.details.label" /></label>
-          <textarea 
+          <label htmlFor="booking-details" className="text-sm font-medium text-foreground"><Cms k="bookingForm.details.label" /></label>
+          <textarea id="booking-details" 
             value={formData.scheduleDetails}
             onChange={(e) => setFormData({...formData, scheduleDetails: e.target.value})}
             className="w-full px-5 py-4 bg-surface input min-h-[100px]" 
@@ -133,7 +156,19 @@ export const BookingForm = () => {
           />
         </div>
 
-        <button type="submit" className="w-full py-5 btn-primary rounded-control font-serif font-normal text-lg shadow-button">
+        {/* Armadilha anti-robôs: invisível e fora da navegação por teclado */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="sr-only"
+          value={formData.website}
+          onChange={(e) => setFormData({...formData, website: e.target.value})}
+        />
+
+        <button type="submit" disabled={submit.isPending} className="w-full py-5 btn-primary rounded-control font-serif font-normal text-lg shadow-button">
           <Cms k="bookingForm.submit" />
         </button>
       </form>

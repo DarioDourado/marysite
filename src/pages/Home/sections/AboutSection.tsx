@@ -31,6 +31,7 @@ export const AboutSection = () => {
             <div className="aspect-[4/5] max-w-[16rem] md:max-w-xs mx-auto lg:mx-0 rounded-card overflow-hidden shadow-panel bg-surface/60">
               <CmsImage
                 path="about.photo"
+                loading="lazy"
                 fallback="/img/mariline-boto-1.webp"
                 alt={attr('about.photoAlt')}
                 className="w-full h-full object-cover"

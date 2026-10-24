@@ -28,6 +28,7 @@ export const AreasSection = () => {
         <FadeIn className="mb-16 md:mb-20">
           <CmsImage
             path="areas.banner"
+            loading="lazy"
             fallback="/img/areas-de-intervencao.webp"
             fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt={attr('areas.imageAlt')}
@@ -52,6 +53,7 @@ export const AreasSection = () => {
                 className="mt-auto inline-flex items-center gap-2 text-primary-dark font-medium text-sm hover:underline"
               >
                 <Cms k="areas.learnMore" />
+                <span className="sr-only"> — {t(`areaPages.${index}.title`)}</span>
                 <ArrowRight className="w-4 h-4 arrow-shift" strokeWidth={1.5} />
               </Link>
               <ListItemControls listPath="areaPages" index={index} />
