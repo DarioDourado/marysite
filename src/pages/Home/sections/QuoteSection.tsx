@@ -7,6 +7,7 @@ export const QuoteSection = () => {
     <section className="relative h-[50vh] md:h-[80vh] md:min-h-120 overflow-hidden bg-primary-medium">
       <CmsImage
         path="quote.background"
+        sizes="100vw"
         loading="lazy"
         fallback="/img/florescimento.webp"
         alt=""

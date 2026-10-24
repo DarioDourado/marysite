@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Cms } from '@/src/components/cms/Cms.tsx';
@@ -44,14 +44,14 @@ export const FAQAccordion = () => {
           </button>
           <AnimatePresence>
             {openIndex === index && (
-              <motion.div
+              <m.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <RichHtml k={`faq.items.${index}.answer`} className="px-8 pb-6 text-text-light leading-relaxed" />
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
           <ListItemControls listPath="faq.items" index={index} />

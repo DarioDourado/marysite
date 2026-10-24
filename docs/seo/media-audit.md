@@ -19,8 +19,8 @@ Todas as imagens do site vêm da biblioteca do CMS (`/media/<ULID>.webp`) ou, se
 
 ## Decisões e limites
 
-- **Dimensões (`width`/`height`)**: não foram acrescentadas. A API de media não guarda as dimensões e todas as imagens estão dentro de caixas com proporção fixa por CSS (`aspect-[4/5]`, `h-64`, `absolute inset-0`), pelo que o CLS medido já é ≈ 0 (0,001 no desktop). Acrescentar atributos exigiria nova coluna e migração na API.
-- **`srcset`/`sizes`**: não aplicado. Cada imagem do CMS existe num só tamanho; gerar variantes exige alterar API e armazenamento. Com o limite de 2400 px e WebP o ganho adicional seria pequeno para este site.
+- **Dimensões (`width`/`height`)** (aplicado numa segunda ronda): a API passou a guardar as dimensões e o site usa-as nos atributos `width`/`height`. O tamanho visível continua a vir do CSS, por isso o aspeto não muda; o CLS medido passou de 0,034 para 0 no telemóvel.
+- **`srcset`/`sizes`** (aplicado numa segunda ronda): a API gera variantes de 480/960/1600 px no upload e o site escolhe pelo ecrã; ver `optimization-roadmap.md`.
 - **AVIF**: não usado; WebP é suficiente e universal.
 - **Qualidade visual**: o hero e a citação foram comparados com capturas antes/depois (ver `performance-report.md`); sem diferença percetível.
 - **Originais**: as versões originais das 3 imagens substituídas ficaram guardadas fora do repositório (cópia de segurança da sessão). Se quiser repor a qualidade máxima de uma imagem, basta fazer novo upload no CMS: o limite de 2400 px aplica-se sempre.

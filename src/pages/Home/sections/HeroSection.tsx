@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { m } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 import { Cms } from '@/src/components/cms/Cms.tsx';
 import { CmsImage } from '@/src/components/cms/CmsImage.tsx';
@@ -15,19 +15,20 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
   return (
     <>
       <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-primary-medium">
-        <motion.div
+        <m.div
           className="absolute inset-0"
           animate={{ scale: [1, 1.12, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
         >
           <CmsImage
             path="hero.background"
+            sizes="100vw"
             fetchPriority="high"
             fallback="/img/hortensias.webp"
             alt=""
             className="w-full h-full object-cover"
           />
-        </motion.div>
+        </m.div>
         <div className="absolute inset-0 bg-foreground/35" />
         <div className="relative max-w-7xl mx-auto px-6 py-16 w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-8">
@@ -42,6 +43,7 @@ export const HeroSection = ({ onBooking }: HeroSectionProps) => {
             <div className="aspect-[4/5] max-w-[16rem] lg:max-w-xs mx-auto lg:ml-auto rounded-panel overflow-hidden shadow-float bg-primary/40">
               <CmsImage
                 path="hero.photo"
+                sizes="(min-width: 1024px) 320px, 256px"
                 fetchPriority="high"
                 fallback="/img/mariline-boto-2.webp"
                 alt={attr('hero.imageAlt')}

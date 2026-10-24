@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import { useCmsImage } from '@/src/hooks/cms/index.ts';
-import { mediaUrl } from '@/src/lib/cms/mediaUrl.ts';
+import { mediaSrcSetEntry, mediaUrl } from '@/src/lib/cms/mediaUrl.ts';
 import { SafeImage } from '@/src/components/ui/SafeImage.tsx';
 import { ImagePencil } from './ImagePencil.tsx';
 import { useImageEdit } from './useImageEdit.ts';
@@ -18,7 +18,15 @@ export const CmsImage = ({ path, fallback, ...props }: CmsImageProps) => {
   // key: SafeImage guarda o src em estado; trocar a imagem no CMS tem de o repor
   return (
     <>
-      <SafeImage key={src} src={src} dataCmsPath={target ? path : undefined} {...props} />
+      <SafeImage
+        key={src}
+        src={src}
+        srcSet={image?.srcset ? image.srcset.split(', ').map(mediaSrcSetEntry).join(', ') : undefined}
+        width={image?.width ?? undefined}
+        height={image?.height ?? undefined}
+        dataCmsPath={target ? path : undefined}
+        {...props}
+      />
       {target && <ImagePencil path={path} node={target.node} />}
     </>
   );

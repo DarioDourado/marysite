@@ -4,6 +4,10 @@ export const imageRefSchema = z.object({
   id: z.string(),
   url: z.string(),
   alt: z.string(),
+  // Dimensões e versões por largura; podem faltar em imagens anteriores às variantes
+  width: z.number().nullish(),
+  height: z.number().nullish(),
+  srcset: z.string().nullish(),
 });
 export type ImageRef = z.infer<typeof imageRefSchema>;
 

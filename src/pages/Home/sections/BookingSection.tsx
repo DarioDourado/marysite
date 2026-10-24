@@ -15,6 +15,7 @@ export const BookingSection = () => {
             <div className="aspect-[4/5] max-w-[14rem] mx-auto rounded-card overflow-hidden shadow-panel bg-surface/60">
               <CmsImage
                 path="booking.photo"
+                sizes="224px"
                 loading="lazy"
                 fallback="/img/mariline-boto-1.webp"
                 alt={attr('booking.photoAlt')}

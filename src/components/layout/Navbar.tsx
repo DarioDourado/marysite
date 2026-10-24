@@ -3,16 +3,16 @@ import { cn } from '@/src/lib/utils.ts';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { m, AnimatePresence } from 'motion/react';
 import { Cms } from '@/src/components/cms/Cms.tsx';
 import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 import { ImagePencil } from '@/src/components/cms/ImagePencil.tsx';
 import { useAttrText } from '@/src/components/cms/useAttrText.ts';
 import { useImageEdit } from '@/src/components/cms/useImageEdit.ts';
 import { useCmsImage } from '@/src/hooks/cms/index.ts';
-import { mediaUrl } from '@/src/lib/cms/mediaUrl.ts';
+import { mediaSrcSetEntry, mediaUrl } from '@/src/lib/cms/mediaUrl.ts';
 
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 export const Navbar = () => {
   const { t } = useTranslation();
@@ -45,6 +45,10 @@ export const Navbar = () => {
             <img 
               src={logo ? mediaUrl(logo.url) : '/img/logo/Logotipo%20Lateral.webp'} 
               alt={brandName}
+              srcSet={logo?.srcset ? logo.srcset.split(', ').map(mediaSrcSetEntry).join(', ') : undefined}
+              sizes={logo?.srcset ? '160px' : undefined}
+              width={logo?.width ?? undefined}
+              height={logo?.height ?? undefined}
               data-cms-path={logoEdit ? 'brand.logo' : undefined} 
               className="h-8 md:h-10 w-auto"
               onError={(e) => {
@@ -97,7 +101,7 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -118,7 +122,7 @@ export const Navbar = () => {
                     <Cms k={item.key} />
                   </MotionLink>
                 ))}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -132,10 +136,10 @@ export const Navbar = () => {
                     <Cms k="nav.booking" />
                     <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
                   </Link>
-                </motion.div>
+                </m.div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </nav>

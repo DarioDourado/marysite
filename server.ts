@@ -116,10 +116,11 @@ async function startServer() {
     app.use(
       express.static(distPath, {
         index: false,
-        // - /assets tem hash no nome: pode ficar em cache um ano
+        // - /assets tem hash no nome e /fonts é versionado pelo nome: cache de um ano
         // - o resto (imagens por omissão) revalida ao fim de uma hora
         setHeaders: (res, filePath) => {
-          res.set('Cache-Control', filePath.includes(`${path.sep}assets${path.sep}`) ? 'public, max-age=31536000, immutable' : 'public, max-age=3600');
+          const immutable = filePath.includes(`${path.sep}assets${path.sep}`) || filePath.includes(`${path.sep}fonts${path.sep}`);
+          res.set('Cache-Control', immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=3600');
         },
       }),
     );

@@ -28,6 +28,7 @@ export const AreasSection = () => {
         <FadeIn className="mb-16 md:mb-20">
           <CmsImage
             path="areas.banner"
+            sizes="(min-width: 1280px) 1232px, 100vw"
             loading="lazy"
             fallback="/img/areas-de-intervencao.webp"
             fallbackSrc="https://images.pexels.com/photos/7091864/pexels-photo-7091864.jpeg?auto=compress&cs=tinysrgb&w=1600"
