@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { FadeIn } from '@/src/components/ui/FadeIn.tsx';
+import { Cms } from '@/src/components/cms/Cms.tsx';
+import { ListAddButton, ListItemControls } from '@/src/components/cms/ListControls.tsx';
 
 interface ApproachPoint {
   title: string;
@@ -17,17 +19,21 @@ export const ApproachSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="w-full mb-16 md:mb-20">
           <h2 className="text-4xl md:text-6xl font-serif font-normal text-foreground mb-8 tracking-tight">
-            {t('approach.title')}
+            <Cms k="approach.title" />
           </h2>
           <div className="space-y-6 text-lg text-text-light leading-relaxed">
-            {intro.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+            {intro.map((_, i) => (
+              <p key={i}>
+                <Cms k={`approach.intro.${i}`} />
+                <ListItemControls listPath="approach.intro" index={i} />
+              </p>
             ))}
+            <ListAddButton listPath="approach.intro" />
           </div>
         </FadeIn>
 
         <FadeIn className="bg-surface rounded-panel p-8 md:p-16 shadow-card border border-border">
-          <p className="text-lg text-text-light leading-relaxed mb-10">{t('approach.pointsIntro')}</p>
+          <p className="text-lg text-text-light leading-relaxed mb-10"><Cms k="approach.pointsIntro" /></p>
           <ul className="space-y-6 mb-12">
             {points.map((point, index) => (
               <li key={point.title} className="flex gap-5 items-start">
@@ -35,16 +41,22 @@ export const ApproachSection = () => {
                   {index + 1}
                 </span>
                 <p className="text-lg text-text-light leading-relaxed">
-                  <strong className="font-semibold text-foreground">{point.title}:</strong> {point.text}
+                  <strong className="font-semibold text-foreground"><Cms k={`approach.points.${index}.title`} />:</strong> <Cms k={`approach.points.${index}.text`} />
+                  <ListItemControls listPath="approach.points" index={index} />
                 </p>
               </li>
             ))}
+            <ListAddButton listPath="approach.points" as="li" />
           </ul>
 
           <div className="p-8 md:p-10 bg-primary/50 rounded-tile space-y-6 text-lg text-foreground/80 leading-relaxed">
-            {closing.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+            {closing.map((_, i) => (
+              <p key={i}>
+                <Cms k={`approach.closing.${i}`} />
+                <ListItemControls listPath="approach.closing" index={i} />
+              </p>
             ))}
+            <ListAddButton listPath="approach.closing" />
           </div>
         </FadeIn>
       </div>

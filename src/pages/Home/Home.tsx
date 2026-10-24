@@ -1,4 +1,5 @@
 import { useHomeHook } from './useHomeHook.ts';
+import { useSeo } from '@/src/hooks/cms/index.ts';
 import { HeroSection } from './sections/HeroSection.tsx';
 import { AboutSection } from './sections/AboutSection.tsx';
 import { AreasSection } from './sections/AreasSection.tsx';
@@ -9,6 +10,7 @@ import { ContactSection } from './sections/ContactSection.tsx';
 
 export const Home = () => {
   const { handleBooking } = useHomeHook();
+  useSeo('home');
 
   return (
     <div className="pt-12 md:pt-14 overflow-x-hidden">

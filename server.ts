@@ -2,11 +2,12 @@ import express, { Request, Response } from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import { createServer as createViteServer } from 'vite';
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = Number(process.env.PORT ?? 3000);
   const upload = multer({ dest: 'uploads/' });
 
   if (process.env.MAINTENANCE_MODE === 'true') {
@@ -20,6 +21,13 @@ async function startServer() {
       if (req.path.startsWith('/img/')) return next();
       res.status(503).set({ 'Retry-After': '3600', 'Cache-Control': 'no-store' }).type('html').send(maintenancePage);
     });
+  }
+
+  // Produção: a API (FastAPI) e os ficheiros de media passam pelo mesmo domínio do site
+  const apiTarget = process.env.API_PROXY_TARGET;
+  if (apiTarget) {
+    // pathFilter (e não app.use(path)) mantém o caminho completo no pedido enviado à API
+    app.use(createProxyMiddleware({ target: apiTarget, pathFilter: ['/api/v1', '/media'] }));
   }
 
   app.post('/api/upload', upload.single('image'), (req: Request, res: Response) => {

@@ -1,7 +1,8 @@
-import { useTranslation } from 'react-i18next';
 import { WhatsAppIcon } from '@/src/components/ui/WhatsAppIcon.tsx';
 import { cn } from '@/src/lib/utils.ts';
 import { getWhatsAppUrl } from '@/src/lib/whatsapp.ts';
+import { Cms } from '@/src/components/cms/Cms.tsx';
+import { useAttrText } from '@/src/components/cms/useAttrText.ts';
 
 interface WhatsAppButtonProps {
   className?: string;
@@ -9,11 +10,11 @@ interface WhatsAppButtonProps {
 
 /** Highlighted call-to-action that opens WhatsApp with a pre-filled message. */
 export const WhatsAppButton = ({ className }: WhatsAppButtonProps) => {
-  const { t } = useTranslation();
+  const attr = useAttrText();
 
   return (
     <a
-      href={getWhatsAppUrl(t('whatsapp.message'))}
+      href={getWhatsAppUrl(attr('whatsapp.number'), attr('whatsapp.message'))}
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
@@ -22,7 +23,7 @@ export const WhatsAppButton = ({ className }: WhatsAppButtonProps) => {
       )}
     >
       <WhatsAppIcon className="w-6 h-6" />
-      {t('whatsapp.cta')}
+      <Cms k="whatsapp.cta" />
     </a>
   );
 };

@@ -1,6 +1,17 @@
 # CMS Backoffice — Design
 
-Data: 2026-10-24 · Estado: para revisão
+Data: 2026-10-24 · Estado: implementado
+
+## Desvios da implementação face ao desenho inicial
+
+- `ContentItemTranslation` guarda uma única coluna `value` (a árvore recursiva distingue os campos por `key`), em vez de `title/content/link_label`.
+- `ContentItem` ganhou `parent_id` e `ref` (identificador estável para o seed); `ContentSection.type` é `object` ou `list` (sem `is_repeatable`).
+- Tipos de texto: `text`, `inline`, `richtext`, `link`, mais `image`, `list`, `group`.
+- `Profile` só tem `display_name` (sem avatar: YAGNI).
+- `contacts` pertence à página `site`.
+- Edição de texto simples no próprio sítio; parágrafos e FAQ num diálogo com o editor (um editor dentro de um `<p>` seria HTML inválido). Edita-se o idioma que está a ser mostrado.
+- Foi acrescentado o painel «Textos escondidos» para placeholders, descrições de imagens e URLs.
+- A biblioteca de media e as configurações são páginas próprias (`/admin/media`, `/admin/settings`).
 
 ## Objetivo
 

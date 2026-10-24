@@ -4,6 +4,13 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { Cms } from '@/src/components/cms/Cms.tsx';
+import { LanguageSwitcher } from './LanguageSwitcher.tsx';
+import { ImagePencil } from '@/src/components/cms/ImagePencil.tsx';
+import { useAttrText } from '@/src/components/cms/useAttrText.ts';
+import { useImageEdit } from '@/src/components/cms/useImageEdit.ts';
+import { useCmsImage } from '@/src/hooks/cms/index.ts';
+import { mediaUrl } from '@/src/lib/cms/mediaUrl.ts';
 
 const MotionLink = motion.create(Link);
 
@@ -11,6 +18,10 @@ export const Navbar = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const { pathname, hash } = useLocation();
+  const logo = useCmsImage('brand.logo');
+  const logoEdit = useImageEdit('brand.logo');
+  const attr = useAttrText();
+  const brandName = attr('brand.name');
 
   // Already on the bare home URL: the route doesn't change, so scroll up manually.
   const handleLogoClick = () => {
@@ -18,12 +29,12 @@ export const Navbar = () => {
   };
 
   const navItems = [
-    { name: t('nav.home'), href: '/' },
-    { name: t('nav.about'), href: '/#about' },
-    { name: t('nav.areas'), href: '/areas' },
-    { name: t('nav.approach'), href: '/#approach' },
-    { name: t('nav.blog'), href: '/blog' },
-    { name: t('nav.contacts'), href: '/#contacts' },
+    { key: 'nav.home', href: '/' },
+    { key: 'nav.about', href: '/#about' },
+    { key: 'nav.areas', href: '/areas' },
+    { key: 'nav.approach', href: '/#approach' },
+    { key: 'nav.blog', href: '/blog' },
+    { key: 'nav.contacts', href: '/#contacts' },
   ];
 
   return (
@@ -32,44 +43,51 @@ export const Navbar = () => {
         <div className="flex items-center">
           <Link to="/" onClick={handleLogoClick} className="hover:opacity-80 transition-opacity flex items-center">
             <img 
-              src="/img/logo/Logotipo%20Lateral.webp" 
-              alt="Mariline Bôto" 
+              src={logo ? mediaUrl(logo.url) : '/img/logo/Logotipo%20Lateral.webp'} 
+              alt={brandName}
+              data-cms-path={logoEdit ? 'brand.logo' : undefined} 
               className="h-8 md:h-10 w-auto"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.onerror = null;
                 target.style.display = 'none';
-                target.insertAdjacentHTML('afterend', '<span class="text-lg md:text-xl font-serif font-normal tracking-tight text-foreground">Mariline Bôto</span>');
+                const fallback = document.createElement('span');
+                fallback.className = 'text-lg md:text-xl font-serif font-normal tracking-tight text-foreground';
+                fallback.textContent = brandName;
+                target.after(fallback);
               }}
             />
           </Link>
+          {logoEdit && <ImagePencil path="brand.logo" node={logoEdit.node} />}
         </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
             <Link
-              key={item.name}
+              key={item.key}
               to={item.href}
               className="text-[13px] font-serif font-normal text-text-light hover:text-primary-dark transition-colors tracking-wide"
             >
-              {item.name}
+              <Cms k={item.key} />
             </Link>
           ))}
           <Link
             to="/#booking-section"
             className="px-5 py-2 btn-primary text-[13px] font-serif font-normal"
           >
-            {t('nav.booking')}
+            <Cms k="nav.booking" />
           </Link>
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
           <button 
             className="w-10 h-10 flex items-center justify-center bg-foreground text-on-primary rounded-round shadow-fab" 
             onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
+            aria-label={attr('nav.toggleMenu')}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -89,7 +107,7 @@ export const Navbar = () => {
               <nav className="flex flex-col px-8 pt-12 pb-20 gap-8">
                 {navItems.map((item, index) => (
                   <MotionLink
-                    key={item.name}
+                    key={item.key}
                     to={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -97,7 +115,7 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className="text-4xl font-serif font-normal text-foreground hover:text-primary-dark transition-colors tracking-tight"
                   >
-                    {item.name}
+                    <Cms k={item.key} />
                   </MotionLink>
                 ))}
                 <motion.div
@@ -111,7 +129,7 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className="w-full py-5 btn-primary text-center font-serif font-normal text-xl shadow-button flex items-center justify-center gap-3"
                   >
-                    {t('nav.booking')}
+                    <Cms k="nav.booking" />
                     <ArrowRight className="w-6 h-6" strokeWidth={1.5} />
                   </Link>
                 </motion.div>

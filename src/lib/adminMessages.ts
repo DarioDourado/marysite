@@ -1,0 +1,69 @@
+// Mensagens da área de edição. É sempre português: o admin não tem versão em inglês.
+export const adminMessages = {
+  validation: { required: 'Campo obrigatório', email: 'E-mail inválido', password: 'Mínimo de 10 caracteres' },
+  admin: {
+    lock: 'Área de edição',
+    backToSite: 'Voltar ao site',
+    saved: 'Guardado.',
+    common: {
+      cancel: 'Cancelar', confirm: 'Confirmar', save: 'Guardar', loading: 'A carregar…',
+      delete: 'Eliminar', back: 'Voltar', close: 'Fechar',
+    },
+    error: {
+      generic: 'Não foi possível concluir a ação. Tente novamente.',
+      session: 'A sessão terminou. Entre novamente.',
+      forbidden: 'Não tem permissão para esta alteração.',
+      stale: 'Este conteúdo foi alterado entretanto. Foi recarregado; tente outra vez.',
+      mediaInUse: 'A imagem está em uso e não pode ser eliminada.',
+      lastSuperuser: 'Tem de existir pelo menos um superuser ativo.',
+      emailTaken: 'Já existe um utilizador com este e-mail.',
+      tooLarge: 'O ficheiro é demasiado grande.',
+      unsupportedType: 'Formato não suportado. Use JPG, PNG, WEBP ou AVIF.',
+      invalid: 'O valor não é válido.',
+      logout: 'Saiu neste dispositivo, mas não foi possível terminar a sessão no servidor.',
+    },
+    login: {
+      title: 'Entrar', email: 'E-mail', password: 'Palavra-passe', submit: 'Entrar', pending: 'A entrar…',
+      invalid: 'E-mail ou palavra-passe incorretos.',
+      rateLimited: 'Demasiadas tentativas. Tente novamente dentro de instantes.',
+      generic: 'Não foi possível entrar. Tente novamente.',
+    },
+    edit: { title: 'Editar texto', pencil: 'Editar', field: 'Texto', changeImage: 'Alterar imagem' },
+    editor: {
+      toolbar: 'Formatação', content: 'Conteúdo', bold: 'Negrito', italic: 'Itálico', underline: 'Sublinhado',
+      h2: 'Título', h3: 'Subtítulo', bulletList: 'Lista com marcadores', orderedList: 'Lista numerada',
+      link: 'Ligação', linkUrl: 'Endereço da ligação', linkApply: 'Aplicar',
+    },
+    list: {
+      add: 'Adicionar', added: 'Item adicionado.', removed: 'Item removido.', reordered: 'Ordem guardada.',
+      moveUp: 'Subir', moveDown: 'Descer', hide: 'Desativar', show: 'Ativar', remove: 'Remover',
+      inactive: 'inativo', removeTitle: 'Remover item', removeMessage: 'Tem a certeza de que quer remover este item? Esta ação não pode ser desfeita.',
+    },
+    toolbar: {
+      label: 'Barra de edição', editingOn: 'A editar', editingOff: 'Editar', seo: 'SEO',
+      hiddenTexts: 'Textos escondidos', media: 'Imagens', settings: 'Configurações', logout: 'Sair',
+    },
+    seo: { title: 'SEO da página', pageTitle: 'Título', pageDescription: 'Descrição', ogImage: 'Imagem de partilha' },
+    attrs: {
+      title: 'Textos escondidos',
+      intro: 'Textos que não aparecem como texto no site: marcadores de campos, descrições de imagens e ligações.',
+      empty: 'Não há textos escondidos nesta página.',
+    },
+    media: {
+      title: 'Imagens', pick: 'Escolher imagem', search: 'Pesquisar imagens', upload: 'Enviar imagem',
+      empty: 'Ainda não há imagens.', more: 'Carregar mais', uploaded: 'Imagem enviada.', replaced: 'Imagem substituída.',
+      deleted: 'Imagem eliminada.', replace: 'Substituir', altText: 'Texto alternativo', deleteTitle: 'Eliminar imagem',
+      deleteMessage: 'Tem a certeza de que quer eliminar esta imagem?', usedIn: 'Em uso em:',
+    },
+    settings: {
+      title: 'Configurações', users: 'Utilizadores', newUser: 'Novo utilizador', email: 'E-mail', displayName: 'Nome',
+      role: 'Função', password: 'Palavra-passe inicial', active: 'Ativo', inactive: 'Inativo', create: 'Criar utilizador',
+      capabilities: 'Tipos de edição', pages: 'Páginas', resetPassword: 'Repor palavra-passe', newPassword: 'Nova palavra-passe',
+      created: 'Utilizador criado.', passwordReset: 'Palavra-passe alterada.', deactivate: 'Desativar', activate: 'Ativar',
+      roles: { admin: 'Admin', superuser: 'Superuser', editor: 'Editor' },
+      capability: { text: 'Texto', images: 'Imagens', structure: 'Listas' },
+      page: { site: 'Site e rodapé', home: 'Início', areas: 'Áreas', blog: 'Blog' },
+      superuserNote: 'O superuser tem sempre acesso a tudo.',
+    },
+  },
+};
