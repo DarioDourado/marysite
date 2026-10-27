@@ -1,9 +1,0 @@
-node_modules
-dist
-.git
-.vscode
-.env*
-!.env.example
-uploads
-*.log
-public/img/jpg
