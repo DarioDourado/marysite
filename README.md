@@ -74,9 +74,9 @@ Comandos: `npm run lint` (TypeScript estrito) · `npm test` (Vitest) · `npm run
 
 1. Publicar a API (ver `marysite-api/README.md`): `PRODUCTION=true`, `JWT_SECRET_KEY` próprio, HTTPS, volumes para `data/` e `uploads/`.
 2. O site e a API têm de estar no **mesmo domínio**. Duas opções:
-   - o servidor do site faz o proxy: definir `API_PROXY_TARGET=http://api:8000` (reencaminha `/api/v1` e `/media`);
+   - o servidor do site faz o proxy: definir `API_PROXY_TARGET=http://localhost:8000` (reencaminha `/api/v1` e `/media`);
    - ou um proxy à frente (nginx, Caddy, Traefik) que envia `/api/v1` e `/media` para a API e o resto para o site.
-3. `npm run build` e `NODE_ENV=production npx tsx server.ts` (o `Dockerfile` já o faz). Definir também `SITE_URL` (endereço público, ex. `https://exemplo.pt`) e, atrás de proxy, `TRUST_PROXY`.
+3. `npm run build` e `NODE_ENV=production npx tsx server.ts`. Definir também `SITE_URL` (endereço público, ex. `https://exemplo.pt`) e, atrás de proxy, `TRUST_PROXY`.
 4. Se a API ficar noutro domínio: `VITE_API_BASE_URL` e `VITE_MEDIA_BASE_URL` no build, `COOKIE_SAMESITE=none` e `CORS_ORIGINS` com o domínio do site.
 
 ## SEO

@@ -1,6 +1,6 @@
 # Imagens do site
 
-Usar sempre WebP no projeto. Os originais (JPG/PNG) ficam em `jpg/` (excluída do build Docker).
+Usar sempre WebP no projeto. Os originais (JPG/PNG) ficam em `jpg/`.
 
 | Ficheiro                | Onde aparece                                       |
 |-------------------------|----------------------------------------------------|
