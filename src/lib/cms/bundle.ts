@@ -27,7 +27,7 @@ export function buildBundle(sections: SectionNode[], { locale, fallbackLocale }:
   const convert = (node: ItemNode, path: string): unknown => {
     kinds[path] = node.kind;
     if (TEXT_KINDS.includes(node.kind)) return textFor(node);
-    if (node.kind === 'link') return { label: textFor(node), url: node.linkUrl ?? '' };
+    if (node.kind === 'link') return { label: textFor(node), url: node.linkUrl ?? '', icon: node.icon ?? '' };
     if (node.kind === 'image') {
       if (node.image) images[path] = node.image;
       return undefined;

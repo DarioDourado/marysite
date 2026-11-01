@@ -28,7 +28,7 @@ export const adminMessages = {
       rateLimited: 'Demasiadas tentativas. Tente novamente dentro de instantes.',
       generic: 'Não foi possível entrar. Tente novamente.',
     },
-    edit: { title: 'Editar texto', pencil: 'Editar', field: 'Texto', changeImage: 'Alterar imagem' },
+    edit: { title: 'Editar texto', pencil: 'Editar', field: 'Texto', changeImage: 'Alterar imagem', linkTitle: 'Editar ligação', linkIcon: 'Ícone', linkIconAuto: 'Automático', linkUrl: 'Endereço (URL)', linkLabel: 'Descrição (para leitores de ecrã)' },
     editor: {
       toolbar: 'Formatação', content: 'Conteúdo', bold: 'Negrito', italic: 'Itálico', underline: 'Sublinhado',
       h2: 'Título', h3: 'Subtítulo', bulletList: 'Lista com marcadores', orderedList: 'Lista numerada',

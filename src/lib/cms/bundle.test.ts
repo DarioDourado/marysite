@@ -43,7 +43,7 @@ describe('buildBundle', () => {
   it('maps links to label and url', () => {
     const link = node('privacy', 'link', { value: { pt: 'Privacidade' }, linkUrl: '/privacidade' });
     expect(buildBundle([section('footer', [link])], opts).texts).toEqual({
-      footer: { privacy: { label: 'Privacidade', url: '/privacidade' } },
+      footer: { privacy: { label: 'Privacidade', url: '/privacidade', icon: '' } },
     });
   });
 

@@ -24,6 +24,8 @@ export const itemNodeSchema = z.object({
   value: z.record(z.string(), z.string()).nullable(),
   image: imageRefSchema.nullable(),
   linkUrl: z.string().nullable(),
+  // Ícone de uma ligação social; ausente em API sem este campo
+  icon: z.string().nullish(),
   get children() {
     return z.array(itemNodeSchema);
   },
@@ -62,6 +64,7 @@ export interface ItemPatchInput {
   value?: string;
   imageId?: string | null;
   linkUrl?: string | null;
+  icon?: string | null;
   isActive?: boolean;
 }
 

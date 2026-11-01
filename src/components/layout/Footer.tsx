@@ -1,12 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import { Cms } from '@/src/components/cms/Cms.tsx';
+import { EditableLink } from '@/src/components/cms/EditableLink.tsx';
+import { ListAddButton, ListItemControls } from '@/src/components/cms/ListControls.tsx';
+import { socialIcon } from '@/src/lib/socialIcon.ts';
 import { LockLink } from '@/src/components/admin/LockLink.tsx';
 import { useAttrText } from '@/src/components/cms/useAttrText.ts';
 
 export const Footer = () => {
   const { t } = useTranslation();
+  const social = t('footer.social', { returnObjects: true }) as unknown[];
   const attr = useAttrText();
 
   return (
@@ -20,12 +24,20 @@ export const Footer = () => {
             <Cms k="footer.description" />
           </p>
           <div className="flex items-center gap-4 mt-8">
-            <a href={attr('footer.social.0.url')} aria-label={attr('footer.social.0.label')} className="p-2 bg-primary/10 text-primary-dark rounded-round hover:bg-primary/20 transition-colors">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href={attr('footer.social.1.url')} aria-label={attr('footer.social.1.label')} className="p-2 bg-primary/10 text-primary-dark rounded-round hover:bg-primary/20 transition-colors">
-              <Linkedin className="w-5 h-5" />
-            </a>
+            {social.map((_, i) => {
+              const Icon = socialIcon(attr(`footer.social.${i}.url`), t(`footer.social.${i}.icon`, { defaultValue: '' }));
+              return (
+                <span key={i} className="inline-flex items-center">
+                  <EditableLink k={`footer.social.${i}`}>
+                    <a href={attr(`footer.social.${i}.url`)} aria-label={attr(`footer.social.${i}.label`)} className="p-2 bg-primary/10 text-primary-dark rounded-round hover:bg-primary/20 transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </a>
+                  </EditableLink>
+                  <ListItemControls listPath="footer.social" index={i} />
+                </span>
+              );
+            })}
+            <ListAddButton listPath="footer.social" />
           </div>
         </div>
 

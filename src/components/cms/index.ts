@@ -1,6 +1,7 @@
 export * from './AttrDrawer.tsx';
 export * from './Cms.tsx';
 export * from './CmsImage.tsx';
+export * from './EditableLink.tsx';
 export * from './EditModeContext.ts';
 export * from './EditModeProvider.tsx';
 export * from './EditToolbar.tsx';
