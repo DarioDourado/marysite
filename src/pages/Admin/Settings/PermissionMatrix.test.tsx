@@ -37,6 +37,18 @@ describe('PermissionMatrix', () => {
     expect(onChange).toHaveBeenCalledWith({ capabilities: ['text'], pages: [] });
   });
 
+  it('disables what the acting admin does not have, unless the user already has it', () => {
+    setup({
+      capabilities: ['images'], pages: ['blog'], allowedCapabilities: ['text'], allowedPages: ['home', 'blog'],
+    });
+    expect(screen.getByRole('checkbox', { name: 'Texto' })).toBeEnabled();
+    expect(screen.getByRole('checkbox', { name: 'Imagens' })).toBeChecked();
+    expect(screen.getByRole('checkbox', { name: 'Imagens' })).toBeEnabled();
+    expect(screen.getByRole('checkbox', { name: 'Listas' })).toBeDisabled();
+    expect(screen.getByRole('checkbox', { name: 'Início' })).toBeEnabled();
+    expect(screen.getByRole('checkbox', { name: 'Áreas' })).toBeDisabled();
+  });
+
   it('is disabled for a superuser, who always has everything', () => {
     setup({ disabled: true });
     expect(screen.getByRole('checkbox', { name: 'Texto' })).toBeDisabled();

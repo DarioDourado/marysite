@@ -55,4 +55,17 @@ describe('loadCmsContent', () => {
     vi.mocked(cmsTransporter.getConfig).mockRejectedValue(failure());
     await expect(loadCmsContent()).rejects.toBeTruthy();
   });
+
+  it('stores every page, including the legal ones, in the v2 cache', async () => {
+    await loadCmsContent();
+    const raw = JSON.parse(window.localStorage.getItem('cms:content:v2') ?? 'null');
+    expect(Object.keys(raw.pages)).toEqual([...PAGE_SLUGS]);
+    expect(Object.keys(raw.pages)).toEqual(expect.arrayContaining(['privacy', 'terms']));
+  });
+
+  it('ignores a v1 cache that predates the legal pages', async () => {
+    window.localStorage.setItem('cms:content:v1', JSON.stringify({ config, pages: {} }));
+    vi.mocked(cmsTransporter.getConfig).mockRejectedValue(failure());
+    await expect(loadCmsContent()).rejects.toBeTruthy();
+  });
 });

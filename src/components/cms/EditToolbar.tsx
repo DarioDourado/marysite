@@ -7,7 +7,9 @@ import { cn } from '@/src/lib/utils.ts';
 import { useEditMode } from './EditModeContext.ts';
 import { SeoPanel } from './SeoPanel.tsx';
 
-const PATH_SLUGS: Record<string, string> = { '/': 'home', '/areas': 'areas', '/blog': 'blog' };
+const PATH_SLUGS: Record<string, string> = {
+  '/': 'home', '/areas': 'areas', '/blog': 'blog', '/privacidade': 'privacy', '/termos': 'terms',
+};
 
 const buttonClass = 'px-3 py-1.5 rounded-control bg-on-primary/15 hover:bg-on-primary/25 text-sm';
 
@@ -53,7 +55,7 @@ export const EditToolbar = () => {
           {newSubmissions > 0 && <span className="ml-2 px-1.5 rounded-round bg-primary-dark text-xs">{newSubmissions}</span>}
         </Link>
       )}
-      {user.role === 'superuser' && <Link to="/admin/settings" className={buttonClass}>{t('admin.toolbar.settings')}</Link>}
+      {isStaff && <Link to="/admin/settings" className={buttonClass}>{t('admin.toolbar.settings')}</Link>}
       <span className="text-sm opacity-80">{user.displayName}</span>
       <button
         type="button"

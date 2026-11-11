@@ -15,7 +15,7 @@ export interface CmsContent {
   pages: Record<PageSlug, PageResponse>;
 }
 
-const CACHE_KEY = 'cms:content:v1';
+const CACHE_KEY = 'cms:content:v2';
 
 const cacheSchema = z.object({
   config: cmsConfigSchema,
@@ -24,6 +24,8 @@ const cacheSchema = z.object({
     home: pageResponseSchema,
     areas: pageResponseSchema,
     blog: pageResponseSchema,
+    privacy: pageResponseSchema,
+    terms: pageResponseSchema,
   }),
 });
 

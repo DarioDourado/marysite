@@ -39,7 +39,7 @@ Todo o texto, imagem, lista e SEO do site é editado **no próprio site**, sem a
   - pedidos: o botão «Pedidos» (só admin e superuser) mostra as marcações e mensagens recebidas, com filtros, estado (novo, lido, arquivado) e eliminar;
   - listas: adicionar, remover (com confirmação), subir/descer e ativar/desativar. Itens inativos só se veem a editar;
   - «SEO» (título e descrição da página) e «Textos escondidos» (placeholders, descrições de imagens, ligações).
-- **Utilizadores e permissões:** em `/admin/settings` (só `superuser`) criam-se utilizadores e define-se, para cada um, o que pode editar (texto, imagens, listas) e em que páginas (site e rodapé, início, áreas, blog).
+- **Utilizadores e permissões:** em `/admin/settings` (`admin` e `superuser`) criam-se utilizadores e define-se, para cada um, o que pode editar (texto, imagens, listas) e em que páginas (site e rodapé, início, áreas, blog, privacidade, termos). O `admin` gere editores e outros admins (nunca superusers), só dá permissões que ele próprio tem e não se gere a si próprio por aí: o seu nome e a sua palavra-passe mudam-se em «O meu perfil».
 - **Idiomas:** com `I18N=false` na API o site é só em português. Com `I18N=true` aparece o seletor PT/EN e edita-se o idioma que estiver a ser mostrado. O inglês fica sempre guardado, mesmo escondido.
 - **Biblioteca de imagens:** `/admin/media` (tipo de edição «imagens»). Uma imagem em uso não pode ser eliminada: a API indica onde está a ser usada.
 

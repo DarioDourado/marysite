@@ -1,5 +1,5 @@
 import axios, { AxiosHeaders, type AxiosAdapter, type InternalAxiosRequestConfig } from 'axios';
-import { sessionSchema, tokenSchema, type AuthUser, type LoginInput } from '@/src/types/auth/index.ts';
+import { authUserSchema, sessionSchema, tokenSchema, type AuthUser, type LoginInput } from '@/src/types/auth/index.ts';
 
 type Request = InternalAxiosRequestConfig & { _retry?: boolean; _generation?: number };
 
@@ -109,6 +109,12 @@ export function createAuthClient({ baseURL, adapter, clearPrivateData }: Options
     api,
     getAccessToken: () => accessToken,
     getUser: () => user,
+    /** Atualiza o utilizador da sessão (ex.: depois de mudar o nome); ignora outro utilizador ou falta de sessão. */
+    updateUser(next: AuthUser) {
+      if (!user || next.id !== user.id) return;
+      user = authUserSchema.parse(next);
+      notify();
+    },
     subscribe(listener: () => void) {
       listeners.add(listener);
       return () => {

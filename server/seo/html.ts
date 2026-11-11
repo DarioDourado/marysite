@@ -1,7 +1,7 @@
 import { escapeHtml, htmlToText, safeJson } from './escape.ts';
 import { listAt, textAt, type SeoContent } from './content.ts';
 import { absolute, areaList, type PageMeta } from './meta.ts';
-import type { Classified } from './routes.ts';
+import type { Classified, PublicRoute } from './routes.ts';
 
 const tag = (name: string, attrs: Record<string, string>): string =>
   `<${name} ${Object.entries(attrs).map(([k, v]) => `${k}="${escapeHtml(v)}"`).join(' ')}>`;
@@ -89,6 +89,19 @@ const blogBody = (content: SeoContent): string => {
   return [h(1, t('blog.title')), p(t('blog.intro'))].join('\n');
 };
 
+const legalBody = (content: SeoContent, slug: 'privacy' | 'terms'): string => {
+  const t = (path: string) => textAt(content.texts, path);
+  // O corpo vem em HTML do CMS: no noscript só interessa o texto, por isso passa por htmlToText e escapa
+  return [h(1, t(`${slug}.title`)), p(t(`${slug}.updated`)), p(t(`${slug}.intro`)), p(htmlToText(t(`${slug}.body`)))].join('\n');
+};
+
+const bodyFor = (slug: PublicRoute['slug'], content: SeoContent): string => {
+  if (slug === 'home') return homeBody(content);
+  if (slug === 'areas') return areasBody(content);
+  if (slug === 'privacy' || slug === 'terms') return legalBody(content, slug);
+  return blogBody(content);
+};
+
 /**
  * Conteúdo equivalente em HTML simples para quem não executa JavaScript
  * (robôs de pré-visualização, leitores simples). O `<noscript>` nunca aparece com JavaScript ativo,
@@ -96,7 +109,7 @@ const blogBody = (content: SeoContent): string => {
  */
 export const noscriptBlock = (classified: Classified, content: SeoContent | null, siteUrl: string): string => {
   if (!content || classified.kind !== 'public' || !classified.route) return '';
-  const body = classified.route.slug === 'home' ? homeBody(content) : classified.route.slug === 'areas' ? areasBody(content) : blogBody(content);
+  const body = bodyFor(classified.route.slug, content);
   return `<noscript><main>\n${navigation(content, siteUrl)}\n${body}\n</main></noscript>`;
 };
 

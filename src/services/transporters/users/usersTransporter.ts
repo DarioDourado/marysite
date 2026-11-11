@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { authClient } from '@/src/lib/auth/session.ts';
+import { authUserSchema, type AuthUser } from '@/src/types/auth/index.ts';
 import { managedUserSchema, type CreateUserForm, type ManagedUser, type UpdateUserForm } from '@/src/types/users/index.ts';
 
 const BASE = '/admin/settings/users';
@@ -24,5 +25,16 @@ export const usersTransporter = {
 
   async resetPassword(id: string, password: string): Promise<void> {
     await authClient.api.post(`${BASE}/${id}/password`, { password });
+  },
+
+  /** Perfil próprio (admin e superuser): devolve o utilizador atualizado. */
+  async updateProfile(displayName: string): Promise<AuthUser> {
+    const { data } = await authClient.api.patch<unknown>('/auth/me', { displayName });
+    return authUserSchema.parse(data);
+  },
+
+  /** Muda a própria password. A API fecha as outras sessões e mantém esta. */
+  async changePassword(currentPassword: string, newPassword: string): Promise<void> {
+    await authClient.api.post('/auth/me/password', { currentPassword, newPassword });
   },
 };

@@ -35,6 +35,16 @@ export type UpdateUserForm = z.infer<typeof baseFormSchema>;
 export const passwordResetSchema = z.object({ password: z.string().min(10, 'validation.password').max(256) });
 export type PasswordResetForm = z.infer<typeof passwordResetSchema>;
 
+// Perfil próprio: o nome e a password (a atual é pedida para mudar a password)
+export const profileFormSchema = z.object({ displayName: z.string().min(1, 'validation.required').max(120) });
+export type ProfileForm = z.infer<typeof profileFormSchema>;
+
+export const passwordChangeSchema = z.object({
+  currentPassword: z.string().min(1, 'validation.required'),
+  newPassword: z.string().min(10, 'validation.password').max(256),
+});
+export type PasswordChangeForm = z.infer<typeof passwordChangeSchema>;
+
 // Predefinição por role ao criar; o superuser ajusta depois (igual à da API)
 export const ROLE_DEFAULTS = {
   admin: ['text', 'images', 'structure'],

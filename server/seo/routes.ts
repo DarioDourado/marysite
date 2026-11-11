@@ -3,7 +3,7 @@
 export interface PublicRoute {
   path: string;
   /** Página do CMS de onde vêm o título e a descrição. */
-  slug: 'home' | 'areas' | 'blog';
+  slug: 'home' | 'areas' | 'blog' | 'privacy' | 'terms';
   /** Se entra no sitemap e no índice. O blog fica fora enquanto não tiver artigos. */
   indexable: boolean;
 }
@@ -16,6 +16,8 @@ export const publicRoutes = ({ indexBlog }: RouteOptions): PublicRoute[] => [
   { path: '/', slug: 'home', indexable: true },
   { path: '/areas', slug: 'areas', indexable: true },
   { path: '/blog', slug: 'blog', indexable: indexBlog },
+  { path: '/privacidade', slug: 'privacy', indexable: true },
+  { path: '/termos', slug: 'terms', indexable: true },
 ];
 
 export type RouteKind = 'public' | 'admin' | 'unknown';

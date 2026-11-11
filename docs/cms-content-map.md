@@ -88,6 +88,21 @@ Convenção: **Chave CMS** = `secção.item[.filho]`. Em listas, o índice é im
 |---|---|---|---|---|
 | blog | Título, introdução, vazio, loading, erro | text | `blog.title`, `blog.intro`, `blog.empty`, `blog.loading`, `blog.error` | Não |
 
+## Páginas `privacy` e `terms`
+
+Páginas legais (`/privacidade` e `/termos`). Cada uma tem uma secção com o nome do slug.
+
+| Secção | Elemento | Tipo | Chave CMS | Repetível |
+|---|---|---|---|---|
+| privacy | Título, data da última atualização | text | `privacy.title`, `privacy.updated` | Não |
+| privacy | Introdução | inline | `privacy.intro` | Não |
+| privacy | Corpo (títulos, parágrafos, listas) | richtext | `privacy.body` | Não |
+| terms | Título, data da última atualização | text | `terms.title`, `terms.updated` | Não |
+| terms | Introdução | inline | `terms.intro` | Não |
+| terms | Corpo (títulos, parágrafos, listas) | richtext | `terms.body` | Não |
+
+Os marcadores entre parênteses retos no texto (`[NIF]`, `[Morada]`, `[prazo de conservação dos pedidos]`...) são dados a preencher antes de publicar. O corpo só aceita `h2`, `h3`, `p`, `ul`, `ol`, `li`, `strong`, `em` e `a`. As ligações `footer.privacy` e `footer.terms` apontam para `/privacidade` e `/termos`.
+
 ## SEO
 
 Não existe SEO hoje. O CMS passa a guardar `seo_title` e `seo_description` (e imagem OG) por página e idioma, aplicados a `<title>` e `<meta name="description">`. Valores iniciais: o título e a introdução já existentes de cada página.

@@ -38,6 +38,19 @@ const pages: Record<PageSlug, PageResponse> = {
     ], 'list'),
   ]),
   blog: page('blog', 'Blog', 'Descrição do blog', [section('blog', [item('title', 'Blog')])]),
+  privacy: page('privacy', 'Política de Privacidade | Mariline', 'Descrição da privacidade', [
+    section('privacy', [
+      item('title', 'Política de Privacidade'), item('updated', 'Última atualização: 11 de novembro de 2026'),
+      item('intro', 'Introdução da política'),
+      item('body', '<h2>1. Responsável</h2><p>Mariline Bôto</p><script>x</script>', 'richtext'),
+    ]),
+  ]),
+  terms: page('terms', 'Termos e Condições | Mariline', 'Descrição dos termos', [
+    section('terms', [
+      item('title', 'Termos e Condições'), item('updated', 'Última atualização: 11 de novembro de 2026'),
+      item('intro', 'Introdução dos termos'), item('body', '<h2>1. Âmbito</h2><p>Texto</p>', 'richtext'),
+    ]),
+  ]),
 };
 
 const content = buildContent({ i18n: false, defaultLang: 'pt', locales: ['pt'] }, pages);
@@ -51,6 +64,12 @@ describe('rotas', () => {
     expect(classify('/', routes).kind).toBe('public');
     expect(classify('/admin/login', routes).kind).toBe('admin');
     expect(classify('/nada', routes).kind).toBe('unknown');
+  });
+
+  it('classifica as páginas legais como públicas e indexáveis', () => {
+    const routes = publicRoutes({ indexBlog: false });
+    expect(classify('/privacidade', routes).route?.slug).toBe('privacy');
+    expect(classify('/termos', routes).route?.indexable).toBe(true);
   });
 
   it('só devolve redirecionamento quando há barra final', () => {
@@ -80,6 +99,12 @@ describe('robots.txt e sitemap.xml', () => {
     expect(robots).toContain('Sitemap: https://exemplo.pt/sitemap.xml');
   });
 
+  it('inclui as páginas legais no sitemap', () => {
+    const xml = seo.sitemap(req);
+    expect(xml).toContain('<loc>https://exemplo.pt/privacidade</loc>');
+    expect(xml).toContain('<loc>https://exemplo.pt/termos</loc>');
+  });
+
   it('exclui o blog enquanto não for indexável', () => {
     expect(seo.sitemap(req)).not.toContain('/blog');
     expect(createSeo({ siteUrl: 'https://exemplo.pt', indexBlog: true, loader: async () => content }).sitemap(req)).toContain('https://exemplo.pt/blog');
@@ -94,7 +119,7 @@ describe('render', () => {
     expect(html).toContain('<link rel="canonical" href="https://exemplo.pt/">');
     expect(html).toContain('property="og:image" content="https://exemplo.pt/media/foto.webp"');
     expect(html).toContain('content="index, follow, max-image-preview:large"');
-    expect(html).toContain('name="seo-indexable" content="/,/areas"');
+    expect(html).toContain('name="seo-indexable" content="/,/areas,/privacidade,/termos"');
     const json = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(html)?.[1] ?? '';
     const graph = (JSON.parse(json) as { '@graph': Array<{ '@type': string }> })['@graph'];
     expect(graph.map((n) => n['@type'])).toEqual(['ProfessionalService', 'Person', 'WebSite', 'WebPage']);
@@ -119,6 +144,24 @@ describe('render', () => {
     expect(html).toContain('"@type":"BreadcrumbList"');
     expect(html).toContain('"@type":"Service"');
     expect(html).toContain('<link rel="canonical" href="https://exemplo.pt/areas">');
+  });
+
+  it('privacidade: metadados, breadcrumb com o título da página e noscript sem HTML perigoso', async () => {
+    const { html, status } = await seo.render(template, req, '/privacidade');
+    expect(status).toBe(200);
+    expect(html).toContain('<title>Política de Privacidade | Mariline</title>');
+    expect(html).toContain('<link rel="canonical" href="https://exemplo.pt/privacidade">');
+    expect(html).toContain('content="index, follow, max-image-preview:large"');
+    expect(html).toContain('"name":"Política de Privacidade"');
+    expect(html).toMatch(/<noscript><main>[\s\S]*<h1>Política de Privacidade<\/h1>/);
+    expect(html).toContain('Mariline Bôto');
+    expect(html).not.toContain('<script>x</script>');
+  });
+
+  it('termos: canonical e noscript com o título', async () => {
+    const { html } = await seo.render(template, req, '/termos');
+    expect(html).toContain('<link rel="canonical" href="https://exemplo.pt/termos">');
+    expect(html).toMatch(/<noscript><main>[\s\S]*<h1>Termos e Condições<\/h1>/);
   });
 
   it('blog sem artigos fica noindex', async () => {

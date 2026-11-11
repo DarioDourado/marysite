@@ -21,7 +21,7 @@ export const AdminShell = ({ title, children }: AdminShellProps) => {
           <Link to="/" className="text-primary-dark hover:underline">{t('admin.backToSite')}</Link>
           {user?.capabilities.includes('images') && <Link to="/admin/media" className="text-foreground hover:underline">{t('admin.toolbar.media')}</Link>}
           {user && user.role !== 'editor' && <Link to="/admin/submissions" className="text-foreground hover:underline">{t('admin.toolbar.submissions')}</Link>}
-          {user?.role === 'superuser' && <Link to="/admin/settings" className="text-foreground hover:underline">{t('admin.toolbar.settings')}</Link>}
+          {user && user.role !== 'editor' && <Link to="/admin/settings" className="text-foreground hover:underline">{t('admin.toolbar.settings')}</Link>}
           <span className="ml-auto text-sm text-text-light">{user?.displayName}</span>
         </div>
       </header>

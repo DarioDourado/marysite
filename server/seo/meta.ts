@@ -1,5 +1,5 @@
 import { listAt, textAt, type SeoContent } from './content.ts';
-import type { Classified } from './routes.ts';
+import type { Classified, PublicRoute } from './routes.ts';
 
 export interface PageMeta {
   title: string;
@@ -30,7 +30,7 @@ const LOCALES: Record<string, { html: string; og: string }> = {
 export const absolute = (siteUrl: string, path: string): string =>
   /^https?:\/\//.test(path) ? path : `${siteUrl}${path === '/' ? '/' : path}`;
 
-const imageFor = (content: SeoContent | null, siteUrl: string, slug: 'home' | 'areas' | 'blog') => {
+const imageFor = (content: SeoContent | null, siteUrl: string, slug: PublicRoute['slug']) => {
   if (!content) return null;
   const own = content.pages[slug].ogImage ?? content.pages.site.ogImage;
   const fallback = content.images['hero.photo'];

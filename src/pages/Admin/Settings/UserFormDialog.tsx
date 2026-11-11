@@ -2,9 +2,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import { Modal } from '@/src/components/ui/Modal.tsx';
+import { useAuth } from '@/src/hooks/auth/index.ts';
 import { useCreateUser, useUpdateUser } from '@/src/hooks/users/index.ts';
-import { roleSchema } from '@/src/types/auth/index.ts';
-import { PAGE_SLUGS } from '@/src/types/cms/index.ts';
+import { roleSchema, type Capability } from '@/src/types/auth/index.ts';
+import { PAGE_SLUGS, type PageSlug } from '@/src/types/cms/index.ts';
 import {
   ROLE_DEFAULTS, userFormSchema, type ManagedUser, type UserFormValues,
 } from '@/src/types/users/index.ts';
@@ -23,6 +24,15 @@ export const UserFormDialog = ({ user, onClose }: UserFormDialogProps) => {
   const create = useCreateUser();
   const update = useUpdateUser();
   const isEdit = user !== undefined;
+  // Um admin só dá o que ele próprio tem e só cria editores e admins (a API valida o mesmo)
+  const { user: actor } = useAuth();
+  const adminActor = actor?.role === 'admin' ? actor : null;
+  const allowedCapabilities: Capability[] | undefined = adminActor?.capabilities;
+  const allowedPages = adminActor?.pages as PageSlug[] | undefined;
+  const limitCapabilities = (values: Capability[]) =>
+    allowedCapabilities ? values.filter((value) => allowedCapabilities.includes(value)) : values;
+  const limitPages = (values: PageSlug[]) => (allowedPages ? values.filter((value) => allowedPages.includes(value)) : values);
+  const roleOptions = adminActor ? roleSchema.options.filter((option) => option !== 'superuser') : roleSchema.options;
   const { register, handleSubmit, watch, setValue, formState } = useForm<UserFormValues>({
     resolver: zodResolver(userFormSchema(isEdit)),
     defaultValues: {
@@ -31,8 +41,8 @@ export const UserFormDialog = ({ user, onClose }: UserFormDialogProps) => {
       displayName: user?.displayName ?? '',
       role: user?.role ?? 'editor',
       isActive: user?.isActive ?? true,
-      capabilities: user?.capabilities ?? [...ROLE_DEFAULTS.editor],
-      pages: (user?.pages ?? ALL_PAGES) as UserFormValues['pages'],
+      capabilities: user?.capabilities ?? limitCapabilities([...ROLE_DEFAULTS.editor]),
+      pages: (user?.pages ?? limitPages(ALL_PAGES)) as UserFormValues['pages'],
     },
   });
   const role = watch('role');
@@ -76,11 +86,11 @@ export const UserFormDialog = ({ user, onClose }: UserFormDialogProps) => {
             {...register('role', {
               onChange: (event: { target: { value: string } }) => {
                 const next = roleSchema.parse(event.target.value);
-                if (!isEdit) setValue('capabilities', [...ROLE_DEFAULTS[next]]);
+                if (!isEdit) setValue('capabilities', limitCapabilities([...ROLE_DEFAULTS[next]]));
               },
             })}
           >
-            {roleSchema.options.map((option) => (
+            {roleOptions.map((option) => (
               <option key={option} value={option}>{t(`admin.settings.roles.${option}`)}</option>
             ))}
           </select>
@@ -96,6 +106,8 @@ export const UserFormDialog = ({ user, onClose }: UserFormDialogProps) => {
           capabilities={watch('capabilities')}
           pages={watch('pages')}
           disabled={role === 'superuser'}
+          allowedCapabilities={allowedCapabilities}
+          allowedPages={allowedPages}
           onChange={(next) => {
             setValue('capabilities', next.capabilities);
             setValue('pages', next.pages);

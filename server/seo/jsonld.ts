@@ -1,8 +1,17 @@
 import { listAt, textAt, type SeoContent } from './content.ts';
 import { absolute, areaList, type PageMeta } from './meta.ts';
-import type { Classified } from './routes.ts';
+import type { Classified, PublicRoute } from './routes.ts';
 
 type Node = Record<string, unknown>;
+
+// Chave do CMS com o nome de cada página no breadcrumb
+const BREADCRUMB_KEY: Record<PublicRoute['slug'], string> = {
+  home: 'nav.home',
+  areas: 'areasPage.title',
+  blog: 'blog.title',
+  privacy: 'privacy.title',
+  terms: 'terms.title',
+};
 
 const clean = (node: Node): Node =>
   Object.fromEntries(Object.entries(node).filter(([, v]) => v !== '' && v !== undefined && v !== null && !(Array.isArray(v) && v.length === 0)));
@@ -83,7 +92,7 @@ export const buildJsonLd = (classified: Classified, meta: PageMeta, siteUrl: str
       '@id': `${meta.canonical}#breadcrumb`,
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: t('nav.home'), item: home },
-        { '@type': 'ListItem', position: 2, name: t(classified.route.slug === 'areas' ? 'areasPage.title' : 'blog.title'), item: meta.canonical },
+        { '@type': 'ListItem', position: 2, name: t(BREADCRUMB_KEY[classified.route.slug]), item: meta.canonical },
       ],
     });
   }

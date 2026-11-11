@@ -1,8 +1,10 @@
 import { AxiosError, type AxiosAdapter, type InternalAxiosRequestConfig } from 'axios';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { AuthUser } from '@/src/types/auth/index.ts';
 import { createAuthClient } from './authClient.ts';
 
 const user = { id: 'u1', email: 'a@b.pt', displayName: 'A', role: 'editor', capabilities: ['text'], pages: ['home'] };
+const typedUser: AuthUser = { id: 'u1', email: 'a@b.pt', displayName: 'A', role: 'editor', capabilities: ['text'], pages: ['home'] };
 type Reply = { status: number; data?: unknown };
 type Handler = (config: InternalAxiosRequestConfig) => Reply | Promise<Reply>;
 
@@ -35,6 +37,25 @@ describe('auth client', () => {
     expect(client.getUser()?.displayName).toBe('A');
     expect(JSON.stringify({ ...window.localStorage })).not.toContain('tok1');
     expect(JSON.stringify({ ...window.sessionStorage })).not.toContain('tok1');
+  });
+
+  it('updateUser replaces the signed-in user and notifies subscribers', async () => {
+    const { client } = setup({ 'post /auth/login': () => ({ status: 200, data: session }) });
+    await client.login({ email: 'a@b.pt', password: 'x' });
+    const listener = vi.fn();
+    client.subscribe(listener);
+    client.updateUser({ ...typedUser, displayName: 'Novo' });
+    expect(client.getUser()?.displayName).toBe('Novo');
+    expect(listener).toHaveBeenCalled();
+  });
+
+  it('updateUser ignores another user and a missing session', async () => {
+    const { client } = setup({ 'post /auth/login': () => ({ status: 200, data: session }) });
+    client.updateUser(typedUser);
+    expect(client.getUser()).toBeNull();
+    await client.login({ email: 'a@b.pt', password: 'x' });
+    client.updateUser({ ...typedUser, id: 'other', displayName: 'Intruso' });
+    expect(client.getUser()?.displayName).toBe('A');
   });
 
   it('sends the CSRF header on auth calls', async () => {

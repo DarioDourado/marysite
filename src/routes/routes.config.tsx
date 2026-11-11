@@ -4,6 +4,8 @@ import { RequireAuth } from '@/src/components/admin/RequireAuth.tsx';
 
 const Home = lazy(() => import('@/src/pages/Home/Home.tsx').then((m) => ({ default: m.Home })));
 const Blog = lazy(() => import('@/src/pages/Blog/Blog.tsx').then((m) => ({ default: m.Blog })));
+const Privacy = lazy(() => import('@/src/pages/Legal/Privacy.tsx').then((m) => ({ default: m.Privacy })));
+const Terms = lazy(() => import('@/src/pages/Legal/Terms.tsx').then((m) => ({ default: m.Terms })));
 
 const AdminLogin = lazy(() => import('@/src/pages/Admin/Login/index.ts').then((m) => ({ default: m.Login })));
 
@@ -28,6 +30,8 @@ export const routes = [
       { index: true, element: withSuspense(Home) },
       { path: 'areas', element: withSuspense(Areas) },
       { path: 'blog', element: withSuspense(Blog) },
+      { path: 'privacidade', element: withSuspense(Privacy) },
+      { path: 'termos', element: withSuspense(Terms) },
       { path: '*', element: withSuspense(NotFound) },
     ],
   },
@@ -42,6 +46,6 @@ export const routes = [
   },
   {
     path: '/admin/settings',
-    element: <RequireAuth superuserOnly>{withSuspense(AdminSettings)}</RequireAuth>,
+    element: <RequireAuth staffOnly>{withSuspense(AdminSettings)}</RequireAuth>,
   },
 ];

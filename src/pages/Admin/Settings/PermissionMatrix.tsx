@@ -8,13 +8,21 @@ interface PermissionMatrixProps {
   onChange: (next: { capabilities: Capability[]; pages: PageSlug[] }) => void;
   /** O superuser tem sempre tudo: a matriz não se aplica. */
   disabled: boolean;
+  /** Limita o que se pode atribuir (o que o admin que age tem); o que o utilizador já tem pode sempre ser retirado. */
+  allowedCapabilities?: Capability[] | undefined;
+  allowedPages?: PageSlug[] | undefined;
 }
+
+const isLocked = <T extends string>(allowed: readonly T[] | undefined, value: T, checked: boolean): boolean =>
+  allowed !== undefined && !allowed.includes(value) && !checked;
 
 const toggle = <T extends string>(list: T[], value: T): T[] =>
   list.includes(value) ? list.filter((entry) => entry !== value) : [...list, value];
 
 /** Tipos de edição e páginas que o utilizador pode editar. */
-export const PermissionMatrix = ({ capabilities, pages, onChange, disabled }: PermissionMatrixProps) => {
+export const PermissionMatrix = ({
+  capabilities, pages, onChange, disabled, allowedCapabilities, allowedPages,
+}: PermissionMatrixProps) => {
   const { t } = useTranslation();
   return (
     <div className="grid sm:grid-cols-2 gap-6">
@@ -25,6 +33,7 @@ export const PermissionMatrix = ({ capabilities, pages, onChange, disabled }: Pe
             <input
               type="checkbox"
               checked={capabilities.includes(capability)}
+              disabled={isLocked(allowedCapabilities, capability, capabilities.includes(capability))}
               onChange={() => onChange({ capabilities: toggle(capabilities, capability), pages })}
             />
             {t(`admin.settings.capability.${capability}`)}
@@ -38,6 +47,7 @@ export const PermissionMatrix = ({ capabilities, pages, onChange, disabled }: Pe
             <input
               type="checkbox"
               checked={pages.includes(slug)}
+              disabled={isLocked(allowedPages, slug, pages.includes(slug))}
               onChange={() => onChange({ capabilities, pages: toggle(pages, slug) })}
             />
             {t(`admin.settings.page.${slug}`)}

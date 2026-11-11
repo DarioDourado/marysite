@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEditMode } from '@/src/components/cms/EditModeContext.ts';
+import { useAuth } from '@/src/hooks/auth/index.ts';
 import { cmsErrorKey } from '@/src/lib/cms/errorKey.ts';
 import { usersTransporter } from '@/src/services/transporters/users/index.ts';
 import { queryKeys } from '@/src/services/transporters/_queryKeys.ts';
@@ -26,4 +27,27 @@ export const useResetPassword = () =>
   useUserMutation(
     ({ id, password }: { id: string; password: string }) => usersTransporter.resetPassword(id, password),
     'admin.settings.passwordReset',
+  );
+
+/** O utilizador muda o seu nome; a sessão passa a mostrar o novo nome sem recarregar. */
+export const useUpdateProfile = () => {
+  const { client } = useAuth();
+  const queryClient = useQueryClient();
+  const { notify } = useEditMode();
+  return useMutation({
+    mutationFn: (displayName: string) => usersTransporter.updateProfile(displayName),
+    onSuccess: (user) => {
+      client.updateUser(user);
+      notify('success', 'admin.settings.profileSaved');
+    },
+    onError: (error) => notify('error', cmsErrorKey(error)),
+    onSettled: () => queryClient.invalidateQueries({ queryKey: queryKeys.users.all }),
+  });
+};
+
+export const useChangePassword = () =>
+  useUserMutation(
+    ({ currentPassword, newPassword }: { currentPassword: string; newPassword: string }) =>
+      usersTransporter.changePassword(currentPassword, newPassword),
+    'admin.settings.passwordChanged',
   );

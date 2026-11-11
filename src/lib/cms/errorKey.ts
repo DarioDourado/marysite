@@ -5,6 +5,7 @@ export const cmsErrorKey = (error: unknown): string => {
   if (!axios.isAxiosError(error)) return 'admin.error.generic';
   const status = error.response?.status;
   const code = (error.response?.data as { code?: string } | undefined)?.code;
+  if (status === 400 && code === 'INVALID_CURRENT_PASSWORD') return 'admin.error.wrongPassword';
   if (status === 401) return 'admin.error.session';
   if (status === 403) return 'admin.error.forbidden';
   if (status === 409 && code === 'STALE_VERSION') return 'admin.error.stale';

@@ -55,7 +55,7 @@ export const cmsConfigSchema = z.object({
 });
 export type CmsConfig = z.infer<typeof cmsConfigSchema>;
 
-export const PAGE_SLUGS = ['site', 'home', 'areas', 'blog'] as const;
+export const PAGE_SLUGS = ['site', 'home', 'areas', 'blog', 'privacy', 'terms'] as const;
 export type PageSlug = (typeof PAGE_SLUGS)[number];
 
 export interface ItemPatchInput {

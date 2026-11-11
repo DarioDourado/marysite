@@ -6,11 +6,18 @@ interface UsersTableProps {
   onEdit: (user: ManagedUser) => void;
   onResetPassword: (user: ManagedUser) => void;
   onToggleActive: (user: ManagedUser) => void;
+  /** Quem está a ver a tabela. */
+  currentUserId: string | undefined;
+  /** Um admin não se gere a si próprio por aqui: a sua linha só abre o perfil. */
+  restrictSelf: boolean;
+  onEditProfile: () => void;
 }
 
 const actionClass = 'px-3 py-1 rounded-control border border-line text-sm text-foreground';
 
-export const UsersTable = ({ users, onEdit, onResetPassword, onToggleActive }: UsersTableProps) => {
+export const UsersTable = ({
+  users, onEdit, onResetPassword, onToggleActive, currentUserId, restrictSelf, onEditProfile,
+}: UsersTableProps) => {
   const { t } = useTranslation();
   const list = (values: string[], prefix: string) =>
     values.length > 0 ? values.map((value) => t(`${prefix}.${value}`)).join(', ') : '—';
@@ -43,11 +50,17 @@ export const UsersTable = ({ users, onEdit, onResetPassword, onToggleActive }: U
               <td className="px-4 py-3">{user.role === 'superuser' ? '—' : list(user.pages, 'admin.settings.page')}</td>
               <td className="px-4 py-3">
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => onEdit(user)} className={actionClass}>{t('admin.edit.pencil')}</button>
-                  <button type="button" onClick={() => onResetPassword(user)} className={actionClass}>{t('admin.settings.resetPassword')}</button>
-                  <button type="button" onClick={() => onToggleActive(user)} className={actionClass}>
-                    {user.isActive ? t('admin.settings.deactivate') : t('admin.settings.activate')}
-                  </button>
+                  {restrictSelf && user.id === currentUserId ? (
+                    <button type="button" onClick={onEditProfile} className={actionClass}>{t('admin.settings.myProfile')}</button>
+                  ) : (
+                    <>
+                      <button type="button" onClick={() => onEdit(user)} className={actionClass}>{t('admin.edit.pencil')}</button>
+                      <button type="button" onClick={() => onResetPassword(user)} className={actionClass}>{t('admin.settings.resetPassword')}</button>
+                      <button type="button" onClick={() => onToggleActive(user)} className={actionClass}>
+                        {user.isActive ? t('admin.settings.deactivate') : t('admin.settings.activate')}
+                      </button>
+                    </>
+                  )}
                 </div>
               </td>
             </tr>
