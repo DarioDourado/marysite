@@ -32,7 +32,7 @@ O design do site público não pode mudar (ver memória `feedback_never-change-d
 - `app/seed_data/pages.py`: registar as duas páginas em `PAGES` e o SEO inicial em `SEO_SOURCES` (título até ~60 caracteres, descrição entre ~140 e ~160, em PT e EN).
 - Não há migração de schema: o seed cria o que falta e nunca reescreve o que já foi editado.
 - Passo adicional no seed: nos itens `footer.privacy` e `footer.terms`, trocar o `link_url` para `/privacidade` e `/termos` **só se ainda for `#`**, para não desfazer edição da cliente. Sem isto a base já existente ficaria com as ligações antigas, porque o seed não reescreve itens existentes.
-- Permissões por página: utilizadores já existentes não recebem acesso automático às páginas novas. O superuser atribui-o em Configurações. Quem for criado a partir daqui recebe todas as páginas por omissão (comportamento atual).
+- Permissões por página: sem isto, quem já existia (por exemplo a conta da cliente) não veria o lápis nas páginas novas, porque o modo de edição só carrega as páginas em `user.pages`. Por isso, **quando o seed cria uma página**, quem não é superuser e já tinha acesso a todas as outras páginas recebe-a também (`grant_new_page_access`). Quem tem acesso parcial, escolhido por um superuser, fica como está, e como só corre na criação da página nunca devolve um acesso que alguém retirou de propósito. Quem for criado a partir daqui recebe todas as páginas por omissão (comportamento atual).
 
 ### Frontend (`marysite`)
 
@@ -82,8 +82,14 @@ Os marcadores entre parênteses retos ficam em texto visível. O texto é um ras
 ## Ordem de deploy (crítica)
 
 O frontend carrega todas as páginas de `PAGE_SLUGS` no arranque; se for publicado antes de a API ter `privacy` e `terms`, o pedido devolve 404 e o site falha. Ordem obrigatória:
-1. Publicar a API com o `PAGE_SLUGS` novo e correr `python -m app.scripts.seed`.
-2. Só depois publicar o frontend e o servidor de SEO.
+1. Publicar a API com o `PAGE_SLUGS` novo.
+2. Na base em produção, que já tem conteúdo editado pela cliente, **não** correr o seed completo (`app.scripts.seed`): percorre todas as páginas, recriaria itens que alguém apagou e tenta criar o superuser do `.env`. Usar o comando só das páginas legais (`marysite-api`, `app/scripts/seed_legal.py`):
+   - `python -m app.scripts.seed_legal --dry-run` mostra o que faria e desfaz tudo;
+   - `python -m app.scripts.seed_legal` cria só as duas páginas que ainda não existem (conteúdo PT e EN, SEO e as linhas de acesso descritas acima). Não altera nem apaga nenhuma linha existente, não toca nas outras páginas e não cria utilizadores. Uma segunda execução não faz nada;
+   - `--link-footer` (opcional) troca o `#` do rodapé por `/privacidade` e `/termos`, só onde ainda for `#`. Sem esta opção o rodapé fica como está e as ligações editam-se no CMS («Textos escondidos»).
+3. Só depois publicar o frontend e o servidor de SEO.
+
+Verificado numa cópia da base de desenvolvimento posta no estado «produção já alterada» (sem as páginas legais, com um item do FAQ apagado e o título do hero editado): comparando todas as linhas de todas as tabelas antes e depois, o comando só acrescentou linhas (2 páginas, 2 secções, 8 itens, 16 traduções, 4 traduções de SEO e 2 linhas de acesso), com 0 removidas e 0 alteradas.
 
 ## Testes e verificação
 
@@ -97,4 +103,4 @@ O frontend carrega todas as páginas de `PAGE_SLUGS` no arranque; se for publica
 
 - Texto legal não revisto por jurista: mitigado por marcadores visíveis e pela revisão obrigatória antes de publicar.
 - Ordem de deploy: mitigada pelo passo explícito acima.
-- Utilizadores existentes sem acesso às páginas novas no CMS: o superuser atribui em Configurações.
+- Utilizadores existentes com acesso parcial não recebem as páginas novas: o superuser atribui-as em Configurações.

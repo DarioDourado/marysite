@@ -18,6 +18,14 @@ export const Footer = () => {
   const attr = useAttrText();
   const { enabled: editing } = useEditMode();
 
+  // Endereço interno navega dentro da aplicação: um <a href> recarregava a página e a sessão (e a barra de edição) perdia-se
+  const legalLink = (key: 'footer.privacy' | 'footer.terms') => {
+    const url = attr(`${key}.url`);
+    const className = 'hover:text-primary transition-colors';
+    const label = <Cms k={`${key}.label`} />;
+    return url.startsWith('/') ? <Link to={url} className={className}>{label}</Link> : <a href={url} className={className}>{label}</a>;
+  };
+
   return (
     <footer className="bg-secondary/10 border-t border-secondary/20 py-20">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -96,8 +104,8 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-secondary/20 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground/50">
         <p><Cms k="footer.copyright" /></p>
         <div className="flex items-center gap-6">
-          <a href={attr('footer.privacy.url')} className="hover:text-primary transition-colors"><Cms k="footer.privacy.label" /></a>
-          <a href={attr('footer.terms.url')} className="hover:text-primary transition-colors"><Cms k="footer.terms.label" /></a>
+          {legalLink('footer.privacy')}
+          {legalLink('footer.terms')}
           <LockLink />
         </div>
       </div>

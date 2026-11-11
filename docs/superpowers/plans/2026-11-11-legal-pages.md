@@ -16,7 +16,7 @@
 - HTML do corpo só com as tags que o sanitizer permite: `strong, em, u, a, br, p, ul, ol, li, h2, h3` e atributos `href, target, rel`.
 - Dados em falta ficam como marcadores visíveis entre parênteses retos (`[NIF]`, `[Morada]`...). O texto é um rascunho informativo e não aconselhamento jurídico.
 - Sem analytics nem cookies de rastreio. O texto tem de dizer a verdade sobre `localStorage` (idioma, cópia do conteúdo) e o cookie técnico `refresh_token` (HttpOnly, só no login de gestão).
-- **Ordem de deploy:** API publicada e `python -m app.scripts.seed` executado **antes** de publicar o frontend e o servidor de SEO.
+- **Ordem de deploy:** API publicada e, numa base já em uso, `python -m app.scripts.seed_legal` (só as páginas legais, nunca o seed completo) executado **antes** de publicar o frontend e o servidor de SEO. Ver «Ordem de deploy» no spec.
 - **Sem commits** neste plano: o utilizador faz os seus próprios commits. Cada tarefa termina com os testes dessa tarefa a passar.
 - Comandos da API correm em `/Users/dariodourado/Desktop/Projectos/Mariline-Web/marysite-api` com `.venv/bin/python -m pytest`; os do frontend em `/Users/dariodourado/Desktop/Projectos/Mariline-Web/marysite` com `npm`.
 - Mensagens de interface e comentários em português europeu, como no resto do código.

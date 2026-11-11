@@ -56,7 +56,7 @@ python3.12 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt
 cp .env.example .env            # definir JWT_SECRET_KEY, ADMIN_EMAIL e ADMIN_PASSWORD
 alembic upgrade head
-python -m app.scripts.seed
+python -m app.scripts.seed      # só em bases novas; numa base em uso ver «Produção» abaixo
 uvicorn app.main:app --reload --port 8000
 
 # 2. Site
@@ -72,7 +72,7 @@ Comandos: `npm run lint` (TypeScript estrito) · `npm test` (Vitest) · `npm run
 
 ## Deploy
 
-1. Publicar a API (ver `marysite-api/README.md`): `PRODUCTION=true`, `JWT_SECRET_KEY` próprio, HTTPS, volumes para `data/` e `uploads/`.
+1. Publicar a API (ver `marysite-api/README.md`): `PRODUCTION=true`, `JWT_SECRET_KEY` próprio, HTTPS, volumes para `data/` e `uploads/`. Numa base que já tem conteúdo editado **não** correr `app.scripts.seed` (recriaria o que foi apagado); para acrescentar só as páginas de Política de Privacidade e Termos e Condições: `python -m app.scripts.seed_legal --dry-run` (mostra o que faria) e depois `python -m app.scripts.seed_legal` (só acrescenta, nunca altera nem apaga). `--link-footer` liga também o rodapé onde ainda estiver `#`. Fazer isto **antes** de publicar o site.
 2. O site e a API têm de estar no **mesmo domínio**. Duas opções:
    - o servidor do site faz o proxy: definir `API_PROXY_TARGET=http://localhost:8000` (reencaminha `/api/v1` e `/media`);
    - ou um proxy à frente (nginx, Caddy, Traefik) que envia `/api/v1` e `/media` para a API e o resto para o site.
