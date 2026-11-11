@@ -7,11 +7,14 @@ import { ListAddButton, ListItemControls } from '@/src/components/cms/ListContro
 import { socialIcon } from '@/src/lib/socialIcon.ts';
 import { LockLink } from '@/src/components/admin/LockLink.tsx';
 import { useAttrText } from '@/src/components/cms/useAttrText.ts';
+import { useEditMode } from '@/src/components/cms/EditModeContext.ts';
+import { cn } from '@/src/lib/utils.ts';
 
 export const Footer = () => {
   const { t } = useTranslation();
   const social = t('footer.social', { returnObjects: true }) as unknown[];
   const attr = useAttrText();
+  const { enabled: editing } = useEditMode();
 
   return (
     <footer className="bg-secondary/10 border-t border-secondary/20 py-20">
@@ -23,7 +26,7 @@ export const Footer = () => {
           <p className="text-foreground/70 leading-relaxed max-w-md">
             <Cms k="footer.description" />
           </p>
-          <div className="flex items-center gap-4 mt-8">
+          <div className={cn('flex gap-4 mt-8', editing ? 'flex-col items-start' : 'items-center')}>
             {social.map((_, i) => {
               const Icon = socialIcon(attr(`footer.social.${i}.url`), t(`footer.social.${i}.icon`, { defaultValue: '' }));
               return (
