@@ -27,6 +27,7 @@ Convenção: **Chave CMS** = `secção.item[.filho]`. Em listas, o índice é im
 | footer | Cabeçalho “Links” | text | `footer.linksTitle` | Não |
 | footer | Copyright | text | `footer.copyright` | Não |
 | footer | Política de Privacidade / Termos (rótulo + URL) | text+link | `footer.privacy`, `footer.terms` | Não |
+| footer | Links da coluna «Links» (texto + destino; adicionar, remover, ordenar) | link | `footer.links[]` | Sim |
 | footer | Instagram, LinkedIn (URL) | link | `footer.social[]` | Sim |
 | whatsapp | Texto do botão | text | `whatsapp.cta` | Não |
 | whatsapp | Mensagem pré-preenchida | text | `whatsapp.message` | Não |

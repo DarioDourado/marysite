@@ -13,6 +13,8 @@ import { cn } from '@/src/lib/utils.ts';
 export const Footer = () => {
   const { t } = useTranslation();
   const social = t('footer.social', { returnObjects: true }) as unknown[];
+  const rawLinks = t('footer.links', { returnObjects: true });
+  const links = Array.isArray(rawLinks) ? rawLinks : [];
   const attr = useAttrText();
   const { enabled: editing } = useEditMode();
 
@@ -75,11 +77,18 @@ export const Footer = () => {
             <Cms k="footer.linksTitle" />
           </h3>
           <ul className="space-y-4 text-foreground/70">
-            <li><Link to="/" className="hover:text-primary-dark transition-colors"><Cms k="nav.home" /></Link></li>
-            <li><Link to="/#about" className="hover:text-primary-dark transition-colors"><Cms k="nav.about" /></Link></li>
-            <li><Link to="/areas" className="hover:text-primary-dark transition-colors"><Cms k="nav.areas" /></Link></li>
-            <li><Link to="/#booking-section" className="hover:text-primary-dark transition-colors"><Cms k="nav.booking" /></Link></li>
-            <li><Link to="/blog" className="hover:text-primary-dark transition-colors"><Cms k="nav.blog" /></Link></li>
+            {links.map((_, i) => {
+              const url = attr(`footer.links.${i}.url`) || '#';
+              const label = <Cms k={`footer.links.${i}.label`} />;
+              const className = 'hover:text-primary-dark transition-colors';
+              return (
+                <li key={i}>
+                  {url.startsWith('/') ? <Link to={url} className={className}>{label}</Link> : <a href={url} className={className}>{label}</a>}
+                  <ListItemControls listPath="footer.links" index={i} />
+                </li>
+              );
+            })}
+            <ListAddButton listPath="footer.links" as="li" />
           </ul>
         </div>
       </div>
